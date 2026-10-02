@@ -1,0 +1,42 @@
+{
+  "task": "T0.2.1",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "ls docs/mame_src/",
+      "status": "pass",
+      "detail": "Contains exactly the expected content: galaxian.cpp, galaxian.h, galaxian_a.cpp, galaxian_a.h, galaxian_v.cpp, SHA256SUMS.txt, README.md (7 entries, no extras)."
+    },
+    {
+      "name": "cd docs/mame_src && sha256sum -c SHA256SUMS.txt",
+      "status": "pass",
+      "detail": "Exit code 0; all 5 lines report OK: galaxian.cpp, galaxian.h, galaxian_a.cpp, galaxian_a.h, galaxian_v.cpp. SHA256SUMS.txt uses relative filenames in '<sha256>  <filename>' form."
+    },
+    {
+      "name": "cargo fmt --all --check",
+      "status": "pass",
+      "detail": "Exit code 0, no output (no formatting diffs); stayed green as required since this task touches no Rust code."
+    },
+    {
+      "name": "deliverable: 5 files byte-identical to local copy H:/__Emulator__/Arcade_Galaxians - Copie/mame/galaxian/",
+      "status": "pass",
+      "detail": "cmp reports IDENTICAL for all 5 files; independent sha256sum of both trees matches per file: galaxian.cpp ef4b2a4d..., galaxian.h 0c727cb7..., galaxian_a.cpp 31dccad2..., galaxian_a.h 22e7a6cb..., galaxian_v.cpp bd75a62a... (repo copy == source copy for each)."
+    },
+    {
+      "name": "deliverable: README.md provenance + read-only purpose",
+      "status": "pass",
+      "detail": "README.md states the source path of the local copy, lists all 5 files with line counts (17229/948/777/77/1545 — verified against wc -l on the repo copies), declares them read-only reference material not compiled by this repo for KB extraction (T0.2.2) and MAME comparison (Phase 1+), names copyright holders, and carries the caveat that the exact MAME version is not pinned in the local copy."
+    },
+    {
+      "name": "no crates/ file modified; only docs/mame_src/ added",
+      "status": "pass",
+      "detail": "git status --porcelain shows untracked: dashboard.html, docs/mame_src/, hermes.md, out/T0.1.2/, out/T0.2.1/ (pre-existing session artifacts plus the new deliverable); git diff HEAD -- crates/ is empty — no tracked file under crates/ was modified and nothing was committed."
+    }
+  ],
+  "first_divergence": null,
+  "notes": [
+    "No trace/frame comparison applies to this task (documentation-only); first_divergence is null.",
+    "Documented deviation confirmed: the spec's '5 URLs du fichier projet Mame' were unavailable on disk; files were copied verbatim from the verified local copy at H:/__Emulator__/Arcade_Galaxians - Copie/mame/galaxian/ as instructed by the task prompt (section d), with no internet fallback.",
+    "All three validation commands of section f executed exactly as specified from the repo root; all pass."
+  ]
+}
