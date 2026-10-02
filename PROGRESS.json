@@ -76,7 +76,7 @@
     "T0.1.1": {
       "status": "DONE",
       "attempts": 1,
-      "commit": null,
+      "commit": "a1b8e81",
       "report": "reports/T0.1.1.json",
       "notes": []
     },
