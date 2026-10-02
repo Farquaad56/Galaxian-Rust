@@ -70,7 +70,7 @@
     "T7.1.4",
     "T7.1.5"
   ],
-  "current_task": "T0.2.1",
+  "current_task": "T0.2.2",
   "halted": false,
   "tasks": {
     "T0.1.1": {
@@ -90,11 +90,13 @@
       ]
     },
     "T0.2.1": {
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
+      "commit": "411b273b576d778879d1605081bc6bb53256b482",
+      "report": "reports/T0.2.1.json",
+      "notes": [
+        "Codeur opencode (run --auto). Deviation documentee: sources copiees verbatim depuis H:/__Emulator__/Arcade_Galaxians - Copie/mame/galaxian/ (fichier projet Mame absent du disque); SHA256 consignees. Relecteur APPROVE, 0 bloquant."
+      ]
     },
     "T0.2.2": {
       "status": "TODO",
