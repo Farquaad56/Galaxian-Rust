@@ -7,5 +7,5 @@
 /// Memory map and address decoding.
 pub mod memory;
 
-/// Machine timing (frame/line counters, watchdog).
-pub mod timing;
+/// Time types: Z80 cycles (T-states) and hardware timing constants (KB-02).
+pub mod time;

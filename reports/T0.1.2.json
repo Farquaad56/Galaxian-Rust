@@ -1,0 +1,47 @@
+{
+  "task": "T0.1.2",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "cargo test -p galaxian-core time",
+      "status": "pass",
+      "detail": "Exit code 0. 'running 8 tests' in the galaxian_core unittest binary, all in time::tests: cycles_per_line_is_z80_over_hsync, cycles_per_line_times_lines_per_frame_is_cycles_per_frame, odd_pixel_shares_cycle_with_preceding_even, visible_region_boundaries, frame_boundary_is_next_frame_line_zero, pixel_clock_runs_at_twice_the_z80_clock, roundtrip_cycle_to_line_col_and_back, line_240_starts_at_cycle_46_080 — 'test result: ok. 8 passed; 0 failed'. Matches the expected 8 unit tests in time::tests."
+    },
+    {
+      "name": "cargo fmt --all --check",
+      "status": "pass",
+      "detail": "Exit code 0, no output (no formatting diffs)."
+    },
+    {
+      "name": "cargo clippy --workspace --all-targets -- -D warnings",
+      "status": "pass",
+      "detail": "Executed as 'cargo clippy --workspace --all-targets -- -D warnings' (exit 0) — on cargo/rustc 1.98 the '-D' must follow a '--'. Only output was the known-benign manifest warning ('unused manifest key: alias' in root Cargo.toml; cargo 1.98 honours [alias] only from .cargo/config.toml, where it is also declared); this is not a lint and does not fail -D warnings."
+    },
+    {
+      "name": "deliverable: crates/galaxian-core/src/time.rs with Cycles type and hardware constants",
+      "status": "pass",
+      "detail": "time.rs exists (129 lines) and lib.rs declares 'pub mod time' (old stub timing.rs deleted — confirmed absent from src/). Contains: pub type Cycles = u64; Z80_HZ = 3_072_000; CYCLES_PER_LINE = 192; LINES_PER_FRAME = 264; CYCLES_PER_FRAME = 50_688 (all typed as Cycles/u64); plus HSYNC_HZ = 16_000, PIXELS_PER_LINE = 384, PIXELS_PER_CYCLE = 2 encoding 'pixel = 2 cycles'. Conversions: cycles_to_line, line_to_cycles, cycles_to_line_col -> (line, col) with even columns in 0..PIXELS_PER_LINE-2, and inverse line_col_to_cycles where an odd column maps to the same cycle as its preceding even column. All functions #[must_use]."
+    },
+    {
+      "name": "deliverable: KB-02 source comments on every hardware constant",
+      "status": "pass",
+      "detail": "Every hardware constant carries a '// KB-02' comment: Cycles (§derived values; rule B.4), Z80_HZ (§clocks), HSYNC_HZ (§clocks), CYCLES_PER_LINE (§derived values, shown as 3_072_000/16_000), LINES_PER_FRAME (§MAME constants, GALAXIAN_VTOTAL), CYCLES_PER_FRAME (§derived values), PIXELS_PER_LINE (§clocks), PIXELS_PER_CYCLE (§clocks). Test comments also cite KB-02 (VBSTART=240, visible lines 16..239)."
+    },
+    {
+      "name": "deliverable: no dependencies added to crates/galaxian-core/Cargo.toml",
+      "status": "pass",
+      "detail": "galaxian-core Cargo.toml has no [dependencies] section at all (only package metadata + lints tables, unchanged from T0.1.1); bitflags/thiserror remain declared only in the root workspace.dependencies and unused by this crate."
+    },
+    {
+      "name": "deliverable: module is deterministic",
+      "status": "pass",
+      "detail": "time.rs contains no system clock, RNG or thread usage (grep for std::time/rand/thread/spawn: 0 matches); pure integer arithmetic on u64 only. Crate keeps #![forbid(unsafe_code)] in lib.rs and [lints.rust] unsafe_code='forbid'."
+    }
+  ],
+  "first_divergence": null,
+  "notes": [
+    "No trace/frame comparison applies to this task (no executable behavior yet); first_divergence is null.",
+    "All three validation commands were executed exactly as specified from the repo root; exit codes: test=0, fmt=0, clippy=0. The only output beyond success was the known-benign 'unused manifest key: alias' manifest warning (documented in T0.1.1).",
+    "Working tree at validation time shows the expected uncommitted changes for this task (lib.rs modified, timing.rs deleted, time.rs added); nothing was committed by the validator."
+  ]
+}
