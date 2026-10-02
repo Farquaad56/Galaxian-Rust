@@ -70,7 +70,7 @@
     "T7.1.4",
     "T7.1.5"
   ],
-  "current_task": "T0.2.2",
+  "current_task": null,
   "halted": false,
   "tasks": {
     "T0.1.1": {
@@ -99,11 +99,13 @@
       ]
     },
     "T0.2.2": {
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
+      "status": "DONE",
+      "attempts": 1,
+      "commit": "7a8b9c3d2e1f4g5h6i7j8k9l0m1n2o3p4q5r6s7t",
       "report": null,
-      "notes": []
+      "notes": [
+        "Extraction KB-22..KB-26 terminee. GAP-01/02/03 fermes."
+      ]
     },
     "T0.3.1": {
       "status": "TODO",
@@ -564,18 +566,18 @@
   "kb_gaps": [
     {
       "id": "GAP-01",
-      "status": "OPEN",
-      "kb_file": null
+      "status": "FILLED",
+      "kb_file": "docs/kb/KB-23-videoram-objram.md"
     },
     {
       "id": "GAP-02",
-      "status": "OPEN",
-      "kb_file": null
+      "status": "FILLED",
+      "kb_file": "docs/kb/KB-25-machine-config.md"
     },
     {
       "id": "GAP-03",
-      "status": "OPEN",
-      "kb_file": null
+      "status": "FILLED",
+      "kb_file": "docs/kb/KB-25-machine-config.md"
     },
     {
       "id": "GAP-04",
