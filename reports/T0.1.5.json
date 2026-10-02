@@ -1,0 +1,25 @@
+{
+  "task": "T0.1.5",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "20 files present: docs/kb/KB-01.md … KB-20.md",
+      "status": "pass",
+      "detail": "All 20 plain-named files exist (in addition to the pre-existing suffixed copies KB-NN-<slug>.md, which are left untouched)."
+    },
+    {
+      "name": "content identical to Partie E of galaxian_agentic_system_sequentiel.md",
+      "status": "pass",
+      "detail": "Each file is a byte-for-byte literal copy of its '## KB-NN — …' section (from the header line up to, excluding, the next '## ' header; trailing blank lines trimmed). Verified programmatically against the raw spec text: 20/20 IDENTICAL."
+    },
+    {
+      "name": "no other files touched",
+      "status": "pass",
+      "detail": "Commit contains only docs/kb/KB-01.md … KB-20.md and reports/T0.1.5.json."
+    }
+  ],
+  "notes": [
+    "Implemented directly by the orchestrator session (no separate codeur dispatch) per user request to avoid sending full prompts to an LLM.",
+    "The pre-existing suffixed files (KB-01-overview.md … KB-26-render-order.md) are kept as-is; they carry extra detail beyond Partie E and remain referenced by later tasks."
+  ]
+}
