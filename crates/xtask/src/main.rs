@@ -1,7 +1,9 @@
 //! `cargo xtask` — workspace task runner (Partie C).
 //!
-//! Subcommands: `api-dump`, `run-zex`, `mame-diff`, `test-roms`, `golden`.
-//! Only `api-dump` is functional for T0.1.1; the rest print a stub message.
+//! Subcommands: `api-dump`, `run-fuse`, `run-zex`, `mame-diff`, `test-roms`,
+//! `golden`, `progress-check`, `fetch-third-party`.
+//! Only `api-dump` is functional for now (T0.1.7); the rest print a stub
+//! message and return 0 (T0.1.6).
 
 #![forbid(unsafe_code)]
 
@@ -85,15 +87,21 @@ fn read_lines(path: &Path) -> Vec<String> {
         .map_or_else(|_| Vec::new(), |s| s.lines().map(str::to_owned).collect())
 }
 
+/// Stub subcommand (T0.1.6): prints a message, returns 0.
+fn stub(name: &str) {
+    println!("xtask {name}: non implémenté");
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
     match args.first().map(String::as_str) {
         Some("api-dump") => api_dump(),
-        Some(name @ ("run-zex" | "mame-diff" | "test-roms" | "golden")) => {
-            println!("xtask {name}: not implemented yet");
-        }
+        Some(name @ ("run-fuse" | "run-zex" | "mame-diff" | "test-roms")) => stub(name),
+        Some("golden") => stub("golden"),
+        Some("progress-check") => stub("progress-check"),
+        Some("fetch-third-party") => stub("fetch-third-party"),
         _ => {
-            eprintln!("usage: cargo xtask <api-dump|run-zex|mame-diff|test-roms|golden>");
+            eprintln!("usage: cargo xtask <api-dump|run-fuse|run-zex|mame-diff|test-roms|golden|progress-check|fetch-third-party>");
             std::process::exit(1);
         }
     }

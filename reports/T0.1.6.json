@@ -1,0 +1,35 @@
+{
+  "task": "T0.1.6",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "cargo build -p xtask",
+      "status": "pass",
+      "detail": "Exit code 0 after the rewrite."
+    },
+    {
+      "name": "all 8 subcommands present and return 0: api-dump, run-fuse, run-zex, mame-diff, test-roms, golden, progress-check, fetch-third-party",
+      "status": "pass",
+      "detail": "Each stub prints 'xtask <name>: non implémenté' on stdout and exits 0. Verified by running each via `cargo xtask`."
+    },
+    {
+      "name": "api-dump still functional (T0.1.7)",
+      "status": "pass",
+      "detail": "`cargo xtask api-dump` lists public signatures per crate (z80: alu/regs/timing; galaxian-core: memory/time), exit 0."
+    },
+    {
+      "name": "unknown subcommand → usage on stderr, exit 1",
+      "status": "pass",
+      "detail": "`cargo xtask bogus` prints the usage line and exits 1."
+    },
+    {
+      "name": "workspace_root() fixed (pre-existing WIP bug)",
+      "status": "pass",
+      "detail": "The earlier-session working-tree version had a broken workspace_root() that always panicked ('unknown'). Restored the correct ancestor-walk returning PathBuf; api-dump verified to locate the root and list members."
+    }
+  ],
+  "notes": [
+    "Implemented directly by the orchestrator session (no separate codeur dispatch) per user request to avoid sending full prompts to an LLM.",
+    "`golden` is a stub here per spec; the uncommitted WIP module crates/xtask/src/golden_trace/mod.rs from earlier sessions is left on disk (unreferenced, not compiled) for its later task."
+  ]
+}
