@@ -70,7 +70,7 @@
     "T7.1.4",
     "T7.1.5"
   ],
-  "current_task": null,
+  "current_task": "T0.2.1",
   "halted": false,
   "tasks": {
     "T0.1.1": {
@@ -81,14 +81,16 @@
       "notes": []
     },
     "T0.1.2": {
-      "status": "TODO",
+      "status": "DONE",
       "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
+      "commit": "b54e8037d4ef39e00e55ba9f2405f1a01fb7ab80",
+      "report": "reports/T0.1.2.json",
+      "notes": [
+        "Reviewer APPROVE; 2 non-blocking doc findings fixed pre-commit (time.rs: cycles_to_line_col range, line_col_to_cycles out-of-range col)."
+      ]
     },
     "T0.2.1": {
-      "status": "TODO",
+      "status": "IN_PROGRESS",
       "attempts": 0,
       "commit": null,
       "report": null,
