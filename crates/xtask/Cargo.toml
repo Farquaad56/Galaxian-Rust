@@ -1,0 +1,9 @@
+[package]
+name = "xtask"
+version.workspace = true
+edition.workspace = true
+
+# Task-runner crate (Partie C): no dependencies.
+[lints.clippy]
+all = "deny"
+pedantic = "warn"

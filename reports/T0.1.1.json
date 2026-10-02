@@ -1,0 +1,57 @@
+{
+  "task": "T0.1.1",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "cargo fmt --all --check",
+      "status": "pass",
+      "detail": "Exit code 0, no output (no formatting diffs)."
+    },
+    {
+      "name": "cargo clippy --workspace --all-targets -D warnings",
+      "status": "pass",
+      "detail": "Executed as the equivalent form 'cargo clippy --workspace --all-targets -- -D warnings' (exit 0). On cargo/rustc 1.98.1 the literal form without '--' is rejected: 'error: unexpected argument -D found' (verified, exit 1), so the '--' separator is required to pass -D warnings through to clippy. Only output was a manifest warning ('unused manifest key: alias' in root Cargo.toml — cargo 1.98 honours [alias] only from .cargo/config.toml, where it is also declared); this is not a lint and does not fail -D warnings."
+    },
+    {
+      "name": "cargo build --workspace && cargo test --workspace",
+      "status": "pass",
+      "detail": "Both exit 0. Build: 'Finished dev profile'. Test: all green, 0 tests — 5 unit-test binaries (galaxian_audio, galaxian_core, galaxian_frontend, xtask, z80) each 'running 0 tests / test result: ok. 0 passed; 0 failed', plus 4 doc-test suites (z80, galaxian_core, galaxian_audio, galaxian_frontend) all 0 tests. Meets success criterion: vert, 0 test."
+    },
+    {
+      "name": "deliverable: workspace Cargo.toml with the 5 crates",
+      "status": "pass",
+      "detail": "Root Cargo.toml declares [workspace] resolver=2, members = crates/{z80, galaxian-core, galaxian-audio, galaxian-frontend, xtask}; workspace.package edition='2021' (cargo metadata confirms all 5 packages resolve to edition 2021); allowed deps bitflags/thiserror declared in [workspace.dependencies] but unused by any member yet; no dependencies added beyond Partie C."
+    },
+    {
+      "name": "deliverable: crate lint attributes",
+      "status": "pass",
+      "detail": "All 5 crates declare [lints.clippy] all='deny' + pedantic='warn'. z80, galaxian-core and galaxian-audio each declare [lints.rust] unsafe_code='forbid' in their Cargo.toml (z80 additionally has #![no_std] in lib.rs; core/audio/frontend/xtask have #![forbid(unsafe_code)] in source as well). Lints are per-crate rather than workspace-level because cargo 1.98 rejects mixing lints.workspace=true with a per-crate [lints.rust] table (documented in root Cargo.toml comment); the required attributes are present on each crate's manifest as specified."
+    },
+    {
+      "name": "deliverable: minimal compilable crates",
+      "status": "pass",
+      "detail": "z80 lib.rs (#![no_std], pub mod alu/regs/timing), galaxian-core (pub mod memory/timing), galaxian-audio (pub mod synth) are module skeletons only (~60-76 byte stub modules); galaxian-frontend is a dependency-free lib; xtask is a bin crate. All compile under the workspace build."
+    },
+    {
+      "name": "deliverable: cargo xtask alias + api-dump",
+      "status": "pass",
+      "detail": "[alias] xtask = 'run --package xtask --' present in root Cargo.toml and repeated in .cargo/config.toml (required for functionality on cargo 1.98). 'cargo xtask api-dump' exits 0 and prints public signatures per crate: z80 -> pub mod alu/regs/timing; galaxian-core -> pub mod memory/timing; galaxian-audio -> pub mod synth; galaxian-frontend and xtask listed with no public items. run-zex, mame-diff, test-roms, golden each print 'not implemented yet' and exit 0."
+    },
+    {
+      "name": "deliverable: CI workflow",
+      "status": "pass",
+      "detail": ".github/workflows/ci.yml present; triggers on push and pull_request to main (ubuntu-latest, stable toolchain + clippy/rustfmt); runs the three commands in order: 'cargo fmt --all --check', 'cargo clippy --workspace --all-targets -- -D warnings' (the form valid on cargo 1.98), 'cargo test --workspace'."
+    },
+    {
+      "name": "deliverable: versioned empty dirs + roms gitignore",
+      "status": "pass",
+      "detail": "tests/roms/.gitkeep, tests/golden/.gitkeep, tests/third_party/.gitkeep and roms/.gitkeep all exist on disk; git check-ignore confirms none of them are ignored (they will be versioned). .gitignore excludes target/, roms/* with !roms/.gitkeep exception (verified: a hypothetical roms/some_commercial.rom is IGNORED while roms/.gitkeep is not), plus editor/OS cruft."
+    }
+  ],
+  "first_divergence": null,
+  "notes": [
+    "No trace/frame comparison applies to this task (no code yet); first_divergence is null.",
+    "Codeur's claim that all commands pass is confirmed by independent execution; the only caveat is the clippy invocation form: on cargo 1.98.1 'cargo clippy --workspace --all-targets -D warnings' without '--' fails with 'unexpected argument -D found', so the equivalent '... -- -D warnings' was used (also what ci.yml uses).",
+    "The root Cargo.toml [alias] table emits a harmless manifest warning on cargo 1.98 ('unused manifest key: alias'); it does not affect any validation command's exit code and is required by the task spec, with .cargo/config.toml carrying the functional copy."
+  ]
+}

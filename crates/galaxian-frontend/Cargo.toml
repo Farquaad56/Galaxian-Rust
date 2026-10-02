@@ -1,0 +1,10 @@
+[package]
+name = "galaxian-frontend"
+version.workspace = true
+edition.workspace = true
+
+# Frontend crate (Partie C): outside the core, no dependencies yet.
+# minifb/pixels/cpal are added by T6.1.1 — a human decision.
+[lints.clippy]
+all = "deny"
+pedantic = "warn"

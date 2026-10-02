@@ -1,0 +1,38 @@
+# KB-03 — Carte mémoire (décodage matériel)
+
+> Source : driver MAME `src/mame/galaxian/` (galaxian.cpp, galaxian_v.cpp, galaxian.h, galaxian_a.cpp, galaxian_a.h), périmètre **Galaxian d'origine** uniquement.
+
+```
+0000-3fff : ROM programme
+4000-47ff : RAM (0x400 décodé, mirroré)
+4800-4fff : non connecté
+5000-57ff : VRAM
+5800-5fff : OBJRAM (sprites/attributs)
+6000-67ff : /SW0 (lecture) ou /DRIVER (écriture)
+6800-6fff : /SW1 (lecture) ou /SOUND (écriture)
+7000-77ff : /DIPSW (lecture) ou LATCH (écriture)
+7800-7fff : /WDR watchdog (lecture) ou /PITCH son (écriture)
+```
+Implémentation MAME de référence :
+```cpp
+map.unmap_value_high();                        // lectures non mappées → 0xFF
+map(0x0000,0x3fff).rom();
+map(0x4000,0x43ff).mirror(0x0400).ram();
+map(0x5000,0x53ff).mirror(0x0400).ram().w(galaxian_videoram_w).share("videoram");
+map(0x5800,0x58ff).mirror(0x0700).ram().w(galaxian_objram_w).share("spriteram");
+map(0x6000,0x6000).mirror(0x07ff).portr("IN0");
+map(0x6000,0x6001).mirror(0x07f8).w(start_lamp_w);
+map(0x6002,0x6002).mirror(0x07f8).w(coin_lock_w);
+map(0x6003,0x6003).mirror(0x07f8).w(coin_count_0_w);
+map(0x6004,0x6007).mirror(0x07f8).w("cust", lfo_freq_w);
+map(0x6800,0x6800).mirror(0x07ff).portr("IN1");
+map(0x6800,0x6807).mirror(0x07f8).w("cust", sound_w);
+map(0x7000,0x7000).mirror(0x07ff).portr("IN2");
+map(0x7001,0x7001).mirror(0x07f8).w(irq_enable_w);
+map(0x7004,0x7004).mirror(0x07f8).w(galaxian_stars_enable_w);
+map(0x7006,0x7006).mirror(0x07f8).w(galaxian_flip_screen_x_w);
+map(0x7007,0x7007).mirror(0x07f8).w(galaxian_flip_screen_y_w);
+map(0x7800,0x7800).mirror(0x07ff).r("watchdog", reset_r);
+map(0x7800,0x7800).mirror(0x07ff).w("cust", pitch_w);
+```
+Points d'attention : VRAM = 0x400 octets utiles (mirror 0x400) ; OBJRAM = 0x100 octets (mirror 0x700) ; les écritures VRAM/OBJRAM passent par des fonctions qui **mettent à jour le rendu** (cf. KB-09/10).

@@ -1,0 +1,8 @@
+# Cargo configuration for this workspace.
+#
+# The `[alias]` table is also declared in the root Cargo.toml per the task
+# spec (T0.1.1), but cargo 1.98 only honours aliases from .cargo/config.toml,
+# so it is repeated here to make `cargo xtask <subcommand>` functional.
+
+[alias]
+xtask = "run --package xtask --"

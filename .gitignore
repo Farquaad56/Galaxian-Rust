@@ -1,0 +1,12 @@
+# Build artifacts (cargo)
+target/
+
+# Commercial ROMs — provided by the user, not versioned (Partie C).
+roms/*
+!roms/.gitkeep
+
+# Editor / OS cruft
+*.swp
+.DS_Store
+.idea/
+.vscode/

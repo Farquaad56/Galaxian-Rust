@@ -1,0 +1,37 @@
+# Galaxian arcade emulator — workspace root (Partie C).
+#
+# Crates: z80, galaxian-core, galaxian-audio, galaxian-frontend, xtask.
+# Allowed dependencies (Partie C): core = bitflags, thiserror;
+# dev = proptest, serde_json, crc32fast. Any addition is a human decision.
+
+[workspace]
+resolver = "2"
+members = [
+    "crates/z80",
+    "crates/galaxian-core",
+    "crates/galaxian-audio",
+    "crates/galaxian-frontend",
+    "crates/xtask",
+]
+
+[workspace.package]
+edition = "2021"
+version = "0.1.0"
+
+# Allowed dependency set (Partie C) — members reference it via `workspace = true`.
+[workspace.dependencies]
+bitflags = "2"
+thiserror = "2"
+
+# Dev dependencies allowed by Partie C (proptest, serde_json, crc32fast) are
+# declared here as workspace.dev-dependencies when a crate first needs them;
+# none are referenced yet in T0.1.1, so the table is omitted to keep cargo
+# warning-free. Any addition remains a human decision.
+
+# Lints (Partie C) are declared per crate: this cargo version rejects mixing
+# `lints.workspace = true` with a per-crate `[lints.rust]` table, so each
+# member declares clippy `all = "deny"` + `pedantic = "warn"` explicitly.
+
+# `cargo xtask <subcommand>` → `cargo run --package xtask -- <subcommand>`.
+[alias]
+xtask = "run --package xtask --"

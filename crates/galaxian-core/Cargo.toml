@@ -1,0 +1,12 @@
+[package]
+name = "galaxian-core"
+version.workspace = true
+edition.workspace = true
+
+# Core crate (Partie C): deterministic, unsafe forbidden.
+[lints.clippy]
+all = "deny"
+pedantic = "warn"
+
+[lints.rust]
+unsafe_code = "forbid"
