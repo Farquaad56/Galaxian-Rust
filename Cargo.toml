@@ -23,10 +23,12 @@ version = "0.1.0"
 bitflags = "2"
 thiserror = "2"
 
-# Dev dependencies allowed by Partie C (proptest, serde_json, crc32fast) are
-# declared here as workspace.dev-dependencies when a crate first needs them;
-# none are referenced yet in T0.1.1, so the table is omitted to keep cargo
-# warning-free. Any addition remains a human decision.
+# Dev dependencies allowed by Partie C (T0.1.4). Core crates reference them
+# via `workspace = true` in their `[dev-dependencies]`. Any addition remains a
+# human decision.
+proptest = "1"
+serde_json = "1"
+crc32fast = "1"
 
 # Lints (Partie C) are declared per crate: this cargo version rejects mixing
 # `lints.workspace = true` with a per-crate `[lints.rust]` table, so each

@@ -1,0 +1,40 @@
+{
+  "task": "T0.1.4",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "cargo build --workspace",
+      "status": "pass",
+      "detail": "Exit code 0 after adding the dependency tables. Only pre-existing dead-code warning in z80 (uncommitted T1.1.1 WIP, not part of this task)."
+    },
+    {
+      "name": "cargo clippy --workspace --all-targets -- -D warnings",
+      "status": "pass",
+      "detail": "Passes on the committed state. All remaining lints are in uncommitted working-tree files from earlier sessions (crates/xtask/src/golden_trace/mod.rs, crates/z80/src/regs.rs, workspace_root hack in main.rs) — none introduced by this task's manifest-only changes."
+    },
+    {
+      "name": "deliverable: root Cargo.toml [workspace.dependencies]",
+      "status": "pass",
+      "detail": "bitflags = \"2\", thiserror = \"2\" (already present from T0.1.1) plus new dev set proptest = \"1\", serde_json = \"1\", crc32fast = \"1\" per Partie C line 255."
+    },
+    {
+      "name": "deliverable: core crate manifests",
+      "status": "pass",
+      "detail": "crates/z80, crates/galaxian-core, crates/galaxian-audio each declare [dependencies] bitflags.workspace = true / thiserror.workspace = true and [dev-dependencies] proptest/serde_json/crc32fast via workspace = true. galaxian-frontend (outside the core) and xtask (no external deps allowed) unchanged."
+    },
+    {
+      "name": "deliverable: alias cargo xtask in .cargo/config.toml",
+      "status": "pass",
+      "detail": "Already present since T0.1.1 ([alias] xtask = \"run --package xtask --\"); verified functional with `cargo xtask api-dump`."
+    },
+    {
+      "name": "no dependency outside the allowed set",
+      "status": "pass",
+      "detail": "grep of all Cargo.toml: only bitflags, thiserror, proptest, serde_json, crc32fast referenced; matches Partie C exactly. Cargo.lock updated accordingly (5 workspace members + transitive deps)."
+    }
+  ],
+  "notes": [
+    "Implemented directly by the orchestrator session (no separate codeur dispatch) per user request to avoid sending full prompts to an LLM.",
+    "Working tree contains uncommitted WIP from earlier sessions (v2 PROGRESS.json migration, partial T1.1.1 flags in z80/src/regs.rs, xtask golden_trace module); left untouched by this commit."
+  ]
+}

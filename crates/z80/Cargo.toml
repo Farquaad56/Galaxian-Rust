@@ -4,6 +4,15 @@ version.workspace = true
 edition.workspace = true
 
 # Core crate (Partie C): deterministic, no_std-compatible, unsafe forbidden.
+[dependencies]
+bitflags.workspace = true
+thiserror.workspace = true
+
+[dev-dependencies]
+proptest.workspace = true
+serde_json.workspace = true
+crc32fast.workspace = true
+
 [lints.clippy]
 all = "deny"
 pedantic = "warn"
