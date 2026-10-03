@@ -1,0 +1,28 @@
+{
+  "task": "T0.2.2",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "cargo fmt -p galaxian-core",
+      "status": "pass",
+      "detail": "Formatting clean (rustfmt applied, no diff after)."
+    },
+    {
+      "name": "cargo clippy -p galaxian-core --all-targets -- -D warnings",
+      "status": "pass",
+      "detail": "Clean (only the pre-existing 'unused manifest key: alias' warning from workspace Cargo.toml, unrelated to this task)."
+    },
+    {
+      "name": "cargo test -p galaxian-core time",
+      "status": "pass",
+      "detail": "10 passed; 0 failed. Includes split_spec_cases (cycle 0, 191, 192, 50687, 50688) and split_roundtrip_with_line_to_cycles."
+    }
+  ],
+  "notes": [
+    "Spec: type Cycles = u64 (already present in time.rs from T0.2.1) + fn split(c: Cycles) -> (frame, ligne, cycle_dans_ligne).",
+    "split decomposes an absolute cycle count into (frame index, line-within-frame, cycle-within-line). frame = c / CYCLES_PER_FRAME; ligne and cycle_dans_ligne are the position within that frame. Inverse of line_to_cycles(frame) + line_to_cycles(ligne) + cycle_dans_ligne.",
+    "Spec test cases verified: split(0)=(0,0,0), split(191)=(0,0,191), split(192)=(0,1,0), split(50687)=(0,263,191), split(50688)=(1,0,0).",
+    "Constantes used (CYCLES_PER_LINE=192, CYCLES_PER_FRAME=50_688) already defined in time.rs from T0.2.1, sourced from KB-02.",
+    "Budget B.6: 1 fiche KB (KB-02), 1 livrable (time.rs + tests), 1 mécanisme — within limits."
+  ]
+}

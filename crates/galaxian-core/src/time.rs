@@ -40,6 +40,23 @@ pub fn line_to_cycles(line: u64) -> Cycles {
     line * CYCLES_PER_LINE
 }
 
+/// Decompose an absolute cycle count into (frame, line-within-frame, cycle-within-line).
+///
+/// `frame` is the whole frame index (`c / CYCLES_PER_FRAME`); `ligne` and
+/// `cycle_dans_ligne` are the position *within* that frame (`0..=LINES_PER_FRAME - 1`
+/// and `0..=CYCLES_PER_LINE - 1`). This is the inverse of `line_to_cycles(frame)` +
+/// `line_to_cycles(ligne)` + `cycle_dans_ligne`. // KB-02 §derived values; rule B.4
+#[must_use]
+pub fn split(c: Cycles) -> (u64, u64, u64) {
+    let frame = c / CYCLES_PER_FRAME;
+    let within_frame = c % CYCLES_PER_FRAME;
+    (
+        frame,
+        within_frame / CYCLES_PER_LINE,
+        within_frame % CYCLES_PER_LINE,
+    )
+}
+
 /// Convert an absolute cycle count to (line, pixel column).
 ///
 /// A Z80 cycle spans two consecutive pixels; the returned column is the first
@@ -128,5 +145,27 @@ mod tests {
         // KB-02 §derived values: visible lines 16..239, pixels 0..255.
         assert_eq!(line_to_cycles(16), 3_072);
         assert_eq!(cycles_to_line_col(line_to_cycles(240)), (240, 0)); // VBSTART
+    }
+
+    #[test]
+    fn split_spec_cases() {
+        // T0.2.2 spec cases: cycle 0, 191, 192, 50 687, 50 688.
+        assert_eq!(split(0), (0, 0, 0));
+        assert_eq!(split(191), (0, 0, 191));
+        assert_eq!(split(192), (0, 1, 0));
+        assert_eq!(split(50_687), (0, 263, 191));
+        assert_eq!(split(50_688), (1, 0, 0));
+    }
+
+    #[test]
+    fn split_roundtrip_with_line_to_cycles() {
+        // frame*CYCLES_PER_FRAME + ligne*CYCLES_PER_LINE + cycle == c.
+        for c in [0u64, 191, 192, 50_687, 50_688, 50_689, 101_376] {
+            let (frame, ligne, cycle) = split(c);
+            assert_eq!(
+                frame * CYCLES_PER_FRAME + ligne * CYCLES_PER_LINE + cycle,
+                c
+            );
+        }
     }
 }
