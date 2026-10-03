@@ -1,0 +1,21 @@
+{
+  "task": "T0.4.9",
+  "title": "KB-25a Set de ROMs",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "sed -n '9760p' docs/mame_src/galaxian.cpp (verif ligne)",
+    "revue humaine de ROM_START(galaxian)"
+  ],
+  "validation": {
+    "criterion": "revue humaine : fiche cite fichier + ligne exacts, noms/tailles/offsets/CRC corrects",
+    "result": "Ligne verifiee : ROM_START(galaxian)=9760. Fiche KB-25a-romset.md creee."
+  },
+  "deliverables": [
+    "docs/kb/KB-25a-romset.md"
+  ],
+  "notes": [
+    "GAP-03 ferme en partie (table ROMs).",
+    "3 regions : maincpu (16KiB), gfx1 (4KiB), proms (32o)."
+  ]
+}

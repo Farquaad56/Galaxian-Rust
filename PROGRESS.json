@@ -769,11 +769,13 @@
         "T0.4.8"
       ],
       "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
+      "status": "DONE",
+      "attempts": 1,
       "commit": null,
-      "report": null,
-      "notes": []
+      "report": "reports/T0.4.9.json",
+      "notes": [
+        "KB-25a-romset.md creee (ROM_START(galaxian)=9760). 3 regions : maincpu/gfx1/proms."
+      ]
     },
     "T0.4.10": {
       "title": "KB-25b Configuration machine",
