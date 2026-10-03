@@ -1,0 +1,26 @@
+{
+  "task": "T0.4.11",
+  "title": "KB-26 Ordre de rendu",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "sed -n '7503p;8818p;8833p' docs/mame_src/galaxian.cpp (verif set_screen_update / common_init)",
+    "sed -n '460,476p;950,956p;932,945p;869p;903p;911,912p' docs/mame_src/galaxian_v.cpp (verif screen_update / fond / etoiles)",
+    "sed -n '573,585p;614,617p' docs/mame_src/galaxian_v.cpp (verif priorite sprites + transpen)",
+    "sed -n '629,658p;355,358p;1160,1167p;925,929p' docs/mame_src/galaxian_v.cpp (verif bullets_draw / couleurs / variantes)",
+    "sed -n '405p;414p;468p' docs/mame_src/galaxian_v.cpp + sed -n '337p;423,425p;450p' galaxian.h (verif tilemap / bases OBJRAM)",
+    "sed -n '16902p' docs/mame_src/galaxian.cpp (verif set d'origine) + sed -n '7394p' (galaxian_charlayout)"
+  ],
+  "validation": {
+    "criterion": "revue humaine : chaque affirmation cite fichier:ligne exacts de docs/mame_src/ ; items 1-4 du prompt satisfaits ; brouillon v1 corrige",
+    "result": "Toutes les citations verifiees contre le source reel (25+ lignes). Item 3 corrige : coquilles = entrees 0-6, missile = entree 7, match Y en deux etapes (which<3 -> Y-1, which>=3 -> Y). Cross-refs KB-09/KB-11/KB-12/KB-14/KB-22a/KB-22b/KB-23b/KB-25b existent ; KB-27 marquee 'a venir'. Fiche entierement en francais."
+  },
+  "deliverables": [
+    "docs/kb/KB-26-render-order.md"
+  ],
+  "notes": [
+    "GAP-01 clos : ordre exact fond/etoiles/tilemap/sprites/coquilles confirme par lecture directe de screen_update_galaxian.",
+    "Le brouillon partiel (commit db86fd5, plan v1) a ete reecrit en entier ; l'erreur 'entrees 0-2 coquilles' est corrigee.",
+    "Codeur = opencode run --auto (out/T0.4.11/task_prompt.md + note d'execution §f)."
+  ]
+}

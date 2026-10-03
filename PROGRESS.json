@@ -797,11 +797,13 @@
     "T0.4.10"
    ],
    "ctx": [],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
    "commit": null,
-   "report": null,
-   "notes": []
+   "report": "reports/T0.4.11.json",
+   "notes": [
+    "livrable docs/kb/KB-26-render-order.md (125 lignes) ; brouillon v1 (db86fd5) reecrit en entier — erreur coquilles 0-2 corrigee (coquilles = entrees 0-6, missile = 7, match Y deux etapes). validateur PASS (reports/T0.4.11.json), relecteur APPROVE sans motif bloquant (out/T0.4.11/verdict.md). GAP-01 clos."
+   ]
   },
   "T0.4.12": {
    "title": "KB-27 Palette PROM",
