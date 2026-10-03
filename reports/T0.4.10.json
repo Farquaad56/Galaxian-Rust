@@ -1,0 +1,27 @@
+{
+  "task": "T0.4.10",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "citation-accuracy",
+      "status": "pass",
+      "detail": "Re-run after in-place fix (sheet now 102 lines). Line 100 (Differs) now reads 'gmgalax : same galaxian_charlayout (8×8) and galaxian_spritelayout (16×16), but with the tile/sprite count doubled to 16 instead of 8 (gfx_gmgalax, galaxian.cpp:7454-7457, vs. original gfx_galaxian at 7444-7447)' — verified accurate against source: galaxian_charlayout defined at galaxian.cpp:7394 with dimensions 8,8 (line 7396); galaxian_spritelayout at 7405 with dimensions 16,16 (line 7407); gfx_gmgalax block at 7454-7457 uses both layouts with tile/sprite count 16; original gfx_galaxian at 7444-7447 uses the same two layouts with count 8. Every citation in that line points to a real line/range containing what it asserts. Full re-extraction over the whole sheet: 79 unique file:line/range references (galaxian.cpp, galaxian.h, galaxian_a.cpp, galaxian_a.h, galaxian_v.cpp), including bare refs 1742-1747/7405-7414/7444-7447/881-896/7586-7605/7416-7436 — all in-range, and the content of every cited line was spot-checked against source; no other citation regressed. Arithmetic claims re-verified exactly: frame = 1152x264/18.432 MHz = 304128 pixel-clocks = 16.5 ms (≈ 60.6 Hz); watchdog timeout = 8 frames ≈ 132 ms; T-states = 8 x 50688 = 405504; CPU = PIXEL_CLOCK/3/2 = MASTER/6 = 3.072 MHz; SOUND_CLOCK = MASTER/6/2 = 1.536 MHz; HSYNC = 6.144 MHz/384 = 16 kHz, pulse 32 H clocks ≈ 5.2 us; VSYNC = 16 kHz/264 ≈ 60.6 Hz, pulse 8 lines = 500 us (line = 62.5 us); useful area = HBSTART-HBEND x VBSTART-VBEND = 768x224 px (256x224 hardware units)."
+    },
+    {
+      "name": "section-completeness",
+      "status": "pass",
+      "detail": "Re-confirmed on re-run. All 5 required sections present: (1) CPU — Z80 type, exact clock 3.072 MHz with full derivation from GALAXIAN_MASTER_CLOCK/XSCALE/PIXEL_CLOCK constants, addrmap galaxian_map = base+discrete (sheet lines 6-14); (2) Watchdog — WATCHDOG_TIMER arm mode set_vblank_count(\"screen\", 8), timeout in frames (8), ms (~132 ms) and T-states (405504), rearm zone 0x7800-0x7fff via read of watchdog_timer_device::reset_r at galaxian.cpp:1769, cross-refs KB-03/KB-06 (lines 16-20); (3) Screen raster — SCREEN + set_raw code block with all 7 GALAXIAN_* timing constants and numeric values (HTOTAL=1152, HBEND=0, H0START=0, HBSTART=768, VTOTAL=264, VBEND=16, VBSTART=240), vblank -> vblank_interrupt_w callback, useful vs normalized resolution (1152x264 vs 768x224 / 256x224 hardware units) with XSCALE explanation, star rendering subsection incl. LFSR RNG and asymmetric clocking (lines 22-66); (4) Clocks table for original set — master XTAL, MAME pixel-clocks, video logic 6.144 MHz duty 66%, Z80 CPU, sound discrete 1.536 MHz, HSYNC 16 kHz, VSYNC ~60.6 Hz, plus KONAMI_SOUND_CLOCK noted as defined-but-unused by the original set (lines 68-79); (5) Components configured in base config — Z80, WATCHDOG_TIMER, GFXDECODE, PALETTE(32), SCREEN, SPEAKER, GALAXIAN_SOUND('cust'), one line each with cross-refs to KB-03/KB-06/KB-22a/b/KB-07/KB-26/KB-27 (lines 81-95)."
+    },
+    {
+      "name": "scope",
+      "status": "pass",
+      "detail": "Re-confirmed on re-run. Main body covers only the original 'galaxian' set; all variants (sidam, gmgalax, namenayo, tenspot) are relegated to a dedicated '## Differs (hors perimetre — variantes)' section at sheet lines 97-102 and not mixed into sections 1-5. The one variant mention inside the clocks table (KONAMI_SOUND_CLOCK row) is explicitly annotated as unused by the original set and used only by AY8910 sets, consistent with scope."
+    },
+    {
+      "name": "no-extraneous-files",
+      "status": "pass",
+      "detail": "git diff --stat HEAD is empty: no tracked file modified. Untracked files attributable to this task: the deliverable docs/kb/KB-25b-machine-config.md (mtime 2026-10-03 17:54, updated by the one-line fix) and reports/T0.4.10.json (this validator report). Other untracked items in git status (dashboard.html, dashboard.bat, dashboard_server.py, golden/, crates/xtask/src/golden_trace/, out/T0.1.2|T0.2.1|T0.2.2|T1.1.1) predate this task and belong to other tasks/sessions; out/T0.4.10/ contains only the orchestrator's task_prompt.md."
+    }
+  ],
+  "first_divergence": null
+}

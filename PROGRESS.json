@@ -1,5486 +1,5488 @@
 {
-  "order": [
-    "T0.1.1",
-    "T0.1.2",
-    "T0.1.3",
-    "T0.1.4",
-    "T0.1.5",
-    "T0.1.6",
-    "T0.1.7",
-    "T0.1.8",
-    "T0.1.9",
-    "T0.2.1",
-    "T0.2.2",
-    "T0.2.3",
-    "T0.2.4",
+ "order": [
+  "T0.1.1",
+  "T0.1.2",
+  "T0.1.3",
+  "T0.1.4",
+  "T0.1.5",
+  "T0.1.6",
+  "T0.1.7",
+  "T0.1.8",
+  "T0.1.9",
+  "T0.2.1",
+  "T0.2.2",
+  "T0.2.3",
+  "T0.2.4",
+  "T0.3.1",
+  "T0.3.2",
+  "T0.3.3",
+  "T0.3.4",
+  "T0.3.5",
+  "T0.3.6",
+  "T0.3.7",
+  "T0.3.8",
+  "T0.4.1",
+  "T0.4.2",
+  "T0.4.3",
+  "T0.4.4",
+  "T0.4.5",
+  "T0.4.6",
+  "T0.4.7",
+  "T0.4.8",
+  "T0.4.9",
+  "T0.4.10",
+  "T0.4.11",
+  "T0.4.12",
+  "T0.4.13",
+  "T0.5.1",
+  "T0.5.2",
+  "T0.5.3",
+  "T0.5.4",
+  "T0.5.5",
+  "T0.5.6",
+  "T0.5.7",
+  "T0.5.8",
+  "T0.5.9",
+  "T0.5.10",
+  "T0.6.1",
+  "T0.6.2",
+  "T0.6.3",
+  "T0.6.4",
+  "T0.6.5",
+  "T1.1.1",
+  "T1.1.2",
+  "T1.1.3",
+  "T1.1.4",
+  "T1.1.5",
+  "T1.1.6",
+  "T1.1.7",
+  "T1.1.8",
+  "T1.1.9",
+  "T1.1.10",
+  "T1.1.11",
+  "T1.1.12",
+  "T1.1.13",
+  "T1.1.14",
+  "T1.1.15",
+  "T1.1.16",
+  "T1.1.17",
+  "T1.1.18",
+  "T1.1.19",
+  "T1.2.1",
+  "T1.2.2",
+  "T1.2.3",
+  "T1.2.4",
+  "T1.2.5",
+  "T1.2.6",
+  "T1.2.7",
+  "T1.2.8",
+  "T1.2.9",
+  "T1.2.10",
+  "T1.2.11",
+  "T1.2.12",
+  "T1.2.13",
+  "T1.2.14",
+  "T1.2.15",
+  "T1.2.16",
+  "T1.2.17",
+  "T1.2.18",
+  "T1.3.1",
+  "T1.3.2",
+  "T1.3.3",
+  "T1.3.4",
+  "T1.3.5",
+  "T1.3.6",
+  "T1.3.7",
+  "T1.3.8",
+  "T1.4.1",
+  "T1.4.2",
+  "T1.4.3",
+  "T1.4.4",
+  "T1.4.5",
+  "T1.4.6",
+  "T1.4.7",
+  "T1.4.8",
+  "T1.4.9",
+  "T1.4.10",
+  "T1.4.11",
+  "T1.5.1",
+  "T1.5.2",
+  "T1.5.3",
+  "T1.5.4",
+  "T1.5.5",
+  "T1.5.6",
+  "T1.5.7",
+  "T1.5.8",
+  "T1.5.9",
+  "T1.5.10",
+  "T1.6.1",
+  "T1.6.2",
+  "T1.6.3",
+  "T1.6.4",
+  "T1.6.5",
+  "T1.6.6",
+  "T1.6.7",
+  "T1.6.8",
+  "T1.6.9",
+  "T1.6.10",
+  "T1.6.11",
+  "T1.6.12",
+  "T1.6.13",
+  "T1.7.1",
+  "T1.7.2",
+  "T1.7.3",
+  "T1.7.4",
+  "T1.7.5",
+  "T1.7.6",
+  "T1.7.7",
+  "T1.7.8",
+  "T1.7.9",
+  "T1.7.10",
+  "T1.7.11",
+  "T1.7.12",
+  "T1.7.13",
+  "T1.7.14",
+  "T1.7.15",
+  "T1.7.16",
+  "T1.7.17",
+  "T1.7.18",
+  "T1.7.19",
+  "T1.8.1",
+  "T1.8.2",
+  "T1.8.3",
+  "T1.8.4",
+  "T1.8.5",
+  "T1.8.6",
+  "T1.8.7",
+  "T1.8.8",
+  "T1.9.1",
+  "T1.9.2",
+  "T1.9.3",
+  "T1.9.4",
+  "T1.9.5",
+  "T1.9.6",
+  "T1.9.7",
+  "T1.9.8",
+  "T1.9.9",
+  "T1.9.10",
+  "T1.9.11",
+  "T1.9.12",
+  "T1.9.13",
+  "T1.9.14",
+  "T1.9.15",
+  "T1.9.16",
+  "T1.9.17",
+  "T1.9.18",
+  "T1.9.19",
+  "T1.9.20",
+  "T2.1.1",
+  "T2.1.2",
+  "T2.1.3",
+  "T2.1.4",
+  "T2.1.5",
+  "T2.1.6",
+  "T2.1.7",
+  "T2.1.8",
+  "T2.2.1",
+  "T2.2.2",
+  "T2.2.3",
+  "T2.2.4",
+  "T2.2.5",
+  "T2.2.6",
+  "T2.2.7",
+  "T2.2.8",
+  "T2.2.9",
+  "T2.3.1",
+  "T2.3.2",
+  "T2.3.3",
+  "T2.3.4",
+  "T2.3.5",
+  "T2.3.6",
+  "T2.3.7",
+  "T2.3.8",
+  "T2.3.9",
+  "T2.4.1",
+  "T2.4.2",
+  "T2.4.3",
+  "T2.4.4",
+  "T2.4.5",
+  "T2.5.1",
+  "T2.5.2",
+  "T2.5.3",
+  "T2.5.4",
+  "T2.5.5",
+  "T2.5.6",
+  "T2.5.7",
+  "T2.5.8",
+  "T3.1.1",
+  "T3.1.2",
+  "T3.1.3",
+  "T3.1.4",
+  "T3.1.5",
+  "T3.1.6",
+  "T3.1.7",
+  "T3.1.8",
+  "T3.2.1",
+  "T3.2.2",
+  "T3.2.3",
+  "T3.2.4",
+  "T3.3.1",
+  "T3.3.2",
+  "T3.3.3",
+  "T3.3.4",
+  "T3.4.1",
+  "T3.4.2",
+  "T3.4.3",
+  "T4.1.1",
+  "T4.1.2",
+  "T4.1.3",
+  "T4.1.4",
+  "T4.1.5",
+  "T4.1.6",
+  "T4.1.7",
+  "T4.1.8",
+  "T4.2.1",
+  "T4.2.2",
+  "T4.2.3",
+  "T4.2.4",
+  "T4.2.5",
+  "T4.2.6",
+  "T4.2.7",
+  "T4.2.8",
+  "T4.2.9",
+  "T4.2.10",
+  "T4.2.11",
+  "T4.2.12",
+  "T4.2.13",
+  "T4.3.1",
+  "T4.3.2",
+  "T4.3.3",
+  "T4.3.4",
+  "T4.3.5",
+  "T4.3.6",
+  "T4.3.7",
+  "T4.3.8",
+  "T4.3.9",
+  "T4.3.10",
+  "T4.3.11",
+  "T4.3.12",
+  "T4.3.13",
+  "T4.4.1",
+  "T4.4.2",
+  "T4.4.3",
+  "T4.4.4",
+  "T4.4.5",
+  "T4.4.6",
+  "T4.5.1",
+  "T4.5.2",
+  "T4.5.3",
+  "T4.5.4",
+  "T4.5.5",
+  "T4.5.6",
+  "T4.5.7",
+  "T4.5.8",
+  "T4.5.9",
+  "T4.5.10",
+  "T4.5.11",
+  "T4.5.12",
+  "T4.5.13",
+  "T4.6.1",
+  "T4.6.2",
+  "T4.6.3",
+  "T4.6.4",
+  "T4.6.5",
+  "T5.1.1",
+  "T5.1.2",
+  "T5.2.1",
+  "T5.2.2",
+  "T5.2.3",
+  "T5.2.4",
+  "T5.2.5",
+  "T5.3.1",
+  "T5.3.2",
+  "T5.3.3",
+  "T5.3.4",
+  "T5.3.5",
+  "T5.3.6",
+  "T5.3.7",
+  "T5.3.8",
+  "T5.3.9",
+  "T5.4.1",
+  "T5.4.2",
+  "T5.4.3",
+  "T5.4.4",
+  "T5.4.5",
+  "T5.4.6",
+  "T5.4.7",
+  "T5.4.8",
+  "T5.4.9",
+  "T5.4.10",
+  "T5.4.11",
+  "T5.4.12",
+  "T5.5.1",
+  "T5.5.2",
+  "T5.5.3",
+  "T5.5.4",
+  "T5.5.5",
+  "T5.5.6",
+  "T5.5.7",
+  "T6.1.1",
+  "T6.1.2",
+  "T6.1.3",
+  "T6.2.1",
+  "T6.2.2",
+  "T6.2.3",
+  "T6.3.1",
+  "T6.3.2",
+  "T6.3.3",
+  "T6.4.1",
+  "T6.4.2",
+  "T6.4.3",
+  "T6.4.4",
+  "T6.4.5",
+  "T6.4.6",
+  "T7.1.1",
+  "T7.1.2",
+  "T7.2.1",
+  "T7.2.2",
+  "T7.2.3",
+  "T7.2.4",
+  "T7.2.5",
+  "T7.3.1",
+  "T7.3.2",
+  "T7.4.1",
+  "T7.4.2",
+  "T7.4.3",
+  "T7.5.1",
+  "T7.5.2"
+ ],
+ "current_task": null,
+ "halted": false,
+ "tasks": {
+  "T0.1.1": {
+   "title": "Workspace Cargo vide",
+   "deps": [],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "a1b8e81+9944062",
+   "report": "reports/T0.1.1.json",
+   "notes": [
+    "migré : ancien T0.1.1 (workspace Cargo, 5 crates, edition 2021)"
+   ]
+  },
+  "T0.1.2": {
+   "title": "Lints et formatage",
+   "deps": [
+    "T0.1.1"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "a1b8e81+9944062",
+   "report": "reports/T0.1.1.json",
+   "notes": [
+    "migré : ancien T0.1.1 : lints par [lints] de chaque crate (forbid unsafe sur z80/core/audio) ; vérifier rustfmt.toml/clippy.toml au prochain passage"
+   ]
+  },
+  "T0.1.3": {
+   "title": "Intégration continue",
+   "deps": [
+    "T0.1.2"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "a1b8e81+9944062",
+   "report": "reports/T0.1.1.json",
+   "notes": [
+    "migré : ancien T0.1.1 : .github/workflows/ci.yml (fmt, clippy --all-targets -D warnings, test)"
+   ]
+  },
+  "T0.1.4": {
+   "title": "Dépendances autorisées",
+   "deps": [
+    "T0.1.3"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "3814a18",
+   "report": "reports/T0.1.4.json",
+   "notes": [
+    "alias `cargo xtask` déjà en place (.cargo/config.toml) ; dépendances autorisées fixées (bitflags, thiserror ; dev : proptest, serde_json, crc32fast)",
+    "réalisé directement par la session orchestrateur (pas de codeur séparé)"
+   ]
+  },
+  "T0.1.5": {
+   "title": "KB en fichiers",
+   "deps": [
+    "T0.1.4"
+   ],
+   "ctx": [
+    "KB-01",
+    "KB-20"
+   ],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "901537d",
+   "report": "reports/T0.1.5.json",
+   "notes": [
+    "20 fichiers docs/kb/KB-01.md..KB-20.md, copie littérale de la Partie E (vérifiée byte-par-byte)",
+    "réalisé directement par la session orchestrateur (pas de codeur séparé)"
+   ]
+  },
+  "T0.1.6": {
+   "title": "xtask : squelette CLI",
+   "deps": [
+    "T0.1.5"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "f1ddf20",
+   "report": "reports/T0.1.6.json",
+   "notes": [
+    "8 sous-commandes présentes (api-dump fonctionnel ; run-fuse, run-zex, mame-diff, test-roms, golden, progress-check, fetch-third-party = stubs code retour 0)",
+    "réalisé directement par la session orchestrateur (pas de codeur séparé)"
+   ]
+  },
+  "T0.1.7": {
+   "title": "xtask : api-dump",
+   "deps": [
+    "T0.1.1"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "a1b8e81+9944062",
+   "report": "reports/T0.1.1.json",
+   "notes": [
+    "migré : ancien T0.1.1 : `cargo xtask api-dump` opérationnel"
+   ]
+  },
+  "T0.1.8": {
+   "title": "xtask : progress-check",
+   "deps": [
+    "T0.1.7"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "6e3dbfa",
+   "report": "reports/T0.1.8.json",
+   "notes": [
+    "validateur JSON minimal de PROGRESS.json (pas de dépendance externe) ; corrige le bug de parsing (whitespace après virgule dans object/array, index byte UTF-8 via len_utf8)"
+   ]
+  },
+  "T0.1.9": {
+   "title": "PROGRESS.json initial",
+   "deps": [
+    "T0.1.8"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "4a4f210",
+   "report": "reports/T0.1.9.json",
+   "notes": [
+    "PROGRESS.json initial all-TODO remplacé par la version migrée (plan v2, 355 tâches) dans le commit 4a4f210. Le livrable est validé : cargo xtask progress-check exit 0."
+   ]
+  },
+  "T0.2.1": {
+   "title": "Constantes de temps",
+   "deps": [
+    "T0.1.1"
+   ],
+   "ctx": [
+    "KB-02"
+   ],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "b54e803+1ae7b53",
+   "report": "reports/T0.1.2.json",
+   "notes": [
+    "migré : ancien T0.1.2 : constantes de temps dans galaxian-core/src/time.rs"
+   ]
+  },
+  "T0.2.2": {
+   "title": "Type `Cycles` et décomposition",
+   "deps": [
+    "T0.2.1"
+   ],
+   "ctx": [
+    "KB-02"
+   ],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "e85161b",
+   "report": "reports/T0.2.2.json",
+   "notes": [
+    "type Cycles = u64 (hérité de T0.2.1) + fn split(c: Cycles) -> (frame, ligne, cycle_dans_ligne). Décompose un cycle absolu en (numéro de frame, ligne dans la frame, cycle dans la ligne). Cas de spec vérifiés : 0→(0,0,0), 191→(0,0,191), 192→(0,1,0), 50687→(0,263,191), 50688→(1,0,0). Tests + clippy -D warnings verts."
+   ]
+  },
+  "T0.2.3": {
+   "title": "Cycle → pixel",
+   "deps": [
+    "T0.2.1"
+   ],
+   "ctx": [
+    "KB-02"
+   ],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "b54e803+1ae7b53",
+   "report": "reports/T0.1.2.json",
+   "notes": [
+    "migré : ancien T0.1.2 : conversion cycle -> pixel (pixel = 2 cycles)"
+   ]
+  },
+  "T0.2.4": {
+   "title": "(ligne, pixel) → cycle",
+   "deps": [
+    "T0.2.3"
+   ],
+   "ctx": [
+    "KB-02"
+   ],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "b54e803+1ae7b53",
+   "report": "reports/T0.1.2.json",
+   "notes": [
+    "migré : ancien T0.1.2 : conversion (ligne, colonne) -> cycle"
+   ]
+  },
+  "T0.3.1": {
+   "title": "KB-21a Registres et flags",
+   "deps": [
+    "T0.2.4"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.3.2": {
+   "title": "KB-21b1 Timing opcodes non préfixés 00–7F",
+   "deps": [
+    "T0.3.1"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.3.3": {
+   "title": "KB-21b2 Timing opcodes non préfixés 80–FF",
+   "deps": [
+    "T0.3.2"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.3.4": {
+   "title": "KB-21c Préfixe CB",
+   "deps": [
+    "T0.3.3"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.3.5": {
+   "title": "KB-21d Préfixes DD/FD et DDCB/FDCB",
+   "deps": [
+    "T0.3.4"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.3.6": {
+   "title": "KB-21e Préfixe ED",
+   "deps": [
+    "T0.3.5"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.3.7": {
+   "title": "KB-21f MEMPTR (WZ) et Q",
+   "deps": [
+    "T0.3.6"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.3.8": {
+   "title": "KB-21g Interruptions, HALT, EI",
+   "deps": [
+    "T0.3.7"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.4.1": {
+   "title": "Récupérer les 5 sources MAME",
+   "deps": [
+    "T0.1.1"
+   ],
+   "ctx": [
+    "KB-01"
+   ],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": "411b273+562270c",
+   "report": "reports/T0.2.1.json",
+   "notes": [
+    "migré : ancien T0.2.1 : 5 sources MAME copiées verbatim depuis la copie locale (déviation documentée dans out/T0.2.1/task_prompt.md §d)"
+   ]
+  },
+  "T0.4.2": {
+   "title": "Manifeste et index",
+   "deps": [
+    "T0.4.1"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 1,
+   "commit": null,
+   "report": "reports/T0.4.2.json",
+   "notes": [
+    "MANIFEST.md créé (SHA256 recalcules = SHA256SUMS.txt OK via sha256sum -c ; version MAME master 2026-10-02 non epinglee, consinee tel quel ; index fonction->ligne Galaxian d'origine). GAP-02/03/05 points vers lignes de reference."
+   ]
+  },
+  "T0.4.3": {
+   "title": "KB-22a Layout GFX tiles",
+   "deps": [
+    "T0.4.2"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 1,
+   "commit": null,
+   "report": "reports/T0.4.3.json",
+   "notes": [
+    "KB-22a-gfx-tiles.md creee (galaxian_charlayout galaxian.cpp:7394 : 8x8, 2 plans, RGN_FRAC(1,2), gfx1, xscale=3). Lignes verifiees. GAP-01 ferme en partie."
+   ]
+  },
+  "T0.4.4": {
+   "title": "KB-22b Layout GFX sprites",
+   "deps": [
+    "T0.4.3"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 1,
+   "commit": null,
+   "report": "reports/T0.4.4.json",
+   "notes": [
+    "KB-22b-gfx-sprites.md creee (galaxian_spritelayout galaxian.cpp:7405 : 16x16, inter-plan offset chip1=0x40). Lignes verifiees. GAP-01 ferme en partie."
+   ]
+  },
+  "T0.4.5": {
+   "title": "KB-23a VRAM et tile-info",
+   "deps": [
+    "T0.4.4"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 1,
+   "commit": null,
+   "report": "reports/T0.4.5.json",
+   "notes": [
+    "KB-23a-videoram-tileinfo.md creee (videoram_w=503, bg_get_tile_info=487, video_start=399). VRAM = code tile uniquement ; couleur dans OBJRAM par colonne."
+   ]
+  },
+  "T0.4.6": {
+   "title": "KB-23b OBJRAM et attributs par colonne",
+   "deps": [
+    "T0.4.5"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 1,
+   "commit": null,
+   "report": "reports/T0.4.6.json",
+   "notes": [
+    "KB-23b-objram-attribs.md creee (objram_w=514, sprites_draw=568). OBJRAM = 128 octets : zone tilemap + zone sprites."
+   ]
+  },
+  "T0.4.7": {
+   "title": "KB-24a Entrées IN0/IN1/IN2",
+   "deps": [
+    "T0.4.6"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 1,
+   "commit": null,
+   "report": "reports/T0.4.7.json",
+   "notes": [
+    "KB-24a-inputs.md creee (INPUT_PORTS_START(galaxian)=3072). Ports IN0/IN1/IN2 decodes."
+   ]
+  },
+  "T0.4.8": {
+   "title": "KB-24b DIP switches",
+   "deps": [
+    "T0.4.7"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 1,
+   "commit": null,
+   "report": "reports/T0.4.8.json",
+   "notes": [
+    "KB-24b-dips.md creee (INPUT_PORTS_START(galaxian)=3072). 4 DIPs : Cabinet, Coinage, Bonus Life, Lives."
+   ]
+  },
+  "T0.4.9": {
+   "title": "KB-25a Set de ROMs",
+   "deps": [
+    "T0.4.8"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 1,
+   "commit": null,
+   "report": "reports/T0.4.9.json",
+   "notes": [
+    "KB-25a-romset.md creee (ROM_START(galaxian)=9760). 3 regions : maincpu/gfx1/proms."
+   ]
+  },
+  "T0.4.10": {
+   "title": "KB-25b Configuration machine",
+   "deps": [
+    "T0.4.9"
+   ],
+   "ctx": [],
+   "status": "DONE",
+   "attempts": 0,
+   "commit": null,
+   "report": "reports/T0.4.10.json",
+   "notes": [
+    "livrable docs/kb/KB-25b-machine-config.md (102 lignes) ; validateur PASS (reports/T0.4.10.json) ; relecteur APPROVE par tranches B.7.3 (out/T0.4.10/verdict.partA..D.md + verdict.md) — les 4 subagents relecteurs ont échoué en erreur serveur (context too large, requêtes parallèles sur LM Studio), revue menée séquentiellement par l'instance parente ; motif unique (anglais résiduel §2/§Differs) corrigé pré-commit"
+   ]
+  },
+  "T0.4.11": {
+   "title": "KB-26 Ordre de rendu",
+   "deps": [
+    "T0.4.10"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.4.12": {
+   "title": "KB-27 Palette PROM",
+   "deps": [
+    "T0.4.11"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.4.13": {
+   "title": "Clôture des lacunes",
+   "deps": [
+    "T0.4.12"
+   ],
+   "ctx": [
+    "KB-08",
+    "KB-09",
+    "KB-14"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.1": {
+   "title": "Environnement MAME",
+   "deps": [
+    "T0.4.13"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.2": {
+   "title": "Lanceur MAME",
+   "deps": [
+    "T0.5.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.3": {
+   "title": "Trace CPU brute",
+   "deps": [
+    "T0.5.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.4": {
+   "title": "Trace CPU normalisée",
+   "deps": [
+    "T0.5.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.5": {
+   "title": "CRC de frames (script Lua)",
+   "deps": [
+    "T0.5.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.6": {
+   "title": "Dump VRAM/OBJRAM (script Lua)",
+   "deps": [
+    "T0.5.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.7": {
+   "title": "Audio : attract",
+   "deps": [
+    "T0.5.6"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.8": {
+   "title": "Audio : tir",
+   "deps": [
+    "T0.5.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.9": {
+   "title": "Audio : explosion",
+   "deps": [
+    "T0.5.8"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.5.10": {
+   "title": "Reproductibilité",
+   "deps": [
+    "T0.5.9"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.6.1": {
+   "title": "Assembleur",
+   "deps": [
+    "T0.5.10"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.6.2": {
+   "title": "Gabarit commun",
+   "deps": [
+    "T0.6.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.6.3": {
+   "title": "Sortie 16 Ko",
+   "deps": [
+    "T0.6.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.6.4": {
+   "title": "Convention README",
+   "deps": [
+    "T0.6.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T0.6.5": {
+   "title": "ROM TR-HELLO",
+   "deps": [
+    "T0.6.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.1": {
+   "title": "Flags",
+   "deps": [
+    "T0.3.1",
+    "T0.6.5"
+   ],
+   "ctx": [
+    "KB-21a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.2": {
+   "title": "Helpers de flags",
+   "deps": [
+    "T0.3.1",
+    "T1.1.1"
+   ],
+   "ctx": [
+    "KB-21a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.3": {
+   "title": "Registres 8 bits",
+   "deps": [
+    "T0.3.1",
+    "T1.1.2"
+   ],
+   "ctx": [
+    "KB-21a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.4": {
+   "title": "Paires 16 bits",
+   "deps": [
+    "T1.1.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.5": {
+   "title": "Jeu alterné",
+   "deps": [
+    "T1.1.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.6": {
+   "title": "Index et spéciaux",
+   "deps": [
+    "T1.1.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.7": {
+   "title": "WZ (MEMPTR) et Q",
+   "deps": [
+    "T0.3.7",
+    "T1.1.6"
+   ],
+   "ctx": [
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.8": {
+   "title": "Trait `Bus`",
+   "deps": [
+    "T1.1.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.9": {
+   "title": "TestBus : mémoire",
+   "deps": [
+    "T1.1.8"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.10": {
+   "title": "TestBus : journal",
+   "deps": [
+    "T1.1.9"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.11": {
+   "title": "Cycle M1",
+   "deps": [
+    "T0.3.2",
+    "T1.1.10"
+   ],
+   "ctx": [
+    "KB-21b1"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.12": {
+   "title": "Cycles mémoire",
+   "deps": [
+    "T1.1.11"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.13": {
+   "title": "Cycles E/S",
+   "deps": [
+    "T1.1.12"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.14": {
+   "title": "Structure `Cpu` et `step()`",
+   "deps": [
+    "T1.1.13"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.15": {
+   "title": "Fuse : récupération",
+   "deps": [
+    "T1.1.14"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.16": {
+   "title": "Fuse : parseur `tests.in`",
+   "deps": [
+    "T1.1.15"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.17": {
+   "title": "Fuse : parseur `tests.expected`",
+   "deps": [
+    "T1.1.16"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.18": {
+   "title": "Fuse : exécuteur d'état",
+   "deps": [
+    "T1.1.17"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.1.19": {
+   "title": "Fuse : comparaison de bus",
+   "deps": [
+    "T1.1.18"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.1": {
+   "title": "NOP et LD r,r'",
+   "deps": [
     "T0.3.1",
     "T0.3.2",
     "T0.3.3",
+    "T1.1.19"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.2": {
+   "title": "LD r,n",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.1"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.3": {
+   "title": "LD r,(HL) et LD (HL),r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.2"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.4": {
+   "title": "LD (HL),n",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.3"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.5": {
+   "title": "LD rr,nn",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.4"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.6": {
+   "title": "LD A,(BC)/(DE) et LD (BC)/(DE),A",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T0.3.7",
+    "T1.2.5"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.7": {
+   "title": "LD A,(nn) et LD (nn),A",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T0.3.7",
+    "T1.2.6"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.8": {
+   "title": "LD HL,(nn), LD (nn),HL, LD SP,HL",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T0.3.7",
+    "T1.2.7"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.9": {
+   "title": "ADD/ADC A,r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.8"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.10": {
+   "title": "SUB/SBC/CP r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.9"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.11": {
+   "title": "AND/OR/XOR r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.10"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.12": {
+   "title": "ALU A,(HL)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.11"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.13": {
+   "title": "ALU A,n",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.12"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.14": {
+   "title": "INC r / DEC r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.13"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.15": {
+   "title": "INC (HL) / DEC (HL)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.14"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.16": {
+   "title": "DAA",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.15"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.17": {
+   "title": "CPL",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T1.2.16"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.2.18": {
+   "title": "SCF et CCF",
+   "deps": [
+    "T0.3.1",
+    "T0.3.2",
+    "T0.3.3",
+    "T0.3.7",
+    "T1.2.17"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21b1",
+    "KB-21b2",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.3.1": {
+   "title": "INC rr / DEC rr",
+   "deps": [
+    "T1.2.18"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.3.2": {
+   "title": "ADD HL,rr",
+   "deps": [
+    "T0.3.7",
+    "T1.3.1"
+   ],
+   "ctx": [
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.3.3": {
+   "title": "PUSH rr",
+   "deps": [
+    "T1.3.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.3.4": {
+   "title": "POP rr",
+   "deps": [
+    "T1.3.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.3.5": {
+   "title": "EX DE,HL ; EX AF,AF' ; EXX",
+   "deps": [
+    "T1.3.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.3.6": {
+   "title": "EX (SP),HL",
+   "deps": [
+    "T0.3.7",
+    "T1.3.5"
+   ],
+   "ctx": [
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.3.7": {
+   "title": "RLCA / RRCA",
+   "deps": [
+    "T1.3.6"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.3.8": {
+   "title": "RLA / RRA",
+   "deps": [
+    "T1.3.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.1": {
+   "title": "JP nn et JP (HL)",
+   "deps": [
+    "T0.3.7",
+    "T1.3.8"
+   ],
+   "ctx": [
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.2": {
+   "title": "JP cc,nn",
+   "deps": [
+    "T1.4.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.3": {
+   "title": "JR e et JR cc,e",
+   "deps": [
+    "T1.4.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.4": {
+   "title": "DJNZ",
+   "deps": [
+    "T1.4.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.5": {
+   "title": "CALL nn",
+   "deps": [
+    "T1.4.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.6": {
+   "title": "CALL cc,nn",
+   "deps": [
+    "T1.4.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.7": {
+   "title": "RET et RET cc",
+   "deps": [
+    "T1.4.6"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.8": {
+   "title": "RST p",
+   "deps": [
+    "T1.4.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.9": {
+   "title": "DI et EI",
+   "deps": [
+    "T0.3.8",
+    "T1.4.8"
+   ],
+   "ctx": [
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.10": {
+   "title": "HALT",
+   "deps": [
+    "T0.3.8",
+    "T1.4.9"
+   ],
+   "ctx": [
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.4.11": {
+   "title": "IN A,(n) et OUT (n),A",
+   "deps": [
+    "T0.3.7",
+    "T1.4.10"
+   ],
+   "ctx": [
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.1": {
+   "title": "Infrastructure CB",
+   "deps": [
+    "T0.3.1",
     "T0.3.4",
+    "T1.4.11"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.2": {
+   "title": "RLC / RRC r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T1.5.1"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.3": {
+   "title": "RL / RR r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T1.5.2"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.4": {
+   "title": "SLA / SRA / SLL / SRL r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T1.5.3"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.5": {
+   "title": "BIT n,r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T1.5.4"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.6": {
+   "title": "SET / RES n,r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T1.5.5"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.7": {
+   "title": "RLC/RRC/RL/RR (HL)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T1.5.6"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.8": {
+   "title": "SLA/SRA/SLL/SRL (HL)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T1.5.7"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.9": {
+   "title": "SET / RES n,(HL)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T1.5.8"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.5.10": {
+   "title": "BIT n,(HL)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.4",
+    "T0.3.7",
+    "T1.5.9"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21c",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.1": {
+   "title": "Infrastructure DD/FD",
+   "deps": [
+    "T0.3.1",
     "T0.3.5",
+    "T1.5.10"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.2": {
+   "title": "IXH/IXL : LD (non documentés)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.1"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.3": {
+   "title": "IXH/IXL : ALU, INC/DEC",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.2"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.4": {
+   "title": "LD r,(IX+d) / LD (IX+d),r",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T0.3.7",
+    "T1.6.3"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.5": {
+   "title": "LD (IX+d),n",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.4"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.6": {
+   "title": "ALU A,(IX+d)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.5"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.7": {
+   "title": "INC/DEC (IX+d)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.6"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.8": {
+   "title": "LD IX,nn ; LD IX,(nn) ; LD (nn),IX",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.7"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.9": {
+   "title": "ADD IX,rr ; INC/DEC IX",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.8"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.10": {
+   "title": "PUSH/POP IX ; EX (SP),IX ; JP (IX) ; LD SP,IX",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.9"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.11": {
+   "title": "Infrastructure DDCB/FDCB",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.10"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.12": {
+   "title": "DDCB : rotations, shifts, SET, RES",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T1.6.11"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.6.13": {
+   "title": "DDCB : BIT",
+   "deps": [
+    "T0.3.1",
+    "T0.3.5",
+    "T0.3.7",
+    "T1.6.12"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21d",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.1": {
+   "title": "Infrastructure ED",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.6.13"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.2": {
+   "title": "LD I,A ; LD R,A ; LD A,I ; LD A,R",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.1"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.3": {
+   "title": "NEG",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.2"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.4": {
+   "title": "IM 0/1/2",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.3"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.5": {
+   "title": "RETN / RETI",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.4"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.6": {
+   "title": "IN r,(C) et IN (C)",
+   "deps": [
+    "T0.3.1",
     "T0.3.6",
     "T0.3.7",
+    "T1.7.5"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.7": {
+   "title": "OUT (C),r et OUT (C),0",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.6"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.8": {
+   "title": "ADC HL,rr",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.7"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.9": {
+   "title": "SBC HL,rr",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.8"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.10": {
+   "title": "LD (nn),rr ; LD rr,(nn)",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T0.3.7",
+    "T1.7.9"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.11": {
+   "title": "RRD / RLD",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T0.3.7",
+    "T1.7.10"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e",
+    "KB-21f"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.12": {
+   "title": "LDI / LDD",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.11"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.13": {
+   "title": "LDIR / LDDR",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.12"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.14": {
+   "title": "CPI / CPD",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.13"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.15": {
+   "title": "CPIR / CPDR",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.14"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.16": {
+   "title": "INI / IND",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.15"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.17": {
+   "title": "INIR / INDR",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.16"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.18": {
+   "title": "OUTI / OUTD",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.17"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.7.19": {
+   "title": "OTIR / OTDR",
+   "deps": [
+    "T0.3.1",
+    "T0.3.6",
+    "T1.7.18"
+   ],
+   "ctx": [
+    "KB-21a",
+    "KB-21e"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.8.1": {
+   "title": "NMI : détection de front",
+   "deps": [
     "T0.3.8",
-    "T0.4.1",
-    "T0.4.2",
-    "T0.4.3",
-    "T0.4.4",
-    "T0.4.5",
-    "T0.4.6",
+    "T1.7.19"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.8.2": {
+   "title": "NMI : séquence d'acceptation",
+   "deps": [
+    "T0.3.8",
+    "T1.8.1"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.8.3": {
+   "title": "NMI et HALT",
+   "deps": [
+    "T0.3.8",
+    "T1.8.2"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.8.4": {
+   "title": "NMI, EI et RETN",
+   "deps": [
+    "T0.3.8",
+    "T1.8.3"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.8.5": {
+   "title": "INT en IM 1",
+   "deps": [
+    "T0.3.8",
+    "T1.8.4"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.8.6": {
+   "title": "INT en IM 2",
+   "deps": [
+    "T0.3.8",
+    "T1.8.5"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.8.7": {
+   "title": "INT en IM 0",
+   "deps": [
+    "T0.3.8",
+    "T1.8.6"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.8.8": {
+   "title": "ROM TR-CPU-NMI",
+   "deps": [
+    "T0.3.8",
+    "T1.8.7"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-21g"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.1": {
+   "title": "Shim CP/M",
+   "deps": [
+    "T1.8.8"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.2": {
+   "title": "Chargeur .COM et runner",
+   "deps": [
+    "T1.9.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.3": {
+   "title": "zexdoc : récupération et runner par test",
+   "deps": [
+    "T1.9.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.4": {
+   "title": "zexdoc : ALU 8 bits",
+   "deps": [
+    "T1.9.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.5": {
+   "title": "zexdoc : 16 bits",
+   "deps": [
+    "T1.9.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.6": {
+   "title": "zexdoc : chargements",
+   "deps": [
+    "T1.9.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.7": {
+   "title": "zexdoc : rotations, shifts, bits",
+   "deps": [
+    "T1.9.6"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.8": {
+   "title": "zexdoc : blocs",
+   "deps": [
+    "T1.9.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.9": {
+   "title": "zexdoc : complet",
+   "deps": [
+    "T1.9.8"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.10": {
+   "title": "zexall : ALU et 16 bits",
+   "deps": [
+    "T1.9.9"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.11": {
+   "title": "zexall : chargements, rotations, bits",
+   "deps": [
+    "T1.9.10"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.12": {
+   "title": "zexall : blocs et complet",
+   "deps": [
+    "T1.9.11"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.13": {
+   "title": "z80test : récupération et runner",
+   "deps": [
+    "T1.9.12"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.14": {
+   "title": "z80doc",
+   "deps": [
+    "T1.9.13"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.15": {
+   "title": "z80full",
+   "deps": [
+    "T1.9.14"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.16": {
+   "title": "z80ccf",
+   "deps": [
+    "T1.9.15"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.17": {
+   "title": "z80memptr",
+   "deps": [
+    "T1.9.16"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.18": {
+   "title": "Fuse : timing de bus, tous les cas",
+   "deps": [
+    "T1.9.17"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.19": {
+   "title": "SingleStepTests/z80 : récupération et runner",
+   "deps": [
+    "T1.9.18"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T1.9.20": {
+   "title": "SingleStepTests/z80 : exécution",
+   "deps": [
+    "T1.9.19"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.1.1": {
+   "title": "Structure `Raster` et compteur H",
+   "deps": [
+    "T1.9.20"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-07"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.1.2": {
+   "title": "`Raster::advance(cycles)`",
+   "deps": [
+    "T2.1.1"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-07"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.1.3": {
+   "title": "HBLANK",
+   "deps": [
+    "T2.1.2"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-07"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.1.4": {
+   "title": "HSYNC",
+   "deps": [
+    "T2.1.3"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-07"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.1.5": {
+   "title": "VBLANK et événement",
+   "deps": [
+    "T2.1.4"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-07"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.1.6": {
+   "title": "VSYNC",
+   "deps": [
+    "T2.1.5"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-07"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.1.7": {
+   "title": "Zone visible",
+   "deps": [
+    "T2.1.6"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-07"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.1.8": {
+   "title": "Retard du compteur V",
+   "deps": [
+    "T2.1.7"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-07"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.1": {
+   "title": "`Memory` : ROM et RAM",
+   "deps": [
+    "T2.1.8"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.2": {
+   "title": "Zones spéciales",
+   "deps": [
+    "T2.2.1"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.3": {
+   "title": "VRAM",
+   "deps": [
+    "T2.2.2"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.4": {
+   "title": "OBJRAM",
+   "deps": [
+    "T2.2.3"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.5": {
+   "title": "`Machine` implémente `Bus`",
+   "deps": [
+    "T2.2.4"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.6": {
+   "title": "Accès `fetch_opcode` et E/S",
+   "deps": [
+    "T2.2.5"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.7": {
+   "title": "Test d'adressage complet",
+   "deps": [
+    "T2.2.6"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.8": {
+   "title": "ROM TR-MAP",
+   "deps": [
+    "T2.2.7"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.2.9": {
+   "title": "TR-MAP : validation",
+   "deps": [
+    "T2.2.8"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.3.1": {
+   "title": "Latch 1 bit",
+   "deps": [
+    "T2.2.9"
+   ],
+   "ctx": [
+    "KB-04"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.3.2": {
+   "title": "/DRIVER 6000-6007",
+   "deps": [
+    "T2.3.1"
+   ],
+   "ctx": [
+    "KB-04"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.3.3": {
+   "title": "/SOUND 6800-6807",
+   "deps": [
+    "T2.3.2"
+   ],
+   "ctx": [
+    "KB-04"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.3.4": {
+   "title": "LATCH 7000-77ff",
+   "deps": [
+    "T2.3.3"
+   ],
+   "ctx": [
+    "KB-04"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.3.5": {
+   "title": "Écriture 7800",
+   "deps": [
+    "T2.3.4"
+   ],
+   "ctx": [
+    "KB-04"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.3.6": {
+   "title": "Trait `Inputs` et IN0",
+   "deps": [
+    "T0.4.7",
+    "T2.3.5"
+   ],
+   "ctx": [
+    "KB-04",
+    "KB-24a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.3.7": {
+   "title": "IN1",
+   "deps": [
+    "T0.4.7",
+    "T2.3.6"
+   ],
+   "ctx": [
+    "KB-04",
+    "KB-24a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.3.8": {
+   "title": "IN2 et DIPs",
+   "deps": [
     "T0.4.7",
     "T0.4.8",
-    "T0.4.9",
-    "T0.4.10",
-    "T0.4.11",
-    "T0.4.12",
-    "T0.4.13",
-    "T0.5.1",
-    "T0.5.2",
-    "T0.5.3",
-    "T0.5.4",
-    "T0.5.5",
-    "T0.5.6",
-    "T0.5.7",
-    "T0.5.8",
-    "T0.5.9",
-    "T0.5.10",
-    "T0.6.1",
-    "T0.6.2",
-    "T0.6.3",
-    "T0.6.4",
-    "T0.6.5",
-    "T1.1.1",
-    "T1.1.2",
-    "T1.1.3",
-    "T1.1.4",
-    "T1.1.5",
-    "T1.1.6",
-    "T1.1.7",
-    "T1.1.8",
-    "T1.1.9",
-    "T1.1.10",
-    "T1.1.11",
-    "T1.1.12",
-    "T1.1.13",
-    "T1.1.14",
-    "T1.1.15",
-    "T1.1.16",
-    "T1.1.17",
-    "T1.1.18",
-    "T1.1.19",
-    "T1.2.1",
-    "T1.2.2",
-    "T1.2.3",
-    "T1.2.4",
-    "T1.2.5",
-    "T1.2.6",
-    "T1.2.7",
-    "T1.2.8",
-    "T1.2.9",
-    "T1.2.10",
-    "T1.2.11",
-    "T1.2.12",
-    "T1.2.13",
-    "T1.2.14",
-    "T1.2.15",
-    "T1.2.16",
-    "T1.2.17",
-    "T1.2.18",
-    "T1.3.1",
-    "T1.3.2",
-    "T1.3.3",
-    "T1.3.4",
-    "T1.3.5",
-    "T1.3.6",
-    "T1.3.7",
-    "T1.3.8",
-    "T1.4.1",
-    "T1.4.2",
-    "T1.4.3",
-    "T1.4.4",
-    "T1.4.5",
-    "T1.4.6",
-    "T1.4.7",
-    "T1.4.8",
-    "T1.4.9",
-    "T1.4.10",
-    "T1.4.11",
-    "T1.5.1",
-    "T1.5.2",
-    "T1.5.3",
-    "T1.5.4",
-    "T1.5.5",
-    "T1.5.6",
-    "T1.5.7",
-    "T1.5.8",
-    "T1.5.9",
-    "T1.5.10",
-    "T1.6.1",
-    "T1.6.2",
-    "T1.6.3",
-    "T1.6.4",
-    "T1.6.5",
-    "T1.6.6",
-    "T1.6.7",
-    "T1.6.8",
-    "T1.6.9",
-    "T1.6.10",
-    "T1.6.11",
-    "T1.6.12",
-    "T1.6.13",
-    "T1.7.1",
-    "T1.7.2",
-    "T1.7.3",
-    "T1.7.4",
-    "T1.7.5",
-    "T1.7.6",
-    "T1.7.7",
-    "T1.7.8",
-    "T1.7.9",
-    "T1.7.10",
-    "T1.7.11",
-    "T1.7.12",
-    "T1.7.13",
-    "T1.7.14",
-    "T1.7.15",
-    "T1.7.16",
-    "T1.7.17",
-    "T1.7.18",
-    "T1.7.19",
-    "T1.8.1",
-    "T1.8.2",
-    "T1.8.3",
-    "T1.8.4",
-    "T1.8.5",
-    "T1.8.6",
-    "T1.8.7",
-    "T1.8.8",
-    "T1.9.1",
-    "T1.9.2",
-    "T1.9.3",
-    "T1.9.4",
-    "T1.9.5",
-    "T1.9.6",
-    "T1.9.7",
-    "T1.9.8",
-    "T1.9.9",
-    "T1.9.10",
-    "T1.9.11",
-    "T1.9.12",
-    "T1.9.13",
-    "T1.9.14",
-    "T1.9.15",
-    "T1.9.16",
-    "T1.9.17",
-    "T1.9.18",
-    "T1.9.19",
-    "T1.9.20",
-    "T2.1.1",
-    "T2.1.2",
-    "T2.1.3",
-    "T2.1.4",
-    "T2.1.5",
-    "T2.1.6",
-    "T2.1.7",
-    "T2.1.8",
-    "T2.2.1",
-    "T2.2.2",
-    "T2.2.3",
-    "T2.2.4",
-    "T2.2.5",
-    "T2.2.6",
-    "T2.2.7",
-    "T2.2.8",
-    "T2.2.9",
-    "T2.3.1",
-    "T2.3.2",
-    "T2.3.3",
-    "T2.3.4",
-    "T2.3.5",
-    "T2.3.6",
-    "T2.3.7",
-    "T2.3.8",
-    "T2.3.9",
-    "T2.4.1",
-    "T2.4.2",
-    "T2.4.3",
-    "T2.4.4",
-    "T2.4.5",
-    "T2.5.1",
-    "T2.5.2",
-    "T2.5.3",
-    "T2.5.4",
-    "T2.5.5",
-    "T2.5.6",
-    "T2.5.7",
-    "T2.5.8",
-    "T3.1.1",
-    "T3.1.2",
-    "T3.1.3",
-    "T3.1.4",
-    "T3.1.5",
-    "T3.1.6",
-    "T3.1.7",
-    "T3.1.8",
-    "T3.2.1",
-    "T3.2.2",
-    "T3.2.3",
-    "T3.2.4",
-    "T3.3.1",
-    "T3.3.2",
-    "T3.3.3",
-    "T3.3.4",
-    "T3.4.1",
-    "T3.4.2",
-    "T3.4.3",
-    "T4.1.1",
-    "T4.1.2",
-    "T4.1.3",
-    "T4.1.4",
-    "T4.1.5",
-    "T4.1.6",
-    "T4.1.7",
-    "T4.1.8",
-    "T4.2.1",
-    "T4.2.2",
-    "T4.2.3",
-    "T4.2.4",
-    "T4.2.5",
-    "T4.2.6",
-    "T4.2.7",
-    "T4.2.8",
-    "T4.2.9",
-    "T4.2.10",
-    "T4.2.11",
-    "T4.2.12",
-    "T4.2.13",
-    "T4.3.1",
-    "T4.3.2",
-    "T4.3.3",
-    "T4.3.4",
-    "T4.3.5",
-    "T4.3.6",
-    "T4.3.7",
-    "T4.3.8",
-    "T4.3.9",
-    "T4.3.10",
-    "T4.3.11",
-    "T4.3.12",
-    "T4.3.13",
-    "T4.4.1",
-    "T4.4.2",
-    "T4.4.3",
-    "T4.4.4",
-    "T4.4.5",
-    "T4.4.6",
-    "T4.5.1",
-    "T4.5.2",
-    "T4.5.3",
-    "T4.5.4",
-    "T4.5.5",
-    "T4.5.6",
-    "T4.5.7",
-    "T4.5.8",
-    "T4.5.9",
-    "T4.5.10",
-    "T4.5.11",
-    "T4.5.12",
-    "T4.5.13",
-    "T4.6.1",
-    "T4.6.2",
-    "T4.6.3",
-    "T4.6.4",
-    "T4.6.5",
-    "T5.1.1",
-    "T5.1.2",
-    "T5.2.1",
-    "T5.2.2",
-    "T5.2.3",
-    "T5.2.4",
-    "T5.2.5",
-    "T5.3.1",
-    "T5.3.2",
-    "T5.3.3",
-    "T5.3.4",
-    "T5.3.5",
-    "T5.3.6",
-    "T5.3.7",
-    "T5.3.8",
-    "T5.3.9",
-    "T5.4.1",
-    "T5.4.2",
-    "T5.4.3",
-    "T5.4.4",
-    "T5.4.5",
-    "T5.4.6",
-    "T5.4.7",
-    "T5.4.8",
-    "T5.4.9",
-    "T5.4.10",
-    "T5.4.11",
-    "T5.4.12",
-    "T5.5.1",
-    "T5.5.2",
-    "T5.5.3",
-    "T5.5.4",
-    "T5.5.5",
-    "T5.5.6",
-    "T5.5.7",
-    "T6.1.1",
-    "T6.1.2",
-    "T6.1.3",
-    "T6.2.1",
-    "T6.2.2",
-    "T6.2.3",
-    "T6.3.1",
-    "T6.3.2",
-    "T6.3.3",
-    "T6.4.1",
-    "T6.4.2",
-    "T6.4.3",
-    "T6.4.4",
-    "T6.4.5",
-    "T6.4.6",
-    "T7.1.1",
-    "T7.1.2",
-    "T7.2.1",
-    "T7.2.2",
-    "T7.2.3",
-    "T7.2.4",
-    "T7.2.5",
-    "T7.3.1",
-    "T7.3.2",
-    "T7.4.1",
-    "T7.4.2",
-    "T7.4.3",
-    "T7.5.1",
-    "T7.5.2"
-  ],
-  "current_task": null,
-  "halted": false,
-  "tasks": {
-    "T0.1.1": {
-      "title": "Workspace Cargo vide",
-      "deps": [],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "a1b8e81+9944062",
-      "report": "reports/T0.1.1.json",
-      "notes": [
-        "migr\u00e9 : ancien T0.1.1 (workspace Cargo, 5 crates, edition 2021)"
-      ]
-    },
-    "T0.1.2": {
-      "title": "Lints et formatage",
-      "deps": [
-        "T0.1.1"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "a1b8e81+9944062",
-      "report": "reports/T0.1.1.json",
-      "notes": [
-        "migr\u00e9 : ancien T0.1.1 : lints par [lints] de chaque crate (forbid unsafe sur z80/core/audio) ; v\u00e9rifier rustfmt.toml/clippy.toml au prochain passage"
-      ]
-    },
-    "T0.1.3": {
-      "title": "Int\u00e9gration continue",
-      "deps": [
-        "T0.1.2"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "a1b8e81+9944062",
-      "report": "reports/T0.1.1.json",
-      "notes": [
-        "migr\u00e9 : ancien T0.1.1 : .github/workflows/ci.yml (fmt, clippy --all-targets -D warnings, test)"
-      ]
-    },
-    "T0.1.4": {
-      "title": "D\u00e9pendances autoris\u00e9es",
-      "deps": [
-        "T0.1.3"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "3814a18",
-      "report": "reports/T0.1.4.json",
-      "notes": [
-        "alias `cargo xtask` d\u00e9j\u00e0 en place (.cargo/config.toml) ; d\u00e9pendances autoris\u00e9es fix\u00e9es (bitflags, thiserror ; dev : proptest, serde_json, crc32fast)",
-        "r\u00e9alis\u00e9 directement par la session orchestrateur (pas de codeur s\u00e9par\u00e9)"
-      ]
-    },
-    "T0.1.5": {
-      "title": "KB en fichiers",
-      "deps": [
-        "T0.1.4"
-      ],
-      "ctx": [
-        "KB-01",
-        "KB-20"
-      ],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "901537d",
-      "report": "reports/T0.1.5.json",
-      "notes": [
-        "20 fichiers docs/kb/KB-01.md..KB-20.md, copie litt\u00e9rale de la Partie E (v\u00e9rifi\u00e9e byte-par-byte)",
-        "r\u00e9alis\u00e9 directement par la session orchestrateur (pas de codeur s\u00e9par\u00e9)"
-      ]
-    },
-    "T0.1.6": {
-      "title": "xtask : squelette CLI",
-      "deps": [
-        "T0.1.5"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "f1ddf20",
-      "report": "reports/T0.1.6.json",
-      "notes": [
-        "8 sous-commandes pr\u00e9sentes (api-dump fonctionnel ; run-fuse, run-zex, mame-diff, test-roms, golden, progress-check, fetch-third-party = stubs code retour 0)",
-        "r\u00e9alis\u00e9 directement par la session orchestrateur (pas de codeur s\u00e9par\u00e9)"
-      ]
-    },
-    "T0.1.7": {
-      "title": "xtask : api-dump",
-      "deps": [
-        "T0.1.1"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "a1b8e81+9944062",
-      "report": "reports/T0.1.1.json",
-      "notes": [
-        "migr\u00e9 : ancien T0.1.1 : `cargo xtask api-dump` op\u00e9rationnel"
-      ]
-    },
-    "T0.1.8": {
-      "title": "xtask : progress-check",
-      "deps": [
-        "T0.1.7"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "6e3dbfa",
-      "report": "reports/T0.1.8.json",
-      "notes": [
-        "validateur JSON minimal de PROGRESS.json (pas de d\u00e9pendance externe) ; corrige le bug de parsing (whitespace apr\u00e8s virgule dans object/array, index byte UTF-8 via len_utf8)"
-      ]
-    },
-    "T0.1.9": {
-      "title": "PROGRESS.json initial",
-      "deps": [
-        "T0.1.8"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "4a4f210",
-      "report": "reports/T0.1.9.json",
-      "notes": [
-        "PROGRESS.json initial all-TODO remplac\u00e9 par la version migr\u00e9e (plan v2, 355 t\u00e2ches) dans le commit 4a4f210. Le livrable est valid\u00e9 : cargo xtask progress-check exit 0."
-      ]
-    },
-    "T0.2.1": {
-      "title": "Constantes de temps",
-      "deps": [
-        "T0.1.1"
-      ],
-      "ctx": [
-        "KB-02"
-      ],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "b54e803+1ae7b53",
-      "report": "reports/T0.1.2.json",
-      "notes": [
-        "migr\u00e9 : ancien T0.1.2 : constantes de temps dans galaxian-core/src/time.rs"
-      ]
-    },
-    "T0.2.2": {
-      "title": "Type `Cycles` et d\u00e9composition",
-      "deps": [
-        "T0.2.1"
-      ],
-      "ctx": [
-        "KB-02"
-      ],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "e85161b",
-      "report": "reports/T0.2.2.json",
-      "notes": [
-        "type Cycles = u64 (h\u00e9rit\u00e9 de T0.2.1) + fn split(c: Cycles) -> (frame, ligne, cycle_dans_ligne). D\u00e9compose un cycle absolu en (num\u00e9ro de frame, ligne dans la frame, cycle dans la ligne). Cas de spec v\u00e9rifi\u00e9s : 0\u2192(0,0,0), 191\u2192(0,0,191), 192\u2192(0,1,0), 50687\u2192(0,263,191), 50688\u2192(1,0,0). Tests + clippy -D warnings verts."
-      ]
-    },
-    "T0.2.3": {
-      "title": "Cycle \u2192 pixel",
-      "deps": [
-        "T0.2.1"
-      ],
-      "ctx": [
-        "KB-02"
-      ],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "b54e803+1ae7b53",
-      "report": "reports/T0.1.2.json",
-      "notes": [
-        "migr\u00e9 : ancien T0.1.2 : conversion cycle -> pixel (pixel = 2 cycles)"
-      ]
-    },
-    "T0.2.4": {
-      "title": "(ligne, pixel) \u2192 cycle",
-      "deps": [
-        "T0.2.3"
-      ],
-      "ctx": [
-        "KB-02"
-      ],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "b54e803+1ae7b53",
-      "report": "reports/T0.1.2.json",
-      "notes": [
-        "migr\u00e9 : ancien T0.1.2 : conversion (ligne, colonne) -> cycle"
-      ]
-    },
-    "T0.3.1": {
-      "title": "KB-21a Registres et flags",
-      "deps": [
-        "T0.2.4"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.3.2": {
-      "title": "KB-21b1 Timing opcodes non pr\u00e9fix\u00e9s 00\u20137F",
-      "deps": [
-        "T0.3.1"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.3.3": {
-      "title": "KB-21b2 Timing opcodes non pr\u00e9fix\u00e9s 80\u2013FF",
-      "deps": [
-        "T0.3.2"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.3.4": {
-      "title": "KB-21c Pr\u00e9fixe CB",
-      "deps": [
-        "T0.3.3"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.3.5": {
-      "title": "KB-21d Pr\u00e9fixes DD/FD et DDCB/FDCB",
-      "deps": [
-        "T0.3.4"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.3.6": {
-      "title": "KB-21e Pr\u00e9fixe ED",
-      "deps": [
-        "T0.3.5"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.3.7": {
-      "title": "KB-21f MEMPTR (WZ) et Q",
-      "deps": [
-        "T0.3.6"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.3.8": {
-      "title": "KB-21g Interruptions, HALT, EI",
-      "deps": [
-        "T0.3.7"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.4.1": {
-      "title": "R\u00e9cup\u00e9rer les 5 sources MAME",
-      "deps": [
-        "T0.1.1"
-      ],
-      "ctx": [
-        "KB-01"
-      ],
-      "status": "DONE",
-      "attempts": 0,
-      "commit": "411b273+562270c",
-      "report": "reports/T0.2.1.json",
-      "notes": [
-        "migr\u00e9 : ancien T0.2.1 : 5 sources MAME copi\u00e9es verbatim depuis la copie locale (d\u00e9viation document\u00e9e dans out/T0.2.1/task_prompt.md \u00a7d)"
-      ]
-    },
-    "T0.4.2": {
-      "title": "Manifeste et index",
-      "deps": [
-        "T0.4.1"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 1,
-      "commit": null,
-      "report": "reports/T0.4.2.json",
-      "notes": [
-        "MANIFEST.md créé (SHA256 recalcules = SHA256SUMS.txt OK via sha256sum -c ; version MAME master 2026-10-02 non epinglee, consinee tel quel ; index fonction->ligne Galaxian d'origine). GAP-02/03/05 points vers lignes de reference."
-      ]
-    },
-    "T0.4.3": {
-      "title": "KB-22a Layout GFX tiles",
-      "deps": [
-        "T0.4.2"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 1,
-      "commit": null,
-      "report": "reports/T0.4.3.json",
-      "notes": [
-        "KB-22a-gfx-tiles.md creee (galaxian_charlayout galaxian.cpp:7394 : 8x8, 2 plans, RGN_FRAC(1,2), gfx1, xscale=3). Lignes verifiees. GAP-01 ferme en partie."
-      ]
-    },
-    "T0.4.4": {
-      "title": "KB-22b Layout GFX sprites",
-      "deps": [
-        "T0.4.3"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 1,
-      "commit": null,
-      "report": "reports/T0.4.4.json",
-      "notes": [
-        "KB-22b-gfx-sprites.md creee (galaxian_spritelayout galaxian.cpp:7405 : 16x16, inter-plan offset chip1=0x40). Lignes verifiees. GAP-01 ferme en partie."
-      ]
-    },
-    "T0.4.5": {
-      "title": "KB-23a VRAM et tile-info",
-      "deps": [
-        "T0.4.4"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 1,
-      "commit": null,
-      "report": "reports/T0.4.5.json",
-      "notes": [
-        "KB-23a-videoram-tileinfo.md creee (videoram_w=503, bg_get_tile_info=487, video_start=399). VRAM = code tile uniquement ; couleur dans OBJRAM par colonne."
-      ]
-    },
-    "T0.4.6": {
-      "title": "KB-23b OBJRAM et attributs par colonne",
-      "deps": [
-        "T0.4.5"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 1,
-      "commit": null,
-      "report": "reports/T0.4.6.json",
-      "notes": [
-        "KB-23b-objram-attribs.md creee (objram_w=514, sprites_draw=568). OBJRAM = 128 octets : zone tilemap + zone sprites."
-      ]
-    },
-    "T0.4.7": {
-      "title": "KB-24a Entrées IN0/IN1/IN2",
-      "deps": [
-        "T0.4.6"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 1,
-      "commit": null,
-      "report": "reports/T0.4.7.json",
-      "notes": [
-        "KB-24a-inputs.md creee (INPUT_PORTS_START(galaxian)=3072). Ports IN0/IN1/IN2 decodes."
-      ]
-    },
-    "T0.4.8": {
-      "title": "KB-24b DIP switches",
-      "deps": [
-        "T0.4.7"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 1,
-      "commit": null,
-      "report": "reports/T0.4.8.json",
-      "notes": [
-        "KB-24b-dips.md creee (INPUT_PORTS_START(galaxian)=3072). 4 DIPs : Cabinet, Coinage, Bonus Life, Lives."
-      ]
-    },
-    "T0.4.9": {
-      "title": "KB-25a Set de ROMs",
-      "deps": [
-        "T0.4.8"
-      ],
-      "ctx": [],
-      "status": "DONE",
-      "attempts": 1,
-      "commit": null,
-      "report": "reports/T0.4.9.json",
-      "notes": [
-        "KB-25a-romset.md creee (ROM_START(galaxian)=9760). 3 regions : maincpu/gfx1/proms."
-      ]
-    },
-    "T0.4.10": {
-      "title": "KB-25b Configuration machine",
-      "deps": [
-        "T0.4.9"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.4.11": {
-      "title": "KB-26 Ordre de rendu",
-      "deps": [
-        "T0.4.10"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.4.12": {
-      "title": "KB-27 Palette PROM",
-      "deps": [
-        "T0.4.11"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.4.13": {
-      "title": "Cl\u00f4ture des lacunes",
-      "deps": [
-        "T0.4.12"
-      ],
-      "ctx": [
-        "KB-08",
-        "KB-09",
-        "KB-14"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.1": {
-      "title": "Environnement MAME",
-      "deps": [
-        "T0.4.13"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.2": {
-      "title": "Lanceur MAME",
-      "deps": [
-        "T0.5.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.3": {
-      "title": "Trace CPU brute",
-      "deps": [
-        "T0.5.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.4": {
-      "title": "Trace CPU normalis\u00e9e",
-      "deps": [
-        "T0.5.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.5": {
-      "title": "CRC de frames (script Lua)",
-      "deps": [
-        "T0.5.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.6": {
-      "title": "Dump VRAM/OBJRAM (script Lua)",
-      "deps": [
-        "T0.5.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.7": {
-      "title": "Audio : attract",
-      "deps": [
-        "T0.5.6"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.8": {
-      "title": "Audio : tir",
-      "deps": [
-        "T0.5.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.9": {
-      "title": "Audio : explosion",
-      "deps": [
-        "T0.5.8"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.5.10": {
-      "title": "Reproductibilit\u00e9",
-      "deps": [
-        "T0.5.9"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.6.1": {
-      "title": "Assembleur",
-      "deps": [
-        "T0.5.10"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.6.2": {
-      "title": "Gabarit commun",
-      "deps": [
-        "T0.6.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.6.3": {
-      "title": "Sortie 16 Ko",
-      "deps": [
-        "T0.6.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.6.4": {
-      "title": "Convention README",
-      "deps": [
-        "T0.6.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T0.6.5": {
-      "title": "ROM TR-HELLO",
-      "deps": [
-        "T0.6.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.1": {
-      "title": "Flags",
-      "deps": [
-        "T0.3.1",
-        "T0.6.5"
-      ],
-      "ctx": [
-        "KB-21a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.2": {
-      "title": "Helpers de flags",
-      "deps": [
-        "T0.3.1",
-        "T1.1.1"
-      ],
-      "ctx": [
-        "KB-21a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.3": {
-      "title": "Registres 8 bits",
-      "deps": [
-        "T0.3.1",
-        "T1.1.2"
-      ],
-      "ctx": [
-        "KB-21a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.4": {
-      "title": "Paires 16 bits",
-      "deps": [
-        "T1.1.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.5": {
-      "title": "Jeu altern\u00e9",
-      "deps": [
-        "T1.1.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.6": {
-      "title": "Index et sp\u00e9ciaux",
-      "deps": [
-        "T1.1.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.7": {
-      "title": "WZ (MEMPTR) et Q",
-      "deps": [
-        "T0.3.7",
-        "T1.1.6"
-      ],
-      "ctx": [
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.8": {
-      "title": "Trait `Bus`",
-      "deps": [
-        "T1.1.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.9": {
-      "title": "TestBus : m\u00e9moire",
-      "deps": [
-        "T1.1.8"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.10": {
-      "title": "TestBus : journal",
-      "deps": [
-        "T1.1.9"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.11": {
-      "title": "Cycle M1",
-      "deps": [
-        "T0.3.2",
-        "T1.1.10"
-      ],
-      "ctx": [
-        "KB-21b1"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.12": {
-      "title": "Cycles m\u00e9moire",
-      "deps": [
-        "T1.1.11"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.13": {
-      "title": "Cycles E/S",
-      "deps": [
-        "T1.1.12"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.14": {
-      "title": "Structure `Cpu` et `step()`",
-      "deps": [
-        "T1.1.13"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.15": {
-      "title": "Fuse : r\u00e9cup\u00e9ration",
-      "deps": [
-        "T1.1.14"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.16": {
-      "title": "Fuse : parseur `tests.in`",
-      "deps": [
-        "T1.1.15"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.17": {
-      "title": "Fuse : parseur `tests.expected`",
-      "deps": [
-        "T1.1.16"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.18": {
-      "title": "Fuse : ex\u00e9cuteur d'\u00e9tat",
-      "deps": [
-        "T1.1.17"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.1.19": {
-      "title": "Fuse : comparaison de bus",
-      "deps": [
-        "T1.1.18"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.1": {
-      "title": "NOP et LD r,r'",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.1.19"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.2": {
-      "title": "LD r,n",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.1"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.3": {
-      "title": "LD r,(HL) et LD (HL),r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.2"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.4": {
-      "title": "LD (HL),n",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.3"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.5": {
-      "title": "LD rr,nn",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.4"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.6": {
-      "title": "LD A,(BC)/(DE) et LD (BC)/(DE),A",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T0.3.7",
-        "T1.2.5"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.7": {
-      "title": "LD A,(nn) et LD (nn),A",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T0.3.7",
-        "T1.2.6"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.8": {
-      "title": "LD HL,(nn), LD (nn),HL, LD SP,HL",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T0.3.7",
-        "T1.2.7"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.9": {
-      "title": "ADD/ADC A,r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.8"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.10": {
-      "title": "SUB/SBC/CP r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.9"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.11": {
-      "title": "AND/OR/XOR r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.10"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.12": {
-      "title": "ALU A,(HL)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.11"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.13": {
-      "title": "ALU A,n",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.12"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.14": {
-      "title": "INC r / DEC r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.13"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.15": {
-      "title": "INC (HL) / DEC (HL)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.14"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.16": {
-      "title": "DAA",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.15"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.17": {
-      "title": "CPL",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T1.2.16"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.2.18": {
-      "title": "SCF et CCF",
-      "deps": [
-        "T0.3.1",
-        "T0.3.2",
-        "T0.3.3",
-        "T0.3.7",
-        "T1.2.17"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21b1",
-        "KB-21b2",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.3.1": {
-      "title": "INC rr / DEC rr",
-      "deps": [
-        "T1.2.18"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.3.2": {
-      "title": "ADD HL,rr",
-      "deps": [
-        "T0.3.7",
-        "T1.3.1"
-      ],
-      "ctx": [
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.3.3": {
-      "title": "PUSH rr",
-      "deps": [
-        "T1.3.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.3.4": {
-      "title": "POP rr",
-      "deps": [
-        "T1.3.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.3.5": {
-      "title": "EX DE,HL ; EX AF,AF' ; EXX",
-      "deps": [
-        "T1.3.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.3.6": {
-      "title": "EX (SP),HL",
-      "deps": [
-        "T0.3.7",
-        "T1.3.5"
-      ],
-      "ctx": [
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.3.7": {
-      "title": "RLCA / RRCA",
-      "deps": [
-        "T1.3.6"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.3.8": {
-      "title": "RLA / RRA",
-      "deps": [
-        "T1.3.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.1": {
-      "title": "JP nn et JP (HL)",
-      "deps": [
-        "T0.3.7",
-        "T1.3.8"
-      ],
-      "ctx": [
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.2": {
-      "title": "JP cc,nn",
-      "deps": [
-        "T1.4.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.3": {
-      "title": "JR e et JR cc,e",
-      "deps": [
-        "T1.4.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.4": {
-      "title": "DJNZ",
-      "deps": [
-        "T1.4.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.5": {
-      "title": "CALL nn",
-      "deps": [
-        "T1.4.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.6": {
-      "title": "CALL cc,nn",
-      "deps": [
-        "T1.4.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.7": {
-      "title": "RET et RET cc",
-      "deps": [
-        "T1.4.6"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.8": {
-      "title": "RST p",
-      "deps": [
-        "T1.4.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.9": {
-      "title": "DI et EI",
-      "deps": [
-        "T0.3.8",
-        "T1.4.8"
-      ],
-      "ctx": [
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.10": {
-      "title": "HALT",
-      "deps": [
-        "T0.3.8",
-        "T1.4.9"
-      ],
-      "ctx": [
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.4.11": {
-      "title": "IN A,(n) et OUT (n),A",
-      "deps": [
-        "T0.3.7",
-        "T1.4.10"
-      ],
-      "ctx": [
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.1": {
-      "title": "Infrastructure CB",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.4.11"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.2": {
-      "title": "RLC / RRC r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.5.1"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.3": {
-      "title": "RL / RR r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.5.2"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.4": {
-      "title": "SLA / SRA / SLL / SRL r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.5.3"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.5": {
-      "title": "BIT n,r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.5.4"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.6": {
-      "title": "SET / RES n,r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.5.5"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.7": {
-      "title": "RLC/RRC/RL/RR (HL)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.5.6"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.8": {
-      "title": "SLA/SRA/SLL/SRL (HL)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.5.7"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.9": {
-      "title": "SET / RES n,(HL)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T1.5.8"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.5.10": {
-      "title": "BIT n,(HL)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.4",
-        "T0.3.7",
-        "T1.5.9"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21c",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.1": {
-      "title": "Infrastructure DD/FD",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.5.10"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.2": {
-      "title": "IXH/IXL : LD (non document\u00e9s)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.1"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.3": {
-      "title": "IXH/IXL : ALU, INC/DEC",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.2"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.4": {
-      "title": "LD r,(IX+d) / LD (IX+d),r",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T0.3.7",
-        "T1.6.3"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.5": {
-      "title": "LD (IX+d),n",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.4"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.6": {
-      "title": "ALU A,(IX+d)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.5"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.7": {
-      "title": "INC/DEC (IX+d)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.6"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.8": {
-      "title": "LD IX,nn ; LD IX,(nn) ; LD (nn),IX",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.7"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.9": {
-      "title": "ADD IX,rr ; INC/DEC IX",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.8"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.10": {
-      "title": "PUSH/POP IX ; EX (SP),IX ; JP (IX) ; LD SP,IX",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.9"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.11": {
-      "title": "Infrastructure DDCB/FDCB",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.10"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.12": {
-      "title": "DDCB : rotations, shifts, SET, RES",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T1.6.11"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.6.13": {
-      "title": "DDCB : BIT",
-      "deps": [
-        "T0.3.1",
-        "T0.3.5",
-        "T0.3.7",
-        "T1.6.12"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21d",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.1": {
-      "title": "Infrastructure ED",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.6.13"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.2": {
-      "title": "LD I,A ; LD R,A ; LD A,I ; LD A,R",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.1"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.3": {
-      "title": "NEG",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.2"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.4": {
-      "title": "IM 0/1/2",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.3"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.5": {
-      "title": "RETN / RETI",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.4"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.6": {
-      "title": "IN r,(C) et IN (C)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T0.3.7",
-        "T1.7.5"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.7": {
-      "title": "OUT (C),r et OUT (C),0",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.6"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.8": {
-      "title": "ADC HL,rr",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.7"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.9": {
-      "title": "SBC HL,rr",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.8"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.10": {
-      "title": "LD (nn),rr ; LD rr,(nn)",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T0.3.7",
-        "T1.7.9"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.11": {
-      "title": "RRD / RLD",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T0.3.7",
-        "T1.7.10"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e",
-        "KB-21f"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.12": {
-      "title": "LDI / LDD",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.11"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.13": {
-      "title": "LDIR / LDDR",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.12"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.14": {
-      "title": "CPI / CPD",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.13"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.15": {
-      "title": "CPIR / CPDR",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.14"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.16": {
-      "title": "INI / IND",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.15"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.17": {
-      "title": "INIR / INDR",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.16"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.18": {
-      "title": "OUTI / OUTD",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.17"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.7.19": {
-      "title": "OTIR / OTDR",
-      "deps": [
-        "T0.3.1",
-        "T0.3.6",
-        "T1.7.18"
-      ],
-      "ctx": [
-        "KB-21a",
-        "KB-21e"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.8.1": {
-      "title": "NMI : d\u00e9tection de front",
-      "deps": [
-        "T0.3.8",
-        "T1.7.19"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.8.2": {
-      "title": "NMI : s\u00e9quence d'acceptation",
-      "deps": [
-        "T0.3.8",
-        "T1.8.1"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.8.3": {
-      "title": "NMI et HALT",
-      "deps": [
-        "T0.3.8",
-        "T1.8.2"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.8.4": {
-      "title": "NMI, EI et RETN",
-      "deps": [
-        "T0.3.8",
-        "T1.8.3"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.8.5": {
-      "title": "INT en IM 1",
-      "deps": [
-        "T0.3.8",
-        "T1.8.4"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.8.6": {
-      "title": "INT en IM 2",
-      "deps": [
-        "T0.3.8",
-        "T1.8.5"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.8.7": {
-      "title": "INT en IM 0",
-      "deps": [
-        "T0.3.8",
-        "T1.8.6"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.8.8": {
-      "title": "ROM TR-CPU-NMI",
-      "deps": [
-        "T0.3.8",
-        "T1.8.7"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-21g"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.1": {
-      "title": "Shim CP/M",
-      "deps": [
-        "T1.8.8"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.2": {
-      "title": "Chargeur .COM et runner",
-      "deps": [
-        "T1.9.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.3": {
-      "title": "zexdoc : r\u00e9cup\u00e9ration et runner par test",
-      "deps": [
-        "T1.9.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.4": {
-      "title": "zexdoc : ALU 8 bits",
-      "deps": [
-        "T1.9.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.5": {
-      "title": "zexdoc : 16 bits",
-      "deps": [
-        "T1.9.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.6": {
-      "title": "zexdoc : chargements",
-      "deps": [
-        "T1.9.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.7": {
-      "title": "zexdoc : rotations, shifts, bits",
-      "deps": [
-        "T1.9.6"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.8": {
-      "title": "zexdoc : blocs",
-      "deps": [
-        "T1.9.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.9": {
-      "title": "zexdoc : complet",
-      "deps": [
-        "T1.9.8"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.10": {
-      "title": "zexall : ALU et 16 bits",
-      "deps": [
-        "T1.9.9"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.11": {
-      "title": "zexall : chargements, rotations, bits",
-      "deps": [
-        "T1.9.10"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.12": {
-      "title": "zexall : blocs et complet",
-      "deps": [
-        "T1.9.11"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.13": {
-      "title": "z80test : r\u00e9cup\u00e9ration et runner",
-      "deps": [
-        "T1.9.12"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.14": {
-      "title": "z80doc",
-      "deps": [
-        "T1.9.13"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.15": {
-      "title": "z80full",
-      "deps": [
-        "T1.9.14"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.16": {
-      "title": "z80ccf",
-      "deps": [
-        "T1.9.15"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.17": {
-      "title": "z80memptr",
-      "deps": [
-        "T1.9.16"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.18": {
-      "title": "Fuse : timing de bus, tous les cas",
-      "deps": [
-        "T1.9.17"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.19": {
-      "title": "SingleStepTests/z80 : r\u00e9cup\u00e9ration et runner",
-      "deps": [
-        "T1.9.18"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T1.9.20": {
-      "title": "SingleStepTests/z80 : ex\u00e9cution",
-      "deps": [
-        "T1.9.19"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.1.1": {
-      "title": "Structure `Raster` et compteur H",
-      "deps": [
-        "T1.9.20"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-07"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.1.2": {
-      "title": "`Raster::advance(cycles)`",
-      "deps": [
-        "T2.1.1"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-07"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.1.3": {
-      "title": "HBLANK",
-      "deps": [
-        "T2.1.2"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-07"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.1.4": {
-      "title": "HSYNC",
-      "deps": [
-        "T2.1.3"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-07"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.1.5": {
-      "title": "VBLANK et \u00e9v\u00e9nement",
-      "deps": [
-        "T2.1.4"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-07"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.1.6": {
-      "title": "VSYNC",
-      "deps": [
-        "T2.1.5"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-07"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.1.7": {
-      "title": "Zone visible",
-      "deps": [
-        "T2.1.6"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-07"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.1.8": {
-      "title": "Retard du compteur V",
-      "deps": [
-        "T2.1.7"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-07"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.1": {
-      "title": "`Memory` : ROM et RAM",
-      "deps": [
-        "T2.1.8"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.2": {
-      "title": "Zones sp\u00e9ciales",
-      "deps": [
-        "T2.2.1"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.3": {
-      "title": "VRAM",
-      "deps": [
-        "T2.2.2"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.4": {
-      "title": "OBJRAM",
-      "deps": [
-        "T2.2.3"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.5": {
-      "title": "`Machine` impl\u00e9mente `Bus`",
-      "deps": [
-        "T2.2.4"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.6": {
-      "title": "Acc\u00e8s `fetch_opcode` et E/S",
-      "deps": [
-        "T2.2.5"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.7": {
-      "title": "Test d'adressage complet",
-      "deps": [
-        "T2.2.6"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.8": {
-      "title": "ROM TR-MAP",
-      "deps": [
-        "T2.2.7"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.2.9": {
-      "title": "TR-MAP : validation",
-      "deps": [
-        "T2.2.8"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.1": {
-      "title": "Latch 1 bit",
-      "deps": [
-        "T2.2.9"
-      ],
-      "ctx": [
-        "KB-04"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.2": {
-      "title": "/DRIVER 6000-6007",
-      "deps": [
-        "T2.3.1"
-      ],
-      "ctx": [
-        "KB-04"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.3": {
-      "title": "/SOUND 6800-6807",
-      "deps": [
-        "T2.3.2"
-      ],
-      "ctx": [
-        "KB-04"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.4": {
-      "title": "LATCH 7000-77ff",
-      "deps": [
-        "T2.3.3"
-      ],
-      "ctx": [
-        "KB-04"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.5": {
-      "title": "\u00c9criture 7800",
-      "deps": [
-        "T2.3.4"
-      ],
-      "ctx": [
-        "KB-04"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.6": {
-      "title": "Trait `Inputs` et IN0",
-      "deps": [
-        "T0.4.7",
-        "T2.3.5"
-      ],
-      "ctx": [
-        "KB-04",
-        "KB-24a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.7": {
-      "title": "IN1",
-      "deps": [
-        "T0.4.7",
-        "T2.3.6"
-      ],
-      "ctx": [
-        "KB-04",
-        "KB-24a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.8": {
-      "title": "IN2 et DIPs",
-      "deps": [
-        "T0.4.7",
-        "T0.4.8",
-        "T2.3.7"
-      ],
-      "ctx": [
-        "KB-04",
-        "KB-24a",
-        "KB-24b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.3.9": {
-      "title": "Test global des E/S",
-      "deps": [
-        "T2.3.8"
-      ],
-      "ctx": [
-        "KB-04"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.4.1": {
-      "title": "Compteur de watchdog",
-      "deps": [
-        "T0.4.10",
-        "T2.3.9"
-      ],
-      "ctx": [
-        "KB-06",
-        "KB-25b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.4.2": {
-      "title": "Lecture de 7800",
-      "deps": [
-        "T0.4.10",
-        "T2.4.1"
-      ],
-      "ctx": [
-        "KB-06",
-        "KB-25b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.4.3": {
-      "title": "Reset machine sur timeout",
-      "deps": [
-        "T0.4.10",
-        "T2.4.2"
-      ],
-      "ctx": [
-        "KB-06",
-        "KB-25b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.4.4": {
-      "title": "ROM TR-WDG",
-      "deps": [
-        "T0.4.10",
-        "T2.4.3"
-      ],
-      "ctx": [
-        "KB-06",
-        "KB-25b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.4.5": {
-      "title": "TR-WDG : validation",
-      "deps": [
-        "T0.4.10",
-        "T2.4.4"
-      ],
-      "ctx": [
-        "KB-06",
-        "KB-25b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.5.1": {
-      "title": "`irq_enabled`",
-      "deps": [
-        "T2.4.5"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.5.2": {
-      "title": "Niveau NMI \u00e0 l'entr\u00e9e en VBLANK",
-      "deps": [
-        "T2.5.1"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.5.3": {
-      "title": "Effacement de la ligne",
-      "deps": [
-        "T2.5.2"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.5.4": {
-      "title": "Branchement CPU",
-      "deps": [
-        "T2.5.3"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.5.5": {
-      "title": "ROM TR-NMI",
-      "deps": [
-        "T2.5.4"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.5.6": {
-      "title": "TR-NMI : comptage",
-      "deps": [
-        "T2.5.5"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.5.7": {
-      "title": "Cycle exact du NMI",
-      "deps": [
-        "T2.5.6"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T2.5.8": {
-      "title": "TR-CPU-NMI sur machine",
-      "deps": [
-        "T2.5.7"
-      ],
-      "ctx": [
-        "KB-05",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.1.1": {
-      "title": "Lecture d'un dossier",
-      "deps": [
-        "T0.4.9",
-        "T2.5.8"
-      ],
-      "ctx": [
-        "KB-25a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.1.2": {
-      "title": "V\u00e9rification de taille",
-      "deps": [
-        "T0.4.9",
-        "T3.1.1"
-      ],
-      "ctx": [
-        "KB-25a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.1.3": {
-      "title": "V\u00e9rification CRC32",
-      "deps": [
-        "T0.4.9",
-        "T3.1.2"
-      ],
-      "ctx": [
-        "KB-25a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.1.4": {
-      "title": "Placement ROM programme",
-      "deps": [
-        "T0.4.9",
-        "T3.1.3"
-      ],
-      "ctx": [
-        "KB-25a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.1.5": {
-      "title": "ROMs graphiques",
-      "deps": [
-        "T0.4.9",
-        "T3.1.4"
-      ],
-      "ctx": [
-        "KB-25a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.1.6": {
-      "title": "PROM de palette",
-      "deps": [
-        "T0.4.9",
-        "T3.1.5"
-      ],
-      "ctx": [
-        "KB-25a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.1.7": {
-      "title": "Set alternatif `galmidw`",
-      "deps": [
-        "T0.4.9",
-        "T3.1.6"
-      ],
-      "ctx": [
-        "KB-25a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.1.8": {
-      "title": "ROM TR-HELLO sur machine",
-      "deps": [
-        "T0.4.9",
-        "T3.1.7"
-      ],
-      "ctx": [
-        "KB-25a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.2.1": {
-      "title": "`run_frame()`",
-      "deps": [
-        "T3.1.8"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.2.2": {
-      "title": "Report des cycles exc\u00e9dentaires",
-      "deps": [
-        "T3.2.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.2.3": {
-      "title": "`reset()`",
-      "deps": [
-        "T3.2.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.2.4": {
-      "title": "`snapshot()`",
-      "deps": [
-        "T3.2.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.3.1": {
-      "title": "Comparateur de traces",
-      "deps": [
-        "T3.2.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.3.2": {
-      "title": "Trace 1 000 instructions",
-      "deps": [
-        "T3.3.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.3.3": {
-      "title": "Trace 100 000 instructions",
-      "deps": [
-        "T3.3.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.3.4": {
-      "title": "Trace 1 000 000 instructions",
-      "deps": [
-        "T3.3.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.4.1": {
-      "title": "Comparateur de dumps",
-      "deps": [
-        "T3.3.4"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.4.2": {
-      "title": "VRAM/OBJRAM \u00e0 la frame 60",
-      "deps": [
-        "T3.4.1"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T3.4.3": {
-      "title": "VRAM/OBJRAM \u00e0 la frame 600",
-      "deps": [
-        "T3.4.2"
-      ],
-      "ctx": [
-        "KB-03"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.1.1": {
-      "title": "Structure `GfxLayout` et d\u00e9codeur de plans",
-      "deps": [
-        "T0.4.3",
-        "T3.4.3"
-      ],
-      "ctx": [
-        "KB-22a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.1.2": {
-      "title": "Tiles 8\u00d78 2 bpp",
-      "deps": [
-        "T0.4.3",
-        "T4.1.1"
-      ],
-      "ctx": [
-        "KB-22a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.1.3": {
-      "title": "Sprites 16\u00d716 2 bpp",
-      "deps": [
-        "T0.4.4",
-        "T4.1.2"
-      ],
-      "ctx": [
-        "KB-22b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.1.4": {
-      "title": "Tile et sprite connus",
-      "deps": [
-        "T4.1.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.1.5": {
-      "title": "`compute_resistor_weights`",
-      "deps": [
-        "T4.1.4"
-      ],
-      "ctx": [
-        "KB-08"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.1.6": {
-      "title": "Palette : 32 entr\u00e9es",
-      "deps": [
-        "T0.4.12",
-        "T4.1.5"
-      ],
-      "ctx": [
-        "KB-08",
-        "KB-27"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.1.7": {
-      "title": "Palette : validation",
-      "deps": [
-        "T4.1.6"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.1.8": {
-      "title": "Couleurs shells/missile",
-      "deps": [
-        "T4.1.7"
-      ],
-      "ctx": [
-        "KB-08"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.1": {
-      "title": "Framebuffer interne",
-      "deps": [
-        "T4.1.8"
-      ],
-      "ctx": [
-        "KB-02"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.2": {
-      "title": "Rendu d'une tile",
-      "deps": [
-        "T0.4.5",
-        "T4.2.1"
-      ],
-      "ctx": [
-        "KB-09",
-        "KB-23a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.3": {
-      "title": "Flips X/Y d'une tile",
-      "deps": [
-        "T4.2.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.4": {
-      "title": "Tilemap 32\u00d732 statique",
-      "deps": [
-        "T0.4.5",
-        "T4.2.3"
-      ],
-      "ctx": [
-        "KB-23a"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.5": {
-      "title": "Scroll vertical par colonne",
-      "deps": [
-        "T0.4.6",
-        "T4.2.4"
-      ],
-      "ctx": [
-        "KB-23b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.6": {
-      "title": "Attribut couleur par colonne",
-      "deps": [
-        "T0.4.6",
-        "T4.2.5"
-      ],
-      "ctx": [
-        "KB-23b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.7": {
-      "title": "Flip \u00e9cran sur le tilemap",
-      "deps": [
-        "T4.2.6"
-      ],
-      "ctx": [
-        "KB-13"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.8": {
-      "title": "ROM TR-TILE (source)",
-      "deps": [
-        "T4.2.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.9": {
-      "title": "TR-TILE : golden et validation",
-      "deps": [
-        "T4.2.8"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.10": {
-      "title": "Rendu par ligne",
-      "deps": [
-        "T4.2.9"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.11": {
-      "title": "Branchement dans `run_frame`",
-      "deps": [
-        "T4.2.10"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.12": {
-      "title": "ROM TR-RASTER (source)",
-      "deps": [
-        "T4.2.11"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.2.13": {
-      "title": "TR-RASTER : golden et validation",
-      "deps": [
-        "T4.2.12"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.1": {
-      "title": "Lecture d'un sprite depuis OBJRAM",
-      "deps": [
-        "T0.4.6",
-        "T4.2.13"
-      ],
-      "ctx": [
-        "KB-10",
-        "KB-23b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.2": {
-      "title": "Test vertical",
-      "deps": [
-        "T4.3.1"
-      ],
-      "ctx": [
-        "KB-07",
-        "KB-10"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.3": {
-      "title": "S\u00e9lection par ligne",
-      "deps": [
-        "T4.3.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.4": {
-      "title": "Line buffer",
-      "deps": [
-        "T4.3.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.5": {
-      "title": "Rendu d'une rang\u00e9e de sprite",
-      "deps": [
-        "T4.3.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.6": {
-      "title": "Flips H et V du sprite",
-      "deps": [
-        "T4.3.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.7": {
-      "title": "Priorit\u00e9",
-      "deps": [
-        "T4.3.6"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.8": {
-      "title": "Clipping 16 px",
-      "deps": [
-        "T4.3.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.9": {
-      "title": "Limite 7,5 sprites par ligne",
-      "deps": [
-        "T4.3.8"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.10": {
-      "title": "ROM TR-SPR-1 et TR-SPR-FLIP (source)",
-      "deps": [
-        "T4.3.9"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.11": {
-      "title": "TR-SPR-1 et TR-SPR-FLIP : golden et validation",
-      "deps": [
-        "T4.3.10"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.12": {
-      "title": "ROM TR-SPR-8 et TR-SPR-EDGE (source)",
-      "deps": [
-        "T4.3.11"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.3.13": {
-      "title": "TR-SPR-8 et TR-SPR-EDGE : golden et validation",
-      "deps": [
-        "T4.3.12"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.4.1": {
-      "title": "Lecture shells/missile",
-      "deps": [
-        "T4.3.13"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.4.2": {
-      "title": "Match vertical",
-      "deps": [
-        "T4.4.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.4.3": {
-      "title": "Position horizontale",
-      "deps": [
-        "T4.4.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.4.4": {
-      "title": "Couleurs",
-      "deps": [
-        "T4.4.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.4.5": {
-      "title": "ROM TR-BULLET (source)",
-      "deps": [
-        "T4.4.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.4.6": {
-      "title": "TR-BULLET : golden et validation",
-      "deps": [
-        "T4.4.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.1": {
-      "title": "`Lfsr17` partag\u00e9",
-      "deps": [
-        "T4.4.6"
-      ],
-      "ctx": [
-        "KB-12",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.2": {
-      "title": "Table `stars[131071]`",
-      "deps": [
-        "T4.5.1"
-      ],
-      "ctx": [
-        "KB-12"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.3": {
-      "title": "CRC de la table",
-      "deps": [
-        "T4.5.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.4": {
-      "title": "Couleurs des \u00e9toiles",
-      "deps": [
-        "T4.5.3"
-      ],
-      "ctx": [
-        "KB-08",
-        "KB-12"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.5": {
-      "title": "Rendu d'une ligne sans masque",
-      "deps": [
-        "T4.5.4"
-      ],
-      "ctx": [
-        "KB-02",
-        "KB-12"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.6": {
-      "title": "Masque `(V1 xor H8)`",
-      "deps": [
-        "T4.5.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.7": {
-      "title": "\u00c9toiles activ\u00e9es (7004)",
-      "deps": [
-        "T4.5.6"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.8": {
-      "title": "Origine et d\u00e9rive",
-      "deps": [
-        "T4.5.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.9": {
-      "title": "D\u00e9calage 2 clocks/frame",
-      "deps": [
-        "T4.5.8"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.10": {
-      "title": "Recalage avant flip",
-      "deps": [
-        "T4.5.9"
-      ],
-      "ctx": [
-        "KB-13"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.11": {
-      "title": "ROM TR-STARS (source)",
-      "deps": [
-        "T4.5.10"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.12": {
-      "title": "TR-STARS sans flip : golden et validation",
-      "deps": [
-        "T4.5.11"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.5.13": {
-      "title": "TR-STARS avec flip : golden et validation",
-      "deps": [
-        "T4.5.12"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.6.1": {
-      "title": "Ordre de superposition",
-      "deps": [
-        "T0.4.11",
-        "T4.5.13"
-      ],
-      "ctx": [
-        "KB-14",
-        "KB-26"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.6.2": {
-      "title": "R\u00e9duction 768\u2192256",
-      "deps": [
-        "T0.4.11",
-        "T4.6.1"
-      ],
-      "ctx": [
-        "KB-14",
-        "KB-26"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.6.3": {
-      "title": "Frames 1, 2, 5, 10",
-      "deps": [
-        "T0.4.11",
-        "T4.6.2"
-      ],
-      "ctx": [
-        "KB-14",
-        "KB-26"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.6.4": {
-      "title": "Frames 30, 60, 120",
-      "deps": [
-        "T0.4.11",
-        "T4.6.3"
-      ],
-      "ctx": [
-        "KB-14",
-        "KB-26"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T4.6.5": {
-      "title": "Frames 300, 600",
-      "deps": [
-        "T0.4.11",
-        "T4.6.4"
-      ],
-      "ctx": [
-        "KB-14",
-        "KB-26"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.1.1": {
-      "title": "Une seule instance",
-      "deps": [
-        "T4.6.5"
-      ],
-      "ctx": [
-        "KB-12",
-        "KB-16",
-        "KB-19"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.1.2": {
-      "title": "P\u00e9riode",
-      "deps": [
-        "T5.1.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.2.1": {
-      "title": "FS1-3",
-      "deps": [
-        "T5.1.2"
-      ],
-      "ctx": [
-        "KB-04",
-        "KB-15"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.2.2": {
-      "title": "HIT et FIRE",
-      "deps": [
-        "T5.2.1"
-      ],
-      "ctx": [
-        "KB-04",
-        "KB-15"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.2.3": {
-      "title": "VOL1/VOL2",
-      "deps": [
-        "T5.2.2"
-      ],
-      "ctx": [
-        "KB-04",
-        "KB-15"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.2.4": {
-      "title": "Pitch",
-      "deps": [
-        "T5.2.3"
-      ],
-      "ctx": [
-        "KB-04",
-        "KB-15"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.2.5": {
-      "title": "`lfo_val`",
-      "deps": [
-        "T5.2.4"
-      ],
-      "ctx": [
-        "KB-04",
-        "KB-15"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.1": {
-      "title": "555 astable",
-      "deps": [
-        "T5.2.5"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.2": {
-      "title": "555 astable \u00e0 contr\u00f4le de tension",
-      "deps": [
-        "T5.3.1"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.3": {
-      "title": "555 VCO",
-      "deps": [
-        "T5.3.2"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.4": {
-      "title": "RC charge/d\u00e9charge",
-      "deps": [
-        "T5.3.3"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.5": {
-      "title": "Filtre RC",
-      "deps": [
-        "T5.3.4"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.6": {
-      "title": "Passe-bande 1er ordre",
-      "deps": [
-        "T5.3.5"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.7": {
-      "title": "DAC R-2R 4 bits",
-      "deps": [
-        "T5.3.6"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.8": {
-      "title": "Mixeur pond\u00e9r\u00e9",
-      "deps": [
-        "T5.3.7"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.3.9": {
-      "title": "Bascule D et carr\u00e9 \u00e0 fr\u00e9quence fixe",
-      "deps": [
-        "T5.3.8"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.1": {
-      "title": "PITCH : diviseur",
-      "deps": [
-        "T5.3.9"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.2": {
-      "title": "PITCH : d\u00e9codage QA/QC/QD",
-      "deps": [
-        "T5.4.1"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.3": {
-      "title": "BACKGROUND : DAC \u2192 VCO",
-      "deps": [
-        "T5.4.2"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.4": {
-      "title": "BACKGROUND : op-amp et clamp 0..5 V",
-      "deps": [
-        "T5.4.3"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.5": {
-      "title": "BACKGROUND : 3\u00d7555 et mixeur",
-      "deps": [
-        "T5.4.4"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.6": {
-      "title": "NOISE",
-      "deps": [
-        "T5.4.5"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.7": {
-      "title": "HIT : `RCDISC5`",
-      "deps": [
-        "T5.4.6"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.8": {
-      "title": "HIT : passe-bande",
-      "deps": [
-        "T5.4.7"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.9": {
-      "title": "FIRE : bruit et RC",
-      "deps": [
-        "T5.4.8"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.10": {
-      "title": "FIRE : 555 VCO et `RCDISC5`",
-      "deps": [
-        "T5.4.9"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.11": {
-      "title": "Mixage final",
-      "deps": [
-        "T5.4.10"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.4.12": {
-      "title": "\u00c9chantillonnage",
-      "deps": [
-        "T5.4.11"
-      ],
-      "ctx": [
-        "KB-16"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.5.1": {
-      "title": "Outil de m\u00e9triques",
-      "deps": [
-        "T5.4.12"
-      ],
-      "ctx": [
-        "KB-17"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.5.2": {
-      "title": "ROMs TR-SND-FS et TR-SND-PITCH (source)",
-      "deps": [
-        "T5.5.1"
-      ],
-      "ctx": [
-        "KB-17"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.5.3": {
-      "title": "ROMs TR-SND-HIT et TR-SND-FIRE (source)",
-      "deps": [
-        "T5.5.2"
-      ],
-      "ctx": [
-        "KB-17"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.5.4": {
-      "title": "TR-SND-* : golden et mesures",
-      "deps": [
-        "T5.5.3"
-      ],
-      "ctx": [
-        "KB-17"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.5.5": {
-      "title": "Sc\u00e9nario attract",
-      "deps": [
-        "T5.5.4"
-      ],
-      "ctx": [
-        "KB-17"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.5.6": {
-      "title": "Sc\u00e9nario tir",
-      "deps": [
-        "T5.5.5"
-      ],
-      "ctx": [
-        "KB-17"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T5.5.7": {
-      "title": "Sc\u00e9nario explosion",
-      "deps": [
-        "T5.5.6"
-      ],
-      "ctx": [
-        "KB-17"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.1.1": {
-      "title": "Fen\u00eatre 256\u00d7224",
-      "deps": [
-        "T5.5.7"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.1.2": {
-      "title": "Rotation 90\u00b0 optionnelle",
-      "deps": [
-        "T6.1.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.1.3": {
-      "title": "Boucle 60,606 Hz",
-      "deps": [
-        "T6.1.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.2.1": {
-      "title": "Clavier \u2192 IN0/IN1",
-      "deps": [
-        "T0.4.7",
-        "T0.4.8",
-        "T6.1.3"
-      ],
-      "ctx": [
-        "KB-24a",
-        "KB-24b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.2.2": {
-      "title": "Manette",
-      "deps": [
-        "T0.4.7",
-        "T0.4.8",
-        "T6.2.1"
-      ],
-      "ctx": [
-        "KB-24a",
-        "KB-24b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.2.3": {
-      "title": "DIP switches configurables",
-      "deps": [
-        "T0.4.7",
-        "T0.4.8",
-        "T6.2.2"
-      ],
-      "ctx": [
-        "KB-24a",
-        "KB-24b"
-      ],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.3.1": {
-      "title": "Sortie audio",
-      "deps": [
-        "T6.2.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.3.2": {
-      "title": "Resampling",
-      "deps": [
-        "T6.3.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.3.3": {
-      "title": "Synchronisation audio/vid\u00e9o",
-      "deps": [
-        "T6.3.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.4.1": {
-      "title": "Boot",
-      "deps": [
-        "T6.3.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.4.2": {
-      "title": "Attract mode",
-      "deps": [
-        "T6.4.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.4.3": {
-      "title": "Cr\u00e9dit",
-      "deps": [
-        "T6.4.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.4.4": {
-      "title": "Partie d'une minute",
-      "deps": [
-        "T6.4.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.4.5": {
-      "title": "Flip (cocktail)",
-      "deps": [
-        "T6.4.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T6.4.6": {
-      "title": "DIPs",
-      "deps": [
-        "T6.4.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.1.1": {
-      "title": "Hash d'\u00e9tat",
-      "deps": [
-        "T6.4.6"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.1.2": {
-      "title": "Deux runs de 10 min",
-      "deps": [
-        "T7.1.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.2.1": {
-      "title": "S\u00e9rialisation CPU",
-      "deps": [
-        "T7.1.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.2.2": {
-      "title": "S\u00e9rialisation RAM, VRAM, latches",
-      "deps": [
-        "T7.2.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.2.3": {
-      "title": "S\u00e9rialisation raster, LFSR, \u00e9toiles",
-      "deps": [
-        "T7.2.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.2.4": {
-      "title": "S\u00e9rialisation audio",
-      "deps": [
-        "T7.2.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.2.5": {
-      "title": "Round-trip",
-      "deps": [
-        "T7.2.4"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.3.1": {
-      "title": "Profilage",
-      "deps": [
-        "T7.2.5"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.3.2": {
-      "title": "Optimisations cibl\u00e9es",
-      "deps": [
-        "T7.3.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.4.1": {
-      "title": "Acc\u00e8s m\u00e9moire al\u00e9atoires",
-      "deps": [
-        "T7.3.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.4.2": {
-      "title": "\u00c9critures sur miroirs",
-      "deps": [
-        "T7.4.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.4.3": {
-      "title": "S\u00e9quences de latches",
-      "deps": [
-        "T7.4.2"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.5.1": {
-      "title": "\u00c9carts connus vs MAME",
-      "deps": [
-        "T7.4.3"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    },
-    "T7.5.2": {
-      "title": "G\u00e9n\u00e9ration des golden",
-      "deps": [
-        "T7.5.1"
-      ],
-      "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
-    }
+    "T2.3.7"
+   ],
+   "ctx": [
+    "KB-04",
+    "KB-24a",
+    "KB-24b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
   },
-  "kb_gaps": [
-    {
-      "id": "GAP-01",
-      "status": "OPEN",
-      "closed_by": [
-        "T0.4.13"
-      ],
-      "kb_file": null
-    },
-    {
-      "id": "GAP-02",
-      "status": "OPEN",
-      "closed_by": [
-        "T0.4.13"
-      ],
-      "kb_file": null
-    },
-    {
-      "id": "GAP-03",
-      "status": "OPEN",
-      "closed_by": [
-        "T0.4.13"
-      ],
-      "kb_file": null
-    },
-    {
-      "id": "GAP-04",
-      "status": "OPEN",
-      "closed_by": [
-        "T0.3.8"
-      ],
-      "kb_file": null
-    },
-    {
-      "id": "GAP-05",
-      "status": "OPEN",
-      "closed_by": [
-        "T0.4.13"
-      ],
-      "kb_file": null
-    },
-    {
-      "id": "GAP-06",
-      "status": "OPEN",
-      "closed_by": [
-        "T2.5.7"
-      ],
-      "kb_file": null
-    },
-    {
-      "id": "GAP-07",
-      "status": "OPEN",
-      "closed_by": [
-        "T0.6.5"
-      ],
-      "kb_file": null
-    }
-  ],
-  "legacy_id_map": {
-    "T0.1.1": [
-      "T0.1.1",
-      "T0.1.2",
-      "T0.1.3",
-      "T0.1.7"
-    ],
-    "T0.1.2": [
-      "T0.2.1",
-      "T0.2.3",
-      "T0.2.4"
-    ],
-    "T0.2.1": [
-      "T0.4.1"
-    ]
+  "T2.3.9": {
+   "title": "Test global des E/S",
+   "deps": [
+    "T2.3.8"
+   ],
+   "ctx": [
+    "KB-04"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.4.1": {
+   "title": "Compteur de watchdog",
+   "deps": [
+    "T0.4.10",
+    "T2.3.9"
+   ],
+   "ctx": [
+    "KB-06",
+    "KB-25b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.4.2": {
+   "title": "Lecture de 7800",
+   "deps": [
+    "T0.4.10",
+    "T2.4.1"
+   ],
+   "ctx": [
+    "KB-06",
+    "KB-25b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.4.3": {
+   "title": "Reset machine sur timeout",
+   "deps": [
+    "T0.4.10",
+    "T2.4.2"
+   ],
+   "ctx": [
+    "KB-06",
+    "KB-25b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.4.4": {
+   "title": "ROM TR-WDG",
+   "deps": [
+    "T0.4.10",
+    "T2.4.3"
+   ],
+   "ctx": [
+    "KB-06",
+    "KB-25b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.4.5": {
+   "title": "TR-WDG : validation",
+   "deps": [
+    "T0.4.10",
+    "T2.4.4"
+   ],
+   "ctx": [
+    "KB-06",
+    "KB-25b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.5.1": {
+   "title": "`irq_enabled`",
+   "deps": [
+    "T2.4.5"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.5.2": {
+   "title": "Niveau NMI à l'entrée en VBLANK",
+   "deps": [
+    "T2.5.1"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.5.3": {
+   "title": "Effacement de la ligne",
+   "deps": [
+    "T2.5.2"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.5.4": {
+   "title": "Branchement CPU",
+   "deps": [
+    "T2.5.3"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.5.5": {
+   "title": "ROM TR-NMI",
+   "deps": [
+    "T2.5.4"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.5.6": {
+   "title": "TR-NMI : comptage",
+   "deps": [
+    "T2.5.5"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.5.7": {
+   "title": "Cycle exact du NMI",
+   "deps": [
+    "T2.5.6"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T2.5.8": {
+   "title": "TR-CPU-NMI sur machine",
+   "deps": [
+    "T2.5.7"
+   ],
+   "ctx": [
+    "KB-05",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.1.1": {
+   "title": "Lecture d'un dossier",
+   "deps": [
+    "T0.4.9",
+    "T2.5.8"
+   ],
+   "ctx": [
+    "KB-25a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.1.2": {
+   "title": "Vérification de taille",
+   "deps": [
+    "T0.4.9",
+    "T3.1.1"
+   ],
+   "ctx": [
+    "KB-25a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.1.3": {
+   "title": "Vérification CRC32",
+   "deps": [
+    "T0.4.9",
+    "T3.1.2"
+   ],
+   "ctx": [
+    "KB-25a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.1.4": {
+   "title": "Placement ROM programme",
+   "deps": [
+    "T0.4.9",
+    "T3.1.3"
+   ],
+   "ctx": [
+    "KB-25a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.1.5": {
+   "title": "ROMs graphiques",
+   "deps": [
+    "T0.4.9",
+    "T3.1.4"
+   ],
+   "ctx": [
+    "KB-25a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.1.6": {
+   "title": "PROM de palette",
+   "deps": [
+    "T0.4.9",
+    "T3.1.5"
+   ],
+   "ctx": [
+    "KB-25a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.1.7": {
+   "title": "Set alternatif `galmidw`",
+   "deps": [
+    "T0.4.9",
+    "T3.1.6"
+   ],
+   "ctx": [
+    "KB-25a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.1.8": {
+   "title": "ROM TR-HELLO sur machine",
+   "deps": [
+    "T0.4.9",
+    "T3.1.7"
+   ],
+   "ctx": [
+    "KB-25a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.2.1": {
+   "title": "`run_frame()`",
+   "deps": [
+    "T3.1.8"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.2.2": {
+   "title": "Report des cycles excédentaires",
+   "deps": [
+    "T3.2.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.2.3": {
+   "title": "`reset()`",
+   "deps": [
+    "T3.2.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.2.4": {
+   "title": "`snapshot()`",
+   "deps": [
+    "T3.2.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.3.1": {
+   "title": "Comparateur de traces",
+   "deps": [
+    "T3.2.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.3.2": {
+   "title": "Trace 1 000 instructions",
+   "deps": [
+    "T3.3.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.3.3": {
+   "title": "Trace 100 000 instructions",
+   "deps": [
+    "T3.3.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.3.4": {
+   "title": "Trace 1 000 000 instructions",
+   "deps": [
+    "T3.3.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.4.1": {
+   "title": "Comparateur de dumps",
+   "deps": [
+    "T3.3.4"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.4.2": {
+   "title": "VRAM/OBJRAM à la frame 60",
+   "deps": [
+    "T3.4.1"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T3.4.3": {
+   "title": "VRAM/OBJRAM à la frame 600",
+   "deps": [
+    "T3.4.2"
+   ],
+   "ctx": [
+    "KB-03"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.1.1": {
+   "title": "Structure `GfxLayout` et décodeur de plans",
+   "deps": [
+    "T0.4.3",
+    "T3.4.3"
+   ],
+   "ctx": [
+    "KB-22a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.1.2": {
+   "title": "Tiles 8×8 2 bpp",
+   "deps": [
+    "T0.4.3",
+    "T4.1.1"
+   ],
+   "ctx": [
+    "KB-22a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.1.3": {
+   "title": "Sprites 16×16 2 bpp",
+   "deps": [
+    "T0.4.4",
+    "T4.1.2"
+   ],
+   "ctx": [
+    "KB-22b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.1.4": {
+   "title": "Tile et sprite connus",
+   "deps": [
+    "T4.1.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.1.5": {
+   "title": "`compute_resistor_weights`",
+   "deps": [
+    "T4.1.4"
+   ],
+   "ctx": [
+    "KB-08"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.1.6": {
+   "title": "Palette : 32 entrées",
+   "deps": [
+    "T0.4.12",
+    "T4.1.5"
+   ],
+   "ctx": [
+    "KB-08",
+    "KB-27"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.1.7": {
+   "title": "Palette : validation",
+   "deps": [
+    "T4.1.6"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.1.8": {
+   "title": "Couleurs shells/missile",
+   "deps": [
+    "T4.1.7"
+   ],
+   "ctx": [
+    "KB-08"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.1": {
+   "title": "Framebuffer interne",
+   "deps": [
+    "T4.1.8"
+   ],
+   "ctx": [
+    "KB-02"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.2": {
+   "title": "Rendu d'une tile",
+   "deps": [
+    "T0.4.5",
+    "T4.2.1"
+   ],
+   "ctx": [
+    "KB-09",
+    "KB-23a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.3": {
+   "title": "Flips X/Y d'une tile",
+   "deps": [
+    "T4.2.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.4": {
+   "title": "Tilemap 32×32 statique",
+   "deps": [
+    "T0.4.5",
+    "T4.2.3"
+   ],
+   "ctx": [
+    "KB-23a"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.5": {
+   "title": "Scroll vertical par colonne",
+   "deps": [
+    "T0.4.6",
+    "T4.2.4"
+   ],
+   "ctx": [
+    "KB-23b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.6": {
+   "title": "Attribut couleur par colonne",
+   "deps": [
+    "T0.4.6",
+    "T4.2.5"
+   ],
+   "ctx": [
+    "KB-23b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.7": {
+   "title": "Flip écran sur le tilemap",
+   "deps": [
+    "T4.2.6"
+   ],
+   "ctx": [
+    "KB-13"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.8": {
+   "title": "ROM TR-TILE (source)",
+   "deps": [
+    "T4.2.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.9": {
+   "title": "TR-TILE : golden et validation",
+   "deps": [
+    "T4.2.8"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.10": {
+   "title": "Rendu par ligne",
+   "deps": [
+    "T4.2.9"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.11": {
+   "title": "Branchement dans `run_frame`",
+   "deps": [
+    "T4.2.10"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.12": {
+   "title": "ROM TR-RASTER (source)",
+   "deps": [
+    "T4.2.11"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.2.13": {
+   "title": "TR-RASTER : golden et validation",
+   "deps": [
+    "T4.2.12"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.1": {
+   "title": "Lecture d'un sprite depuis OBJRAM",
+   "deps": [
+    "T0.4.6",
+    "T4.2.13"
+   ],
+   "ctx": [
+    "KB-10",
+    "KB-23b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.2": {
+   "title": "Test vertical",
+   "deps": [
+    "T4.3.1"
+   ],
+   "ctx": [
+    "KB-07",
+    "KB-10"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.3": {
+   "title": "Sélection par ligne",
+   "deps": [
+    "T4.3.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.4": {
+   "title": "Line buffer",
+   "deps": [
+    "T4.3.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.5": {
+   "title": "Rendu d'une rangée de sprite",
+   "deps": [
+    "T4.3.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.6": {
+   "title": "Flips H et V du sprite",
+   "deps": [
+    "T4.3.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.7": {
+   "title": "Priorité",
+   "deps": [
+    "T4.3.6"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.8": {
+   "title": "Clipping 16 px",
+   "deps": [
+    "T4.3.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.9": {
+   "title": "Limite 7,5 sprites par ligne",
+   "deps": [
+    "T4.3.8"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.10": {
+   "title": "ROM TR-SPR-1 et TR-SPR-FLIP (source)",
+   "deps": [
+    "T4.3.9"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.11": {
+   "title": "TR-SPR-1 et TR-SPR-FLIP : golden et validation",
+   "deps": [
+    "T4.3.10"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.12": {
+   "title": "ROM TR-SPR-8 et TR-SPR-EDGE (source)",
+   "deps": [
+    "T4.3.11"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.3.13": {
+   "title": "TR-SPR-8 et TR-SPR-EDGE : golden et validation",
+   "deps": [
+    "T4.3.12"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.4.1": {
+   "title": "Lecture shells/missile",
+   "deps": [
+    "T4.3.13"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.4.2": {
+   "title": "Match vertical",
+   "deps": [
+    "T4.4.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.4.3": {
+   "title": "Position horizontale",
+   "deps": [
+    "T4.4.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.4.4": {
+   "title": "Couleurs",
+   "deps": [
+    "T4.4.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.4.5": {
+   "title": "ROM TR-BULLET (source)",
+   "deps": [
+    "T4.4.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.4.6": {
+   "title": "TR-BULLET : golden et validation",
+   "deps": [
+    "T4.4.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.1": {
+   "title": "`Lfsr17` partagé",
+   "deps": [
+    "T4.4.6"
+   ],
+   "ctx": [
+    "KB-12",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.2": {
+   "title": "Table `stars[131071]`",
+   "deps": [
+    "T4.5.1"
+   ],
+   "ctx": [
+    "KB-12"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.3": {
+   "title": "CRC de la table",
+   "deps": [
+    "T4.5.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.4": {
+   "title": "Couleurs des étoiles",
+   "deps": [
+    "T4.5.3"
+   ],
+   "ctx": [
+    "KB-08",
+    "KB-12"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.5": {
+   "title": "Rendu d'une ligne sans masque",
+   "deps": [
+    "T4.5.4"
+   ],
+   "ctx": [
+    "KB-02",
+    "KB-12"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.6": {
+   "title": "Masque `(V1 xor H8)`",
+   "deps": [
+    "T4.5.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.7": {
+   "title": "Étoiles activées (7004)",
+   "deps": [
+    "T4.5.6"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.8": {
+   "title": "Origine et dérive",
+   "deps": [
+    "T4.5.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.9": {
+   "title": "Décalage 2 clocks/frame",
+   "deps": [
+    "T4.5.8"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.10": {
+   "title": "Recalage avant flip",
+   "deps": [
+    "T4.5.9"
+   ],
+   "ctx": [
+    "KB-13"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.11": {
+   "title": "ROM TR-STARS (source)",
+   "deps": [
+    "T4.5.10"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.12": {
+   "title": "TR-STARS sans flip : golden et validation",
+   "deps": [
+    "T4.5.11"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.5.13": {
+   "title": "TR-STARS avec flip : golden et validation",
+   "deps": [
+    "T4.5.12"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.6.1": {
+   "title": "Ordre de superposition",
+   "deps": [
+    "T0.4.11",
+    "T4.5.13"
+   ],
+   "ctx": [
+    "KB-14",
+    "KB-26"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.6.2": {
+   "title": "Réduction 768→256",
+   "deps": [
+    "T0.4.11",
+    "T4.6.1"
+   ],
+   "ctx": [
+    "KB-14",
+    "KB-26"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.6.3": {
+   "title": "Frames 1, 2, 5, 10",
+   "deps": [
+    "T0.4.11",
+    "T4.6.2"
+   ],
+   "ctx": [
+    "KB-14",
+    "KB-26"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.6.4": {
+   "title": "Frames 30, 60, 120",
+   "deps": [
+    "T0.4.11",
+    "T4.6.3"
+   ],
+   "ctx": [
+    "KB-14",
+    "KB-26"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T4.6.5": {
+   "title": "Frames 300, 600",
+   "deps": [
+    "T0.4.11",
+    "T4.6.4"
+   ],
+   "ctx": [
+    "KB-14",
+    "KB-26"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.1.1": {
+   "title": "Une seule instance",
+   "deps": [
+    "T4.6.5"
+   ],
+   "ctx": [
+    "KB-12",
+    "KB-16",
+    "KB-19"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.1.2": {
+   "title": "Période",
+   "deps": [
+    "T5.1.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.2.1": {
+   "title": "FS1-3",
+   "deps": [
+    "T5.1.2"
+   ],
+   "ctx": [
+    "KB-04",
+    "KB-15"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.2.2": {
+   "title": "HIT et FIRE",
+   "deps": [
+    "T5.2.1"
+   ],
+   "ctx": [
+    "KB-04",
+    "KB-15"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.2.3": {
+   "title": "VOL1/VOL2",
+   "deps": [
+    "T5.2.2"
+   ],
+   "ctx": [
+    "KB-04",
+    "KB-15"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.2.4": {
+   "title": "Pitch",
+   "deps": [
+    "T5.2.3"
+   ],
+   "ctx": [
+    "KB-04",
+    "KB-15"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.2.5": {
+   "title": "`lfo_val`",
+   "deps": [
+    "T5.2.4"
+   ],
+   "ctx": [
+    "KB-04",
+    "KB-15"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.1": {
+   "title": "555 astable",
+   "deps": [
+    "T5.2.5"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.2": {
+   "title": "555 astable à contrôle de tension",
+   "deps": [
+    "T5.3.1"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.3": {
+   "title": "555 VCO",
+   "deps": [
+    "T5.3.2"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.4": {
+   "title": "RC charge/décharge",
+   "deps": [
+    "T5.3.3"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.5": {
+   "title": "Filtre RC",
+   "deps": [
+    "T5.3.4"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.6": {
+   "title": "Passe-bande 1er ordre",
+   "deps": [
+    "T5.3.5"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.7": {
+   "title": "DAC R-2R 4 bits",
+   "deps": [
+    "T5.3.6"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.8": {
+   "title": "Mixeur pondéré",
+   "deps": [
+    "T5.3.7"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.3.9": {
+   "title": "Bascule D et carré à fréquence fixe",
+   "deps": [
+    "T5.3.8"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.1": {
+   "title": "PITCH : diviseur",
+   "deps": [
+    "T5.3.9"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.2": {
+   "title": "PITCH : décodage QA/QC/QD",
+   "deps": [
+    "T5.4.1"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.3": {
+   "title": "BACKGROUND : DAC → VCO",
+   "deps": [
+    "T5.4.2"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.4": {
+   "title": "BACKGROUND : op-amp et clamp 0..5 V",
+   "deps": [
+    "T5.4.3"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.5": {
+   "title": "BACKGROUND : 3×555 et mixeur",
+   "deps": [
+    "T5.4.4"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.6": {
+   "title": "NOISE",
+   "deps": [
+    "T5.4.5"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.7": {
+   "title": "HIT : `RCDISC5`",
+   "deps": [
+    "T5.4.6"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.8": {
+   "title": "HIT : passe-bande",
+   "deps": [
+    "T5.4.7"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.9": {
+   "title": "FIRE : bruit et RC",
+   "deps": [
+    "T5.4.8"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.10": {
+   "title": "FIRE : 555 VCO et `RCDISC5`",
+   "deps": [
+    "T5.4.9"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.11": {
+   "title": "Mixage final",
+   "deps": [
+    "T5.4.10"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.4.12": {
+   "title": "Échantillonnage",
+   "deps": [
+    "T5.4.11"
+   ],
+   "ctx": [
+    "KB-16"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.5.1": {
+   "title": "Outil de métriques",
+   "deps": [
+    "T5.4.12"
+   ],
+   "ctx": [
+    "KB-17"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.5.2": {
+   "title": "ROMs TR-SND-FS et TR-SND-PITCH (source)",
+   "deps": [
+    "T5.5.1"
+   ],
+   "ctx": [
+    "KB-17"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.5.3": {
+   "title": "ROMs TR-SND-HIT et TR-SND-FIRE (source)",
+   "deps": [
+    "T5.5.2"
+   ],
+   "ctx": [
+    "KB-17"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.5.4": {
+   "title": "TR-SND-* : golden et mesures",
+   "deps": [
+    "T5.5.3"
+   ],
+   "ctx": [
+    "KB-17"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.5.5": {
+   "title": "Scénario attract",
+   "deps": [
+    "T5.5.4"
+   ],
+   "ctx": [
+    "KB-17"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.5.6": {
+   "title": "Scénario tir",
+   "deps": [
+    "T5.5.5"
+   ],
+   "ctx": [
+    "KB-17"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T5.5.7": {
+   "title": "Scénario explosion",
+   "deps": [
+    "T5.5.6"
+   ],
+   "ctx": [
+    "KB-17"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.1.1": {
+   "title": "Fenêtre 256×224",
+   "deps": [
+    "T5.5.7"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.1.2": {
+   "title": "Rotation 90° optionnelle",
+   "deps": [
+    "T6.1.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.1.3": {
+   "title": "Boucle 60,606 Hz",
+   "deps": [
+    "T6.1.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.2.1": {
+   "title": "Clavier → IN0/IN1",
+   "deps": [
+    "T0.4.7",
+    "T0.4.8",
+    "T6.1.3"
+   ],
+   "ctx": [
+    "KB-24a",
+    "KB-24b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.2.2": {
+   "title": "Manette",
+   "deps": [
+    "T0.4.7",
+    "T0.4.8",
+    "T6.2.1"
+   ],
+   "ctx": [
+    "KB-24a",
+    "KB-24b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.2.3": {
+   "title": "DIP switches configurables",
+   "deps": [
+    "T0.4.7",
+    "T0.4.8",
+    "T6.2.2"
+   ],
+   "ctx": [
+    "KB-24a",
+    "KB-24b"
+   ],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.3.1": {
+   "title": "Sortie audio",
+   "deps": [
+    "T6.2.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.3.2": {
+   "title": "Resampling",
+   "deps": [
+    "T6.3.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.3.3": {
+   "title": "Synchronisation audio/vidéo",
+   "deps": [
+    "T6.3.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.4.1": {
+   "title": "Boot",
+   "deps": [
+    "T6.3.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.4.2": {
+   "title": "Attract mode",
+   "deps": [
+    "T6.4.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.4.3": {
+   "title": "Crédit",
+   "deps": [
+    "T6.4.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.4.4": {
+   "title": "Partie d'une minute",
+   "deps": [
+    "T6.4.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.4.5": {
+   "title": "Flip (cocktail)",
+   "deps": [
+    "T6.4.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T6.4.6": {
+   "title": "DIPs",
+   "deps": [
+    "T6.4.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.1.1": {
+   "title": "Hash d'état",
+   "deps": [
+    "T6.4.6"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.1.2": {
+   "title": "Deux runs de 10 min",
+   "deps": [
+    "T7.1.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.2.1": {
+   "title": "Sérialisation CPU",
+   "deps": [
+    "T7.1.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.2.2": {
+   "title": "Sérialisation RAM, VRAM, latches",
+   "deps": [
+    "T7.2.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.2.3": {
+   "title": "Sérialisation raster, LFSR, étoiles",
+   "deps": [
+    "T7.2.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.2.4": {
+   "title": "Sérialisation audio",
+   "deps": [
+    "T7.2.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.2.5": {
+   "title": "Round-trip",
+   "deps": [
+    "T7.2.4"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.3.1": {
+   "title": "Profilage",
+   "deps": [
+    "T7.2.5"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.3.2": {
+   "title": "Optimisations ciblées",
+   "deps": [
+    "T7.3.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.4.1": {
+   "title": "Accès mémoire aléatoires",
+   "deps": [
+    "T7.3.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.4.2": {
+   "title": "Écritures sur miroirs",
+   "deps": [
+    "T7.4.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.4.3": {
+   "title": "Séquences de latches",
+   "deps": [
+    "T7.4.2"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.5.1": {
+   "title": "Écarts connus vs MAME",
+   "deps": [
+    "T7.4.3"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
+  },
+  "T7.5.2": {
+   "title": "Génération des golden",
+   "deps": [
+    "T7.5.1"
+   ],
+   "ctx": [],
+   "status": "TODO",
+   "attempts": 0,
+   "commit": null,
+   "report": null,
+   "notes": []
   }
+ },
+ "kb_gaps": [
+  {
+   "id": "GAP-01",
+   "status": "OPEN",
+   "closed_by": [
+    "T0.4.13"
+   ],
+   "kb_file": null
+  },
+  {
+   "id": "GAP-02",
+   "status": "OPEN",
+   "closed_by": [
+    "T0.4.13"
+   ],
+   "kb_file": null
+  },
+  {
+   "id": "GAP-03",
+   "status": "OPEN",
+   "closed_by": [
+    "T0.4.13"
+   ],
+   "kb_file": null
+  },
+  {
+   "id": "GAP-04",
+   "status": "OPEN",
+   "closed_by": [
+    "T0.3.8"
+   ],
+   "kb_file": null
+  },
+  {
+   "id": "GAP-05",
+   "status": "OPEN",
+   "closed_by": [
+    "T0.4.13"
+   ],
+   "kb_file": null
+  },
+  {
+   "id": "GAP-06",
+   "status": "OPEN",
+   "closed_by": [
+    "T2.5.7"
+   ],
+   "kb_file": null
+  },
+  {
+   "id": "GAP-07",
+   "status": "OPEN",
+   "closed_by": [
+    "T0.6.5"
+   ],
+   "kb_file": null
+  }
+ ],
+ "legacy_id_map": {
+  "T0.1.1": [
+   "T0.1.1",
+   "T0.1.2",
+   "T0.1.3",
+   "T0.1.7"
+  ],
+  "T0.1.2": [
+   "T0.2.1",
+   "T0.2.3",
+   "T0.2.4"
+  ],
+  "T0.2.1": [
+   "T0.4.1"
+  ]
+ }
 }
