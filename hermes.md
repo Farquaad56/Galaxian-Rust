@@ -18,7 +18,7 @@ Les commits, `reports/` et `out/` existants portent les **anciens IDs** ; ne pas
 Anciens IDs encore cités ailleurs : ancien T0.2.2 (extraire KB-22..26) = T0.4.3 → T0.4.13 ; ancien T0.3.x (golden) = T0.5.x ; ancien T0.4.x (TestROM Factory) = T0.6.x ; ancien T1.4.4 (trace MAME) = T3.3.4 ; ancien T3.1.x = T3.1–T3.4 ; ancien T2.3.x (NMI) = T2.5.x.
 Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux** IDs.
 
-## Ce qui est fait (32 tâches DONE sur 355)
+## Ce qui est fait (33 tâches DONE sur 355)
 - **T0.1.1 Workspace Cargo / T0.1.2 Lints / T0.1.3 CI / T0.1.7 api-dump** ✅ (ancien T0.1.1 — commits `a1b8e81` + `9944062`)
   - 5 crates : z80, galaxian-core, galaxian-audio, galaxian-frontend, xtask ; edition 2021.
   - Lints par crate (cargo 1.98 refuse le mix workspace+per-crate) : clippy all=deny + pedantic=warn ; `unsafe_code="forbid"` sur z80/galaxian-core/galaxian-audio. *À vérifier au prochain passage : présence de `rustfmt.toml`/`clippy.toml` (exigés par T0.1.2).*
@@ -45,6 +45,10 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
 - **T0.4.11 KB-26 Ordre de rendu** ✅ (commits `5026d1e` + hash PROGRESS.json) — livrable `docs/kb/KB-26-render-order.md`.
   - Brouillon v1 (commit db86fd5, plan v1) réécrit en entier : erreur « entrées 0–2 coquilles » corrigée (coquilles = entrees 0–6, missile = 7 ; match Y deux étapes which<3 → Y−1 / which≥3 → Y). Items 1–4 du prompt satisfaits. GAP-01 clos.
   - Codeur opencode ; validateur PASS (reports/T0.4.11.json) ; relecteur APPROVE sans motif bloquant (out/T0.4.11/verdict.md).
+- **T0.4.12 KB-27 Palette PROM** ✅ (commits `0d8eddd` + hash PROGRESS.json) — livrable `docs/kb/KB-27-palette-prom.md`.
+  - Affectation exacte bit→R/G/B de `galaxian_palette` : R = bits 0-2, G = bits 3-5, B = bits 6-7 (commentaire galaxian_v.cpp:243-253 + décodage :286-300 concordants) ; résistances 1k/470/220 Ω par composante. **GAP-02 clos** : la doc fournie (KB-08) listait « VERT » deux fois bits 5/4 — affectation erronée, corrigée ici.
+  - Palette étoiles `m_star_color[64]` (bits 5/4 rouge, 3/2 vert, 1/0 bleu @150/100 Ω) + table `starmap[4]={0,194,214,255}` ; coquilles/missile `m_bullet_color[8]` = 7 blanches + jaune (galaxian_v.cpp:355-358). Cross-refs KB-08/KB-25b §3/KB-26/KB-22a/KB-22b.
+  - Codeur opencode ; validateur PASS (reports/T0.4.12.json, 37 citations vérifiées) ; relecteur REJECT 1 motif bloquant (terme « color_span » non sourcé — n'apparaît pas dans mame_src) corrigé pré-commit → APPROVE (out/T0.4.12/verdict.md).
 
 ## Piège B.7 — subagents parallèles sur LM Studio local
 - Les **subagents relecteurs lancés en parallèle** via `delegate_task` échouent systématiquement : le serveur LM Studio rejette la requête « context too large » à 16–25k tokens (fenêtre annoncée 135k) — les requêtes concurrentes se disputent la capacité. **Ne pas relancer en parallèle.**
@@ -52,8 +56,8 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
 - Les erreurs serveur ne consomment pas d'essais de revue (B.7.5) ; rien n'est renvoyé au codeur.
 
 ## Ce qu'il reste à faire
-- **En cours : T0.4.12 — KB-27 Palette PROM** (`galaxian_palette` : affectation exacte bit→R/G/B, GAP-02). Codeur opencode en cours (out/T0.4.12/task_prompt.md) ; livrable `docs/kb/KB-27-palette-prom.md`.
-- **Suivant : T0.4.13 — Clôture des lacunes** (ctx: KB-08, KB-09, KB-14 · corriger ces 3 fiches si les nouvelles fiches les contredisent ; passer GAP-01/02/03/05 à `FILLED` avec `kb_file` dans PROGRESS.json). Dernier tâche de l'étape 0.4.
+- **En cours : T0.4.13 — Clôture des lacunes** (ctx: KB-08, KB-09, KB-14 · corriger ces 3 fiches si les nouvelles fiches les contredisent ; passer GAP-01/02/03/05 à `FILLED` avec `kb_file` dans PROGRESS.json). Dernier tâche de l'étape 0.4.
+- **Suivant : T0.5.1 — Environnement MAME** (début étape 0.5, références MAME golden ; T0.5.2–T0.5.10 ensuite).
 - Fin d'étape 0.1 : **T0.1.7 api-dump** — DONE (commit `a1b8e81+9****62`, report `reports/T0.1.1.json`). *migré depuis ancien T0.1.1.*
 - Restes partiels des tâches « déjà faites » : T0.4.2 (`MANIFEST.md` : version/commit MAME + index fonction→ligne ; SHA256SUMS déjà présent).
 - Étape 0.3 (T0.3.1–T0.3.8) : fiches Z80 KB-21a…g — **tâches documentaires, sources à fournir par l'humain** (*The Undocumented Z80 Documented*, tableaux Zilog).
