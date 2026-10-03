@@ -685,11 +685,13 @@
         "T0.4.2"
       ],
       "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
+      "status": "DONE",
+      "attempts": 1,
       "commit": null,
-      "report": null,
-      "notes": []
+      "report": "reports/T0.4.3.json",
+      "notes": [
+        "KB-22a-gfx-tiles.md creee (galaxian_charlayout galaxian.cpp:7394 : 8x8, 2 plans, RGN_FRAC(1,2), gfx1, xscale=3). Lignes verifiees. GAP-01 ferme en partie."
+      ]
     },
     "T0.4.4": {
       "title": "KB-22b Layout GFX sprites",

@@ -1,0 +1,23 @@
+{
+  "task": "T0.4.3",
+  "title": "KB-22a Layout GFX tiles",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "sed -n '7394p;7416p' docs/mame_src/galaxian.cpp (vérif lignes)",
+    "grep GALAXIAN_XSCALE docs/mame_src/galaxian.h",
+    "revue humaine des champs gfx_layout galaxian_charlayout"
+  ],
+  "validation": {
+    "criterion": "revue humaine : fiche cite fichier + ligne exacts, champs décodés fidèlement",
+    "result": "Lignes vérifiées : galaxian_charlayout=7394, galaxian_charlayout_0x200=7416, GFXDECODE_START(gfx_galaxian)=7444, GALAXIAN_XSCALE=3 (galaxian.h:37). Fiche KB-22a-gfx-tiles.md créée."
+  },
+  "deliverables": [
+    "docs/kb/KB-22a-gfx-tiles.md"
+  ],
+  "notes": [
+    "GAP-01 fermé en partie (layout tilemap caractères).",
+    "Variantes galaxian_charlayout_0x200 non utilisées dans Galaxian d'origine : notées mais exclues de l'index GFXDECODE.",
+    "Fiche existante KB-22-gfx-layout.md reste en place (doc combinée) ; KB-22a est la fiche dédiée tuiles pour le découpage spec."
+  ]
+}
