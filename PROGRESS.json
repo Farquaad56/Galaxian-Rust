@@ -785,7 +785,7 @@
    "ctx": [],
    "status": "DONE",
    "attempts": 0,
-   "commit": null,
+   "commit": "472c1a3",
    "report": "reports/T0.4.10.json",
    "notes": [
     "livrable docs/kb/KB-25b-machine-config.md (102 lignes) ; validateur PASS (reports/T0.4.10.json) ; relecteur APPROVE par tranches B.7.3 (out/T0.4.10/verdict.partA..D.md + verdict.md) — les 4 subagents relecteurs ont échoué en erreur serveur (context too large, requêtes parallèles sur LM Studio), revue menée séquentiellement par l'instance parente ; motif unique (anglais résiduel §2/§Differs) corrigé pré-commit"
