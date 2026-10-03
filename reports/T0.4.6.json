@@ -1,0 +1,21 @@
+{
+  "task": "T0.4.6",
+  "title": "KB-23b OBJRAM et attributs par colonne",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "sed -n '514p;568p' docs/mame_src/galaxian_v.cpp (verif lignes)",
+    "revue humaine des fonctions objram_w et sprites_draw"
+  ],
+  "validation": {
+    "criterion": "revue humaine : fiche cite fichier + ligne exacts, decodage bits OBJRAM correct",
+    "result": "Lignes verifiees : galaxian_objram_w=514, sprites_draw=568. Fiche KB-23b-objram-attribs.md creee."
+  },
+  "deliverables": [
+    "docs/kb/KB-23b-objram-attribs.md"
+  ],
+  "notes": [
+    "GAP-01 ferme en partie (format OBJRAM detaille).",
+    "OBJRAM = 128 octets : zone tilemap (scroll+couleur) + zone sprites."
+  ]
+}

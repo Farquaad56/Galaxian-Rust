@@ -727,11 +727,13 @@
         "T0.4.5"
       ],
       "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
+      "status": "DONE",
+      "attempts": 1,
       "commit": null,
-      "report": null,
-      "notes": []
+      "report": "reports/T0.4.6.json",
+      "notes": [
+        "KB-23b-objram-attribs.md creee (objram_w=514, sprites_draw=568). OBJRAM = 128 octets : zone tilemap + zone sprites."
+      ]
     },
     "T0.4.7": {
       "title": "KB-24a Entr\u00e9es IN0/IN1/IN2",
