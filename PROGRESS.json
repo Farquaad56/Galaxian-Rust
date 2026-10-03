@@ -713,11 +713,13 @@
         "T0.4.4"
       ],
       "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
+      "status": "DONE",
+      "attempts": 1,
       "commit": null,
-      "report": null,
-      "notes": []
+      "report": "reports/T0.4.5.json",
+      "notes": [
+        "KB-23a-videoram-tileinfo.md creee (videoram_w=503, bg_get_tile_info=487, video_start=399). VRAM = code tile uniquement ; couleur dans OBJRAM par colonne."
+      ]
     },
     "T0.4.6": {
       "title": "KB-23b OBJRAM et attributs par colonne",

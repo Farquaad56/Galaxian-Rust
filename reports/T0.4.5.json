@@ -1,0 +1,21 @@
+{
+  "task": "T0.4.5",
+  "title": "KB-23a VRAM et tile-info",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "sed -n '503p;487p;399p' docs/mame_src/galaxian_v.cpp (verif lignes)",
+    "revue humaine des fonctions videoram_w et bg_get_tile_info"
+  ],
+  "validation": {
+    "criterion": "revue humaine : fiche cite fichier + ligne exacts, decodage bits VRAM correct",
+    "result": "Lignes verifiees : galaxian_videoram_w=503, bg_get_tile_info=487, video_start=399. Fiche KB-23a-videoram-tileinfo.md creee."
+  },
+  "deliverables": [
+    "docs/kb/KB-23a-videoram-tileinfo.md"
+  ],
+  "notes": [
+    "GAP-01 ferme en partie (format VRAM/tile-info).",
+    "VRAM = code tile uniquement ; couleur dans OBJRAM par colonne."
+  ]
+}
