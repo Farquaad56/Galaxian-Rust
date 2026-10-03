@@ -481,11 +481,13 @@
         "T0.1.8"
       ],
       "ctx": [],
-      "status": "TODO",
+      "status": "DONE",
       "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
+      "commit": "4a4f210",
+      "report": "reports/T0.1.9.json",
+      "notes": [
+        "PROGRESS.json initial all-TODO remplacé par la version migrée (plan v2, 355 tâches) dans le commit 4a4f210. Le livrable est validé : cargo xtask progress-check exit 0."
+      ]
     },
     "T0.2.1": {
       "title": "Constantes de temps",

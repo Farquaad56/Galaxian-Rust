@@ -1,0 +1,17 @@
+{
+  "task": "T0.1.9",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "cargo xtask progress-check (validation du PROGRESS.json)",
+      "status": "pass",
+      "detail": "Exit code 0, aucune incohérence signalée. Le PROGRESS.json actuel (355 tâches) passe le validateur."
+    }
+  ],
+  "notes": [
+    "Spécification : 'PROGRESS.json initial — livr: PROGRESS.json (toutes tâches TODO) · val: cargo xtask progress-check OK'.",
+    "Déviation documentée dans hermes.md (ligne Fin d'étape 0.1) : le PROGRESS.json initial all-TODO devait être remplacé par la version migrée fournie avec le plan v2 (355 tâches). La migration a été faite dans le commit 4a4f210 'PROGRESS.json: T0.1.4/T0.1.5/T0.1.6 -> DONE'.",
+    "Le livrable de T0.1.9 est donc satisfait par le PROGRESS.json migré actuel : il passe progress-check (exit 0) et contient l'état courant du projet.",
+    "Aucun nouveau fichier créé — le livrable est le PROGRESS.json lui-même, déjà présent et validé."
+  ]
+}
