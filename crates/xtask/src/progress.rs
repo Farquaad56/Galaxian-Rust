@@ -150,28 +150,41 @@ fn string(b: &[u8], i: &mut usize) -> Result<String, String> {
     let start = *i;
     let text = std::str::from_utf8(&b[start..]).unwrap_or_default();
     let mut out = String::new();
-    for c in text.chars() {
+    let mut pos = 0usize; // offset byte dans `text` (on pilote la position soi-même)
+    while pos < text.len() {
+        let c = text[pos..].chars().next().ok_or("chaîne non terminée")?;
         match c {
             '"' => {
-                *i += c.len_utf8(); // avancer au-delà du guillemet fermant (1 pour l'ASCII)
+                *i += pos + 1; // avancer au-delà du guillemet fermant (ASCII)
                 return Ok(out);
             }
             '\\' => {
-                // Backslash : consommer le backslash puis le caractère échappé.
-                let next = text[*i + 1..].chars().next().ok_or("échappement incomplet")?;
-                out.push(match next {
-                    '"' => '"',
-                    '\\' => '\\',
-                    '/' => '/',
-                    'n' => '\n',
-                    't' => '\t',
+                pos += 1; // consommer le backslash
+                let next = text[pos..].chars().next().ok_or("échappement incomplet")?;
+                match next {
+                    '"' | '/' => out.push(next),
+                    '\\' => out.push('\\'),
+                    'n' => out.push('\n'),
+                    't' => out.push('\t'),
+                    'r' => out.push('\r'),
+                    'b' => out.push('\u{08}'),
+                    'f' => out.push('\u{0c}'),
+                    'u' => {
+                        pos += 1; // consommer le 'u'
+                        let hex: String = text[pos..].chars().take(4).collect();
+                        if hex.len() != 4 || !hex.chars().all(|h| h.is_ascii_hexdigit()) {
+                            return Err("échappement \\u invalide".into());
+                        }
+                        let cp = u32::from_str_radix(&hex, 16).map_err(|e| e.to_string())?;
+                        out.push(char::from_u32(cp).ok_or("échappement \\u hors plage")?);
+                        pos += hex.len(); // 4 chiffres hexadécimaux ASCII
+                    }
                     _ => return Err(format!("échappement \\{next} non supporté")),
-                });
-                *i += 1 + next.len_utf8(); // backslash + caractère échappé
+                }
             }
             c => {
                 out.push(c);
-                *i += c.len_utf8(); // avancer du bon nombre de bytes (multioctets compris)
+                pos += c.len_utf8(); // avancer du bon nombre de bytes (multioctets compris)
             }
         }
     }
