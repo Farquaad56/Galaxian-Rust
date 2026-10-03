@@ -513,12 +513,12 @@
       "ctx": [
         "KB-02"
       ],
-      "status": "TODO",
+      "status": "DONE",
       "attempts": 0,
-      "commit": null,
-      "report": null,
+      "commit": "e85161b",
+      "report": "reports/T0.2.2.json",
       "notes": [
-        "ancien T0.1.2 couvre le type Cycles et la conversion cycle<->(ligne,col) ; à vérifier : `split` renvoie aussi le numéro de frame"
+        "type Cycles = u64 (hérité de T0.2.1) + fn split(c: Cycles) -> (frame, ligne, cycle_dans_ligne). Décompose un cycle absolu en (numéro de frame, ligne dans la frame, cycle dans la ligne). Cas de spec vérifiés : 0→(0,0,0), 191→(0,0,191), 192→(0,1,0), 50687→(0,263,191), 50688→(1,0,0). Tests + clippy -D warnings verts."
       ]
     },
     "T0.2.3": {
