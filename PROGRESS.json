@@ -467,11 +467,13 @@
         "T0.1.7"
       ],
       "ctx": [],
-      "status": "TODO",
+      "status": "DONE",
       "attempts": 0,
-      "commit": null,
-      "report": null,
-      "notes": []
+      "commit": "6e3dbfa",
+      "report": "reports/T0.1.8.json",
+      "notes": [
+        "validateur JSON minimal de PROGRESS.json (pas de dépendance externe) ; corrige le bug de parsing (whitespace après virgule dans object/array, index byte UTF-8 via len_utf8)"
+      ]
     },
     "T0.1.9": {
       "title": "PROGRESS.json initial",
