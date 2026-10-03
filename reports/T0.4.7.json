@@ -1,0 +1,21 @@
+{
+  "task": "T0.4.7",
+  "title": "KB-24a Entrées IN0/IN1/IN2",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "sed -n '3072p' docs/mame_src/galaxian.cpp (verif ligne)",
+    "revue humaine de INPUT_PORTS_START(galaxian)"
+  ],
+  "validation": {
+    "criterion": "revue humaine : fiche cite fichier + ligne exacts, decodage bits ports correct",
+    "result": "Ligne verifiee : INPUT_PORTS_START(galaxian)=3072. Fiche KB-24a-inputs.md creee."
+  },
+  "deliverables": [
+    "docs/kb/KB-24a-inputs.md"
+  ],
+  "notes": [
+    "GAP-05 ferme en partie (ports IN0/IN1/IN2).",
+    "Ports : IN0=controles+service, IN1=cocktail+coinage, IN2=DIPs jeu."
+  ]
+}

@@ -736,16 +736,18 @@
       ]
     },
     "T0.4.7": {
-      "title": "KB-24a Entr\u00e9es IN0/IN1/IN2",
+      "title": "KB-24a Entrées IN0/IN1/IN2",
       "deps": [
         "T0.4.6"
       ],
       "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
+      "status": "DONE",
+      "attempts": 1,
       "commit": null,
-      "report": null,
-      "notes": []
+      "report": "reports/T0.4.7.json",
+      "notes": [
+        "KB-24a-inputs.md creee (INPUT_PORTS_START(galaxian)=3072). Ports IN0/IN1/IN2 decodes."
+      ]
     },
     "T0.4.8": {
       "title": "KB-24b DIP switches",
