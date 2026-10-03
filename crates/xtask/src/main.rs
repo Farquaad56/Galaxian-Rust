@@ -7,6 +7,8 @@
 
 #![forbid(unsafe_code)]
 
+mod progress;
+
 use std::path::{Path, PathBuf};
 
 /// Public API dump of all workspace crates (T0.1.1).
@@ -98,7 +100,15 @@ fn main() {
         Some("api-dump") => api_dump(),
         Some(name @ ("run-fuse" | "run-zex" | "mame-diff" | "test-roms")) => stub(name),
         Some("golden") => stub("golden"),
-        Some("progress-check") => stub("progress-check"),
+        Some("progress-check") => {
+            let path = args.get(1).map(String::as_str);
+            if let Err(errors) = progress::check(path) {
+                for e in &errors {
+                    eprintln!("incohérence : {e}");
+                }
+                std::process::exit(1);
+            }
+        }
         Some("fetch-third-party") => stub("fetch-third-party"),
         _ => {
             eprintln!("usage: cargo xtask <api-dump|run-fuse|run-zex|mame-diff|test-roms|golden|progress-check|fetch-third-party>");

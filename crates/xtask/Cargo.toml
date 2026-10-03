@@ -3,7 +3,7 @@ name = "xtask"
 version.workspace = true
 edition.workspace = true
 
-# Task-runner crate (Partie C): no dependencies.
+# Task-runner crate (Partie C): no external dependencies allowed.
 [lints.clippy]
 all = "deny"
 pedantic = "warn"

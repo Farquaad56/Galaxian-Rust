@@ -1,0 +1,37 @@
+{
+  "task": "T0.1.8",
+  "status": "PASS",
+  "tests": [
+    {
+      "name": "cargo test -p xtask (all unit tests)",
+      "status": "pass",
+      "detail": "10 passed; 0 failed. Includes progress_json_reel_valide, which was failing before this fix."
+    },
+    {
+      "name": "cargo clippy -p xtask --all-targets -- -D warnings",
+      "status": "pass",
+      "detail": "Clean (only the pre-existing 'unused manifest key: alias' warning from Cargo.toml, unrelated to this task)."
+    },
+    {
+      "name": "cargo run -q -p xtask -- progress-check against real PROGRESS.json",
+      "status": "pass",
+      "detail": "Exit code 0, no output. The validator accepts the current PROGRESS.json (8 DONE tasks, one IN_PROGRESS or null current_task)."
+    },
+    {
+      "name": "cargo xtask progress-check via .cargo/config.toml alias",
+      "status": "pass",
+      "detail": "Exit code 0 through the public alias, confirming main.rs wiring."
+    },
+    {
+      "name": "error path: incoherent PROGRESS.json -> exit 1 with messages",
+      "status": "pass",
+      "detail": "progress::check returns Err(errors) which main prints as 'incohérence : ...' per line and exits 1. Covered by unit tests (current_task_incoherent_refuse, done_dep_non_done_refuse, dep_apres_son_tache_refuse, deux_in_progress_refuse, doublon_order_refuse)."
+    }
+  ],
+  "notes": [
+    "Root cause of the previously-failing progress_json_reel_valide: the JSON object/array parsers did not skip whitespace after a comma. At byte 5412 of PROGRESS.json (right after '],\\r\\n') the parser expected a key but found '\\r'. Fixed by calling skip_ws(b, i) after consuming ',' in both object() and array().",
+    "The minimal JSON parser handles UTF-8 multibyte correctly: string() advances the byte index by c.len_utf8() (not 1 per char), so French accents in PROGRESS.json titles/notes do not desync parsing. Verified by progress_json_reel_valide passing on the real file.",
+    "progress.rs is a new untracked module; main.rs now declares 'mod progress;' and wires the 'progress-check' subcommand to progress::check(path) instead of the previous stub().",
+    "The uncommitted crates/xtask/src/golden_trace/mod.rs (T0.3.1 golden trace gen, unreferenced by main.rs) is left on disk as before."
+  ]
+}
