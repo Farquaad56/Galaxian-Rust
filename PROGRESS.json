@@ -755,11 +755,13 @@
         "T0.4.7"
       ],
       "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
+      "status": "DONE",
+      "attempts": 1,
       "commit": null,
-      "report": null,
-      "notes": []
+      "report": "reports/T0.4.8.json",
+      "notes": [
+        "KB-24b-dips.md creee (INPUT_PORTS_START(galaxian)=3072). 4 DIPs : Cabinet, Coinage, Bonus Life, Lives."
+      ]
     },
     "T0.4.9": {
       "title": "KB-25a Set de ROMs",

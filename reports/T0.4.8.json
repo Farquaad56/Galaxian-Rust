@@ -1,0 +1,21 @@
+{
+  "task": "T0.4.8",
+  "title": "KB-24b DIP switches",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "sed -n '3072,3115p' docs/mame_src/galaxian.cpp | grep PORT_DIPNAME (verif)",
+    "revue humaine des definitions DIP dans INPUT_PORTS_START(galaxian)"
+  ],
+  "validation": {
+    "criterion": "revue humaine : fiche cite fichier + ligne exacts, decodage bits DIP correct",
+    "result": "Ligne verifiee : INPUT_PORTS_START(galaxian)=3072. Fiche KB-24b-dips.md creee."
+  },
+  "deliverables": [
+    "docs/kb/KB-24b-dips.md"
+  ],
+  "notes": [
+    "GAP-05 ferme en partie (DIPs).",
+    "4 DIPs : Cabinet, Coinage, Bonus Life, Lives."
+  ]
+}
