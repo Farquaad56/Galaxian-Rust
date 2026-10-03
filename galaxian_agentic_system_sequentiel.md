@@ -1,13 +1,11 @@
 # SYSTÈME AGENTIQUE — Émulateur Galaxian cycle-accurate en Rust
 
-> Objectif : piloter un ou plusieurs LLM codeurs, étape par étape et sous-étape par sous-étape, pour produire un émulateur de la borne **Galaxian d'origine** (Namco/Midway, 1979), cycle-accurate, en Rust, avec un frontend **eframe/egui**, validé par tests automatisés et par comparaison à des références de comportement.
->
-> **Principe d'indépendance :** l'émulateur n'est **pas** basé sur MAME. Le code source MAME n'est qu'une **documentation de référence en lecture seule** (voir C.0) : rien n'en est porté, compilé ni lié.
+> Objectif : piloter un ou plusieurs LLM codeurs, étape par étape et sous-étape par sous-étape, pour produire un émulateur de la borne **Galaxian d'origine** (Namco/Midway, 1979), cycle-accurate, en Rust, validé par tests automatisés et par comparaison à des traces de référence MAME.
 >
 > Ce document contient :
 > - **Partie A** — Architecture du système et rôles des agents (avec prompts système)
-> - **Partie B** — Protocole de boucle, format de tâche, gestion d'état
-> - **Partie C** — Décisions d'architecture (C.0) et conventions du dépôt Rust
+> - **Partie B** — Protocole de boucle, format de tâche, gestion d'état, **budgets de contexte et de sortie des agents de vérification (B.7)**
+> - **Partie C** — Conventions du dépôt Rust
 > - **Partie D** — Stratégie de validation (ROMs de test, références MAME)
 > - **Partie E** — Base de connaissances (KB) : toute la doc technique, découpée en fiches citables par ID
 > - **Partie F** — Plan complet : phases → étapes → **sous-étapes fines** (budget B.6), chacune avec son *context pack* (fiches KB), livrables et tests
@@ -37,8 +35,8 @@ Une sous-étape n'est « terminée » que lorsque le **Validateur** a exécuté 
 |---|---|---|---|
 | **Orchestrateur** | Lit `PROGRESS.json`, choisit **la** prochaine tâche de `order` dont les dépendances sont `DONE`, assemble le context pack, la dispatche (une seule à la fois) | `PROGRESS.json`, Partie F, Partie E | Un *task prompt* complet |
 | **Codeur** | Implémente une sous-étape | Task prompt | Patch Rust + tests |
-| **Testeur / Validateur** | Écrit/lance les tests, compare aux références MAME, produit un rapport JSON | Patch, commandes de test | `reports/<TASK_ID>.json` (pass/fail + diff) |
-| **Relecteur** | Vérifie conformité à la doc (KB), style, absence de triche (valeurs codées en dur pour passer un test) | Patch + rapport du Validateur + KB | Verdict `APPROVE` / `REJECT` + motifs |
+| **Testeur / Validateur** | Écrit/lance les tests, compare aux références MAME, produit un rapport JSON **borné** (B.7) | Patch, commandes de test | `reports/<TASK_ID>.json` (pass/fail + diff, ≤ 60 lignes) + `reports/<TASK_ID>.log` (sortie brute) |
+| **Relecteur** | Vérifie conformité à la doc (KB), style, absence de triche (valeurs codées en dur pour passer un test) | **`review_pack.md`** (patch + résumé du rapport + KB + extraits de source, B.7.2) | Verdict `APPROVE` / `REJECT` / `INCOMPLETE` + motifs **(≤ 40 lignes, B.7)** |
 | **Documentaliste** | Met à jour `docs/` et `PROGRESS.json`, consigne les écarts découverts | Tout | MAJ doc/état |
 
 Un même LLM peut jouer plusieurs rôles en séquence, mais **le Relecteur ne doit pas être la même instance de conversation que le Codeur**.
@@ -91,11 +89,6 @@ Règles absolues :
   pas de RNG système, pas de threads.
 - Chaque constante matérielle porte un commentaire `// KB-xx §y` indiquant sa source.
 - Tu ne « triches » pas : interdit de coder en dur une valeur pour faire passer un test.
-- MAME n'est qu'une DOCUMENTATION : tu ne portes pas de code C++ MAME, tu n'en reproduis ni la structure
-  (classes, délégués, `device_t`, tilemap_t…) ni les noms d'API ; tu implémentes en Rust idiomatique,
-  à partir des fiches KB et du comportement matériel qu'elles décrivent.
-- Le cœur ne dépend jamais d'`eframe`/`egui` ni d'aucune bibliothèque de fenêtrage ou d'audio :
-  seul `galaxian-frontend` les utilise.
 Format de réponse : 1) plan en 5 lignes max ; 2) patch (fichiers complets ou diff) ;
 3) commandes de test à lancer ; 4) liste des écarts/hypothèses.
 Si la tâche te paraît dépasser le budget (plusieurs mécanismes, plus de ~150 lignes de code hors tests,
@@ -113,18 +106,40 @@ Tu es le VALIDATEUR. Tu exécutes exactement les commandes de la section
 Pour toute comparaison de traces, tu rapportes la PREMIÈRE divergence
 (cycle, PC, registres, adresse bus) et 20 lignes de contexte avant.
 Tu n'interprètes pas, tu ne corriges pas.
+LIMITES DE SORTIE (B.7) : la sortie brute des commandes va dans reports/<TASK_ID>.log,
+JAMAIS dans ta réponse. Le JSON fait ≤ 60 lignes ; `detail` ≤ 200 caractères par test ;
+les tests PASS ne sont listés que par leur nom (ou comptés : {"pass": N}) ; les lignes de
+contexte de first_divergence sont tronquées à 200 caractères. Ajoute le champ "log": "<chemin>".
+Ta réponse finale = le JSON seul, sans préambule ni commentaire.
 ```
 
 ### A.3.4 Relecteur
 
 ```
-Tu es le RELECTEUR. Tu reçois le patch, le rapport PASS du Validateur, la tâche et les fiches KB.
+Tu es le RELECTEUR. Tu reçois UNIQUEMENT out/<TASK_ID>/review_pack.md (patch, résumé du
+rapport PASS du Validateur, tâche, fiches KB, extraits de source déjà découpés — voir B.7.2).
 Vérifie : (1) chaque comportement matériel du patch est justifié par une fiche KB ;
 (2) aucune constante magique non sourcée ; (3) pas de test contourné ;
 (4) respect de la Partie C ; (5) granularité de timing conforme à la tâche
 (pas de « ticks groupés » si la tâche exige T-state par T-state) ; (6) le patch reste dans le budget B.6 :
 fichiers hors `livrables` ou comportements d'autres tâches = REJECT.
-Réponds APPROVE ou REJECT + liste numérotée de motifs actionnables.
+
+RÈGLES DE LECTURE (B.7) :
+- Tu ne lis JAMAIS en entier un fichier de plus de 300 lignes : grep / sed par plage
+  (±15 lignes autour de la citation à vérifier). Les sources MAME ne se lisent que par plage.
+- Les citations déjà validées par le Validateur ne sont pas revérifiées une à une : tu
+  échantillonnes (≤ 10 vérifications ciblées), en priorité les valeurs numériques.
+- Si le pack te paraît trop gros pour être traité en une fois, ne force pas : réponds INCOMPLETE.
+
+FORMAT DE SORTIE (strict, B.7.4) — écris-le aussi dans out/<TASK_ID>/verdict.md :
+  APPROVE | REJECT | INCOMPLETE
+  1. <fichier:ligne> — <défaut> — <attendu / ce que dit la source>   (≤ 2 lignes par motif)
+  …
+- ≤ 8 motifs, ≤ 40 lignes, ≈ 800 tokens au total. Au-delà : les 8 plus graves puis
+  « + N autres de même nature » (le détail va dans verdict.md, pas dans la réponse).
+- Aucun préambule, aucun récapitulatif de ce qui est correct, aucune citation > 15 mots.
+- INCOMPLETE : une seule ligne « INCOMPLETE <ce qui reste à vérifier> » ; ce n'est ni un
+  APPROVE ni un REJECT (voir B.7.5).
 ```
 
 ## A.4 Mode d'exécution : séquentiel strict
@@ -138,12 +153,14 @@ Réponds APPROVE ou REJECT + liste numérotée de motifs actionnables.
 |---|---|---|---|
 | 1 | Orchestrateur | `out/<TASK_ID>/task_prompt.md` | Codeur |
 | 2 | Codeur | `out/<TASK_ID>/patch` (+ plan, écarts, questions) | Validateur |
-| 3 | Validateur | `reports/<TASK_ID>.json` | Relecteur, Codeur (si FAIL) |
-| 4 | Relecteur | `out/<TASK_ID>/verdict.md` | Documentaliste, Codeur (si REJECT) |
+| 3 | Validateur | `reports/<TASK_ID>.json` (+ `.log`) | Script `review-pack`, Codeur (si FAIL) |
+| 3b | *Script* `cargo xtask review-pack <TASK_ID>` (pas un agent) | `out/<TASK_ID>/review_pack.md` (≤ 16 000 tokens, B.7.2) | Relecteur |
+| 4 | Relecteur | `out/<TASK_ID>/verdict.md` (+ `verdict.part<k>.md` si revue par tranches, B.7.3) | Documentaliste, Codeur (si REJECT) |
 | 5 | Documentaliste | commit git + `PROGRESS.json` | Orchestrateur (tâche suivante) |
 
 5. **Pas de tâche suivante avant le commit.** La tâche N+1 ne démarre qu'après le commit du Documentaliste pour la tâche N : le dépôt et la sortie de `cargo xtask api-dump` sont donc toujours à jour pour le Codeur.
 6. **Un blocage arrête tout.** Il n'y a pas de travail alternatif à poursuivre (voir B.5).
+7. **Sorties et entrées bornées.** Chaque agent de vérification respecte les budgets de B.7 ; une erreur d'infrastructure (serveur, contexte) n'est jamais un verdict (B.7.5).
 
 ---
 
@@ -158,9 +175,16 @@ loop {
   progress.current_task = t              // VERROU : aucune autre tâche ne peut démarrer
   prompt = orchestrateur.build(t)        // attendre la fin  -> out/<id>/task_prompt.md
   patch = codeur.run(prompt)             // attendre la fin  -> out/<id>/patch
-  report = validateur.run(t.validation)  // lancé APRÈS le codeur -> reports/<id>.json
+  report = validateur.run(t.validation)  // lancé APRÈS le codeur -> reports/<id>.json (borné, B.7)
   if report.FAIL { codeur.retry(report) (max 3) ; continue }     // t reste current_task
-  verdict = relecteur.run(patch, report, t)  // lancé APRÈS le validateur -> out/<id>/verdict.md
+  pack = xtask.review_pack(t)            // script déterministe -> out/<id>/review_pack.md (B.7.2)
+  verdict = relecteur.run(pack)          // lancé APRÈS le validateur -> out/<id>/verdict.md
+                                         //   (par tranches si pack > budget, B.7.3)
+  if verdict.infra_error or verdict.INCOMPLETE {   // erreur serveur / contexte : PAS un verdict (B.7.5)
+      t.infra_failures += 1              // ne touche PAS à `attempts`, ne retourne PAS au codeur
+      if t.infra_failures >= 2 { halted = true ; break }   // humain : vérifier le serveur de modèles
+      relecteur.rerun_by_slices(pack) ; continue           // pack réduit, jamais le même pack tel quel
+  }
   if REJECT { codeur.retry(verdict) (max 3) ; continue }          // t reste current_task
   documentaliste.commit(t, patch, report, verdict)  // git commit "T<id>: <titre>", PROGRESS.json -> DONE
   progress.current_task = null           // verrou libéré, seulement maintenant
@@ -175,10 +199,11 @@ loop {
   "order": ["T0.1.1", "T0.1.2", "T0.1.3", "..."],   // ordre numérique canonique, voir F.0
   "current_task": null,                              // verrou : au plus une tâche en cours
   "halted": false,                                   // true = arrêt en attente de l'humain
-  "legacy_id_map": {},                               // optionnel : anciens IDs -> IDs actuels (voir B.5)
+  "limits": { "context_effective_tokens": 32000, "review_input_max_tokens": 16000,
+              "verdict_max_tokens": 800, "validator_json_max_lines": 60 },   // à calibrer, voir B.7.1
   "tasks": {
     "T1.7.13": { "title": "LDIR / LDDR", "deps": ["T0.3.1","T0.3.6","T1.7.12"], "ctx": ["KB-21a","KB-21e"],
-                 "status": "TODO|IN_PROGRESS|DONE|BLOCKED", "attempts": 0,
+                 "status": "TODO|IN_PROGRESS|DONE|BLOCKED", "attempts": 0, "infra_failures": 0,
                  "commit": null, "report": null, "notes": [] }
   },
   "kb_gaps": [ { "id": "GAP-01", "status": "OPEN|FILLED", "closed_by": ["T0.4.3"], "kb_file": null } ]
@@ -210,8 +235,9 @@ Le temps est la **donnée centrale**. L'unité de temps de l'émulateur est le *
 - **Sélection.** La tâche suivante est la première de `order` en `TODO`. Si une de ses dépendances n'est pas `DONE`, c'est une erreur de plan : arrêt et signalement, pas de saut.
 - **Reprise d'un projet commencé sous un ancien plan.** Les tâches déjà réalisées sont marquées `DONE` avec leurs commits et rapports d'origine (les anciens IDs restent valables dans `git log`, `reports/` et `out/`, et sont consignés dans `legacy_id_map` et `notes`). Une tâche `DONE` peut apparaître après des tâches `TODO` dans `order` ; seule la cohérence de ses **dépendances déclarées** est contrôlée. Le sélecteur (« première `TODO` de `order` ») ne change pas.
 - **Blocage.** Une tâche `BLOCKED` met `halted = true` : plus aucun agent n'est lancé. L'humain corrige (fiche KB, tâche, lacune), remet `status = TODO`, `attempts = 0`, `halted = false`. Seul l'humain peut décider de sauter une tâche bloquée, et uniquement si aucune tâche restante n'en dépend.
+- **Erreur d'infrastructure.** Une réponse d'agent qui n'est pas un verdict valide (erreur serveur 500, « Context size has been exceeded », timeout, sortie tronquée, `INCOMPLETE`) n'est ni un `REJECT` ni un échec de la tâche : elle ne consomme pas de tentative (`attempts`) et n'est jamais renvoyée au Codeur. Procédure et seuils en B.7.5.
 - **Lacunes (Partie G).** Si la prochaine tâche dépend d'une lacune `OPEN`, l'Orchestrateur la marque `BLOCKED`, s'arrête et propose d'insérer la tâche de comblement juste avant dans `order`. L'humain valide l'insertion.
-- **Reprise après interruption.** Le système peut être arrêté entre deux agents. Au redémarrage, on reprend `current_task` et on relance l'agent suivant le dernier fichier présent dans `out/<id>/` et `reports/` (pas de `task_prompt.md` : Orchestrateur ; pas de `patch` : Codeur ; pas de `reports/<id>.json` : Validateur ; pas de `verdict.md` : Relecteur ; sinon : Documentaliste).
+- **Reprise après interruption.** Le système peut être arrêté entre deux agents. Au redémarrage, on reprend `current_task` et on relance l'agent suivant le dernier fichier présent dans `out/<id>/` (pas de `task_prompt.md` : Orchestrateur ; pas de `patch` : Codeur ; pas de rapport : Validateur ; pas de `review_pack.md` : script `review-pack` puis Relecteur ; pas de `verdict.md` : Relecteur — ou, s'il existe des `verdict.part<k>.md` partiels, seulement les tranches manquantes ; sinon : Documentaliste).
 - **ROMs de test `TR-*`.** Les tâches `T0.6.1`–`T0.6.5` posent une seule fois la chaîne d'assemblage et les conventions (`tests/roms/`). Ensuite, chaque ROM `TR-*` est livrée en **deux sous-étapes consécutives** : (a) source `.asm` + `.bin` + README, (b) golden MAME + validation (voir le catalogue en fin de Partie F). Rien n'est écrit « en parallèle » des phases.
 - **Pas de concurrence côté exécution.** Si le framework qui lance les agents sait paralléliser (threads, workers, sous-agents), le limiter à **1 worker** pour ce projet.
 
@@ -236,19 +262,55 @@ Conséquences :
 - Si un Codeur répond `## DECOUPAGE` ou si l'Orchestrateur détecte un dépassement, la chaîne s'arrête (comme un blocage) jusqu'à validation du découpage par l'humain.
 - Tâche trop petite ? On ne fusionne pas pour « gagner du temps » : le coût d'une sous-étape est faible, celui d'une tâche mal comprise est élevé.
 
+## B.7 Budgets de contexte et de sortie des agents de vérification (Validateur, Relecteur)
+
+**Constat (T0.4.10).** Le Relecteur a échoué en erreur serveur (« Context size has been exceeded ») sur une requête estimée à ~53 600 tokens alors que la fenêtre annoncée était de 135 168 tokens : la fenêtre **effective** du serveur de modèles est inférieure à la fenêtre annoncée (cause probable : contexte réellement chargé plus petit que la valeur affichée, découpage par slots parallèles, ou requête de fond qui occupe le cache). La consigne demandait en outre de lire « en entier » le patch, la spec et cinq fichiers MAME, et une réponse libre. Un agent de vérification doit donc recevoir une entrée **pré-découpée** et rendre une sortie **courte**.
+
+### B.7.1 Budgets
+
+| Élément | Limite |
+|---|---|
+| Fenêtre effective de référence (`limits.context_effective_tokens`) | à mesurer sur le serveur (contexte chargé ÷ nombre de slots) ; 32 000 par défaut tant que non calibré |
+| Entrée du Relecteur (`review_pack.md`) | ≤ 16 000 tokens |
+| Lectures d'outils cumulées du Relecteur | ≤ 12 000 tokens ; **aucun fichier > 300 lignes lu en entier** |
+| Total entrée + lectures + sortie | ≤ 50 % de la fenêtre effective |
+| Sortie du Relecteur | ≤ 800 tokens · ≤ 40 lignes · ≤ 8 motifs · ≤ 2 lignes par motif |
+| Sortie du Validateur | JSON ≤ 60 lignes · `detail` ≤ 200 caractères · sortie brute dans `reports/<id>.log` |
+
+Réglage serveur recommandé : 1 seul slot / prédiction parallèle, aucune requête de fond pendant un agent de vérification (cohérent avec A.4 et B.5, « 1 worker »).
+
+### B.7.2 `review_pack.md` (produit par script, pas par un LLM)
+
+`cargo xtask review-pack <TASK_ID>` assemble, dans cet ordre : (1) l'en-tête de tâche ; (2) le patch (si > 400 lignes : `diffstat` + hunks seulement) ; (3) le résumé du rapport du Validateur (statut, nombre de tests PASS, noms des FAIL, `first_divergence`) — jamais le log brut ; (4) les fiches KB du `context` ; (5) pour une tâche **documentaire**, les **extraits de source** aux lignes citées par la fiche (±10 lignes, fusionnés et dédupliqués), jamais les fichiers sources entiers ; (6) les règles de la Partie C applicables (celles listées dans la tâche seulement). Si le pack dépasse `review_input_max_tokens`, le script le découpe en tranches (B.7.3). *Tant que la commande n'existe pas, l'Orchestrateur (ou l'humain) produit le pack à la main en suivant cette liste.*
+
+### B.7.3 Revue par tranches
+
+Si le pack dépasse le budget (ex. fiche documentaire > ~100 lignes, patch > 400 lignes) :
+1. le script découpe par **section** (fiche) ou par **fichier** (patch) en tranches ≤ 16 000 tokens ;
+2. une instance **neuve** du Relecteur traite chaque tranche, **l'une après l'autre**, et écrit `verdict.part<k>.md` au format B.7.4 ;
+3. une dernière passe, sur un pack « index » ≤ 4 000 tokens généré par script (table des valeurs numériques extraites de chaque section, liste des renvois vers d'autres fiches), vérifie les contradictions inter-sections et les références croisées ;
+4. `cargo xtask verdict-merge <TASK_ID>` produit `verdict.md` : `REJECT` si une tranche est `REJECT`, motifs concaténés et renumérotés (≤ 12 au total). Le Codeur ne reçoit que ce fichier.
+
+### B.7.4 Format de la réponse finale du Relecteur
+
+Première ligne : `APPROVE`, `REJECT` ou `INCOMPLETE`. Puis, si `REJECT`, une liste numérotée `fichier:ligne — défaut — attendu (≤ 2 lignes)`. Rien d'autre. Le détail éventuel va dans `verdict.md`, que seul le Codeur (si REJECT) et le Documentaliste lisent ; l'Orchestrateur ne lit que la première ligne.
+
+### B.7.5 Erreur d'infrastructure ≠ verdict
+
+Toute réponse qui n'est pas `APPROVE` / `REJECT` valide est une **erreur d'infrastructure** : erreur serveur 500, « Context size has been exceeded », timeout, sortie tronquée ou `INCOMPLETE`.
+1. Elle **ne** compte **pas** dans `attempts`, **ne** produit **pas** de `REJECT` et **ne** relance **pas** le Codeur ; la tâche reste `IN_PROGRESS`.
+2. Attendre que le serveur soit inactif, puis relancer le Relecteur sur un pack **réduit** (revue par tranches, B.7.3) ; ne jamais renvoyer à l'identique la même requête trop grosse, et ne pas compresser le contexte pour « faire passer » une requête déjà sous la fenêtre annoncée.
+3. Incrémenter `infra_failures`. À **2** échecs : `halted = true`, message à l'humain (vérifier le contexte réellement chargé, le nombre de slots, les requêtes de fond ; recalibrer `limits`). L'humain remet `infra_failures = 0` et `halted = false`.
+4. `infra_failures` est remis à 0 dès qu'un verdict valide est obtenu.
+
+### B.7.6 Règle de rédaction des prompts de vérification
+
+Un prompt de Relecteur ou de Validateur ne contient **jamais** « lis en entier » pour un fichier de plus de 300 lignes ; il désigne des **plages** (`fichier:début-fin`) ou renvoie au `review_pack.md`. Il rappelle explicitement le format de sortie B.7.4 et la limite de 800 tokens.
+
 ---
 
-# PARTIE C — Décisions d'architecture et conventions du dépôt Rust
-
-## C.0 Décisions d'architecture (fixées par l'humain)
-
-| ID | Décision |
-|---|---|
-| **AD-01** | **L'émulateur n'est pas basé sur MAME.** Les sources MAME (`docs/mame_src/`, lecture seule) servent uniquement de documentation pour extraire des faits matériels (layouts, registres, timings, valeurs R/C). Interdits : copier ou traduire du code MAME, calquer son architecture (`galaxian_state`, tilemap, moteur DISCRETE…), ajouter MAME comme dépendance. L'architecture Rust (`Machine`, `Bus`, `Raster`, `Frame`…) est définie par ce document. |
-| **AD-02** | **Le frontend est une application `eframe`/`egui`** (crate `galaxian-frontend`). Le cœur (`z80`, `galaxian-core`, `galaxian-audio`) reste sans dépendance graphique : il expose un `Frame` (tampon RGB 256×224) et des échantillons audio ; le frontend convertit le `Frame` en texture egui. |
-| **AD-03** | **MAME comme oracle externe (optionnel).** Les « golden » (traces, CRC de frames, WAV) restent générés en lançant le binaire MAME en ligne de commande (`xtask golden`) : MAME est alors une boîte noire d'observation, comme zexdoc ou Fuse, jamais une base de code. MAME n'est requis que pour **générer ou régénérer** les golden (tâches `golden` des étapes 0.5, 2.x, 3.x, 4.x, 5.5) ; les tests de non-régression comparent aux fichiers golden déjà produits. |
-| **AD-04** | Egui ne fournit ni audio ni manette : sortie audio via `cpal` (T6.3.x), manette via `gilrs` (T6.2.2) — ajouts **dans `galaxian-frontend` uniquement**, validés par l'humain. |
-
+# PARTIE C
+ — Conventions du dépôt Rust
 
 ```
 galaxian/
@@ -257,25 +319,20 @@ galaxian/
 │  ├─ z80/                   CPU Z80 cycle-accurate, no_std-compatible, agnostique du hardware
 │  ├─ galaxian-core/         bus, timing, mémoire, I/O, vidéo, orchestration
 │  ├─ galaxian-audio/        modèle discret du son
-│  ├─ galaxian-frontend/     application eframe/egui : fenêtre, texture du Frame, input, audio out (cpal) — hors cœur
-│  └─ xtask/                 cargo xtask : api-dump, run-fuse, run-zex, mame-diff, test-roms, golden, progress-check, fetch-third-party
-├─ .github/workflows/        ci.yml (fmt, clippy, test ; paquets système requis par eframe)
-├─ .cargo/config.toml        alias `cargo xtask`
+│  ├─ galaxian-frontend/     fenêtre, input, audio out (minifb/pixels/cpal) — hors cœur
+│  └─ xtask/                 cargo xtask : api-dump, run-zex, mame-diff, test-roms, golden, review-pack, verdict-merge
 ├─ tests/
 │  ├─ roms/                  ROMs de test maison (sources .asm + binaires)
 │  ├─ golden/                références MAME (traces, CRC de frames, WAV)
 │  └─ third_party/           zexdoc/zexall, z80test, fuse, singlestep (téléchargés par xtask)
 ├─ roms/                     ROMs commerciales (NON versionnées, fournies par l'utilisateur)
 ├─ docs/kb/                  fiches KB (Partie E), une par fichier
-├─ docs/mame_src/            sources MAME — DOCUMENTATION en lecture seule, non compilées
-├─ out/<TASK_ID>/            sorties des agents : task_prompt.md, patch, verdict.md (voir A.4)
-├─ reports/<TASK_ID>.json    rapports du Validateur (voir A.4)
 └─ PROGRESS.json
 ```
 
 Règles :
 - Edition 2021+, `#![forbid(unsafe_code)]`, `clippy -D warnings`, `rustfmt`.
-- Dépendances autorisées dans le cœur : `bitflags`, `thiserror`. Dev : `proptest`, `serde_json`, `crc32fast`. Dans `galaxian-frontend` **uniquement** : `eframe` (incluant `egui`), `cpal`, et `gilrs` (T6.2.2) ; versions épinglées en T0.1.4. Tout autre ajout = décision humaine.
+- Dépendances autorisées dans le cœur : `bitflags`, `thiserror`. Dev : `proptest`, `serde_json`, `crc32fast`. Tout ajout = décision humaine.
 - API CPU ↔ bus (imposée) :
 
 ```rust
@@ -306,7 +363,7 @@ Il **n'existe pas, à ma connaissance, de suite de ROMs de test dédiée au hard
 |---|---|---|
 | **V1 — Suites CPU publiques** | `zexdoc`/`zexall` (CP/M .COM, nécessite un mini-shim BDOS fonction 2 et 9), `z80test` (Patrik Rak : z80doc, z80full, z80ccf, z80memptr), tests de la suite **Fuse** (`tests.in/tests.expected` avec événements de bus MR/MW/PR/PW par T-state), éventuellement `SingleStepTests/z80` (JSON par opcode avec bus cycle par cycle) — *vérifier la disponibilité/format actuels avant usage* | Z80 : fonctionnel, flags documentés/non documentés, MEMPTR, timing par M-cycle |
 | **V2 — ROMs de test maison** (« TestROM Factory », étape 0.6) | Petits programmes Z80 écrits en assembleur, ciblant **un seul** mécanisme (NMI, watchdog, VRAM, sprites, étoiles, flip…), à fournir en `.bin` 16 Ko | Chaque bloc matériel isolément, de façon déterministe |
-| **V3 — Références MAME (golden)** | MAME utilisé comme **oracle externe en boîte noire** (AD-03), lancé en ligne de commande avec scripts Lua : trace CPU (`trace` du debugger), CRC/snapshots d'écran à la frame N, `-wavwrite` | Comparaison cycle/frame par frame de l'émulateur complet |
+| **V3 — Références MAME (golden)** | MAME lancé en ligne de commande avec scripts Lua : trace CPU (`trace` du debugger), CRC/snapshots d'écran à la frame N, `-wavwrite` | Comparaison cycle/frame par frame de l'émulateur complet |
 | **V4 — ROM commerciale Galaxian** | ROMs du set MAME `galaxian` / `galmidw` fournies par l'utilisateur (non redistribuées) | Intégration : boot, attract mode, partie, sons |
 
 ## D.2 Génération des références MAME (à scripter dans `xtask golden`)
@@ -332,7 +389,7 @@ Livrables de références à produire (étape 0.5) :
 
 # PARTIE E — BASE DE CONNAISSANCES (KB)
 
-> Chaque fiche est autonome. L'Orchestrateur n'injecte que celles listées dans `context`. Source : driver MAME `src/mame/galaxian/` (galaxian.cpp, galaxian_v.cpp, galaxian.h, galaxian_a.cpp, galaxian_a.h) **utilisé comme documentation seulement** (AD-01), périmètre **Galaxian d'origine** uniquement. Les extraits C++ des fiches décrivent le matériel ; ils ne constituent pas une structure à reproduire.
+> Chaque fiche est autonome. L'Orchestrateur n'injecte que celles listées dans `context`. Source : driver MAME `src/mame/galaxian/` (galaxian.cpp, galaxian_v.cpp, galaxian.h, galaxian_a.cpp, galaxian_a.h), périmètre **Galaxian d'origine** uniquement.
 
 ## KB-01 — Vue d'ensemble
 Un PCB, trois sections : **CPU** (Z80, ROM jusqu'à 16 Ko + RAM 2 Ko décodée), **Son** (circuit discret analogique : compteur programmable + 4× 555 + bruit LFSR), **Vidéo** (tilemap de caractères + sprites + missiles/shells + champ d'étoiles ; LFSR 17 bits partagé avec le son). Des schémas existent et ont servi de base à MAME.
@@ -549,8 +606,7 @@ Le nombre de clocks comptés par frame diffère selon le sens de balayage ; sans
 ## KB-14 — Rendu : ordre de composition (déduit de la doc, à confirmer T4.6.x)
 1. fond noir ; 2. étoiles ; 3. tilemap ; 4. sprites (ordre de priorité : n° faible devant) ; 5. shells/missile. L'ordre exact de superposition étoiles/tilemap/sprites/shells est à **valider contre MAME** (GAP-01).
 
-## KB-15 — Son : vue d'ensemble (circuit documenté via le moteur DISCRETE de MAME)
-> Le graphe DISCRETE ne sert qu'à documenter le circuit (valeurs R/C, topologie). `galaxian-audio` implémente son propre modèle en Rust (AD-01), sans reproduire le moteur DISCRETE.
+## KB-15 — Son : vue d'ensemble (moteur DISCRETE de MAME)
 Graphe de nœuds reproduisant le circuit réel (555, RC, DAC résistif, LFSR, mixeurs) avec valeurs R/C relevées sur schéma.
 ```cpp
 #define SOUND_CLOCK (GALAXIAN_MASTER_CLOCK/6/2)   // 1.536 MHz
@@ -607,8 +663,7 @@ Galaxian d'origine : aucune puce de protection, pas de chiffrement ROM. Seul mé
 ## KB-19 — Check-list d'émulation (points de vigilance)
 1. Lire 7800 régulièrement (watchdog). 2. Pas d'NMI avant écriture de 7001. 3. NMI exactement au début du VBLANK. 4. Coin lockout/counter câblés. 5. `stars_update_origin()` avant flip. 6. Rendu interne ×3 horizontal pour les étoiles. 7. **Un seul** LFSR partagé son/vidéo.
 
-## KB-20 — État C++ de référence (galaxian_state) — *documentaire uniquement*
-> Liste des états matériels à modéliser. L'organisation de l'état en Rust est libre (AD-01) et définie par les tâches ; ne pas calquer cette structure.
+## KB-20 — État C++ de référence (galaxian_state)
 ```cpp
 int  m_bullets_base = 0x60;  int m_sprites_base = 0x40;
 uint8_t m_irq_enabled = 0;   int m_irq_line = INPUT_LINE_NMI;
@@ -638,7 +693,7 @@ PHASE 0 — Fondations
   Étape 0.1  T0.1.1 → T0.1.9      (9 tâches) Squelette du dépôt
   Étape 0.2  T0.2.1 → T0.2.4      (4 tâches) Types de temps
   Étape 0.3  T0.3.1 → T0.3.8      (8 tâches) Fiches Z80 (comble GAP-04)
-  Étape 0.4  T0.4.1 → T0.4.13     (13 tâches) Comblement des lacunes par lecture de la documentation MAME (GAP-01, 02, 03, 05)
+  Étape 0.4  T0.4.1 → T0.4.13     (13 tâches) Comblement des lacunes MAME (GAP-01, 02, 03, 05)
   Étape 0.5  T0.5.1 → T0.5.10     (10 tâches) Références MAME (golden)
   Étape 0.6  T0.6.1 → T0.6.5      (5 tâches) TestROM Factory
 PHASE 1 — CPU Z80
@@ -675,8 +730,8 @@ PHASE 5 — Audio
   Étape 5.3  T5.3.1 → T5.3.9      (9 tâches) Primitives discrètes
   Étape 5.4  T5.4.1 → T5.4.12     (12 tâches) Blocs du graphe
   Étape 5.5  T5.5.1 → T5.5.7      (7 tâches) Validation audio
-PHASE 6 — Intégration et frontend
-  Étape 6.1  T6.1.1 → T6.1.3      (3 tâches) Affichage et temps (eframe/egui)
+PHASE 6 — Intégration
+  Étape 6.1  T6.1.1 → T6.1.3      (3 tâches) Affichage et temps
   Étape 6.2  T6.2.1 → T6.2.3      (3 tâches) Entrées
   Étape 6.3  T6.3.1 → T6.3.3      (3 tâches) Audio
   Étape 6.4  T6.4.1 → T6.4.6      (6 tâches) Scénarios de non-régression
@@ -704,8 +759,8 @@ Choix d'ordonnancement :
 
 - **T0.1.1 — Workspace Cargo vide.** ctx: — · livr: `Cargo.toml` (workspace) + 5 crates (`z80`, `galaxian-core`, `galaxian-audio`, `galaxian-frontend`, `xtask`) avec `lib.rs`/`main.rs` vides, édition 2021.
 - **T0.1.2 — Lints et formatage.** livr: `#![forbid(unsafe_code)]` dans chaque crate, `rustfmt.toml`, `clippy.toml` · val: `cargo fmt --check && cargo clippy --workspace -- -D warnings`.
-- **T0.1.3 — Intégration continue.** livr: `.github/workflows/ci.yml` (fmt, clippy, test) ; le job Linux installe les paquets système requis par `eframe` (X11/Wayland, xkbcommon, OpenGL) avant le build · val: le fichier de CI exécute localement les 3 commandes sans erreur.
-- **T0.1.4 — Dépendances autorisées.** livr: `Cargo.toml` des crates : `bitflags`, `thiserror` (cœur) ; dev : `proptest`, `serde_json`, `crc32fast` ; `galaxian-frontend` : `eframe` (egui), `cpal` (versions épinglées, `default-features` revus par l'humain) ; alias `cargo xtask` dans `.cargo/config.toml`. Aucune dépendance graphique/audio dans `z80`, `galaxian-core`, `galaxian-audio`.
+- **T0.1.3 — Intégration continue.** livr: workflow CI (fmt, clippy, test) · val: le fichier de CI exécute localement les 3 commandes sans erreur.
+- **T0.1.4 — Dépendances autorisées.** livr: `Cargo.toml` des crates : `bitflags`, `thiserror` (cœur) ; dev : `proptest`, `serde_json`, `crc32fast` ; alias `cargo xtask` dans `.cargo/config.toml`.
 - **T0.1.5 — KB en fichiers.** ctx: KB-01…KB-20 (copie littérale) · livr: `docs/kb/KB-01.md` … `KB-20.md`, un par fichier · val: 20 fichiers présents, contenu identique à la Partie E.
 - **T0.1.6 — xtask : squelette CLI.** livr: `crates/xtask/src/main.rs` : sous-commandes stub `api-dump`, `run-fuse`, `run-zex`, `mame-diff`, `test-roms`, `golden`, `progress-check`, `fetch-third-party` (chacune affiche « non implémenté », code retour 0) · val: `cargo xtask --help`.
 - **T0.1.7 — xtask : api-dump.** livr: `xtask/src/api_dump.rs` · spec: liste stable (triée) des signatures publiques de chaque crate (outil au choix de l'humain : `cargo public-api` ou `rustdoc --output-format json`) · val: `cargo xtask api-dump` sur un crate contenant 1 fonction publique la liste.
@@ -732,10 +787,10 @@ Choix d'ordonnancement :
 - **T0.3.7 — KB-21f MEMPTR (WZ) et Q.** règle de mise à jour de WZ **par instruction**, règle de Q pour SCF/CCF.
 - **T0.3.8 — KB-21g Interruptions, HALT, EI.** NMI 11 T, INT IM 0/1/2 (13/19 T), délai d'EI, interaction HALT, RETN/IFF.
 
-### Étape 0.4 — Comblement des lacunes par lecture de la documentation MAME (GAP-01, 02, 03, 05)
-> Tâches **documentaires** (MAME = documentation, AD-01) : chaque affirmation cite fichier + ligne de `docs/mame_src/`. val: revue humaine.
+### Étape 0.4 — Comblement des lacunes MAME (GAP-01, 02, 03, 05)
+> Tâches **documentaires** : chaque affirmation cite fichier + ligne de `docs/mame_src/`. val: revue humaine.
 
-- **T0.4.1 — Récupérer les 5 sources MAME.** ctx: KB-01 · livr: `docs/mame_src/{galaxian.cpp,galaxian.h,galaxian_a.cpp,galaxian_a.h,galaxian_v.cpp}` (documentation en lecture seule, non compilés, non portés) · val: 5 fichiers présents.
+- **T0.4.1 — Récupérer les 5 sources MAME.** ctx: KB-01 · livr: `docs/mame_src/{galaxian.cpp,galaxian.h,galaxian_a.cpp,galaxian_a.h,galaxian_v.cpp}` (lecture seule, non compilés) · val: 5 fichiers présents.
 - **T0.4.2 — Manifeste et index.** livr: `docs/mame_src/MANIFEST.md` : SHA256 + version/commit MAME + index « fonction → ligne » · val: SHA256 recalculés = manifeste.
 - **T0.4.3 — KB-22a Layout GFX tiles.** `GFXDECODE`/`GfxLayout` des caractères (taille, planes, offsets, ROM source). Ferme une partie de GAP-01.
 - **T0.4.4 — KB-22b Layout GFX sprites.** idem pour les sprites 16×16.
@@ -1051,7 +1106,7 @@ Sortie : framebuffer **256×224 RGB** (rendu interne 768×224 pour fidélité de
 - **T4.1.2 — Tiles 8×8 2 bpp.** ctx: KB-22a · décode toutes les tiles depuis la ROM caractères · tests: nombre de tiles.
 - **T4.1.3 — Sprites 16×16 2 bpp.** ctx: KB-22b · décode tous les sprites.
 - **T4.1.4 — Tile et sprite connus.** tile n°X et sprite n°Y identiques au dump `gfxviewer` MAME.
-- **T4.1.5 — `compute_resistor_weights`.** ctx: KB-08 · implémentation Rust indépendante de la formule de pondération résistive (principe documenté dans `docs/mame_src/`, sans recopier le code) · tests: poids pour {1000,470,220} et {470,220}.
+- **T4.1.5 — `compute_resistor_weights`.** ctx: KB-08 · port de l'algorithme MAME (recopié depuis la source, `docs/mame_src/`) · tests: poids pour {1000,470,220} et {470,220}.
 - **T4.1.6 — Palette : 32 entrées.** ctx: KB-08, KB-27 · décodage bit→R/G/B de la PROM, `RGB_MAXIMUM=224`.
 - **T4.1.7 — Palette : validation.** les 32 valeurs RGB = MAME.
 - **T4.1.8 — Couleurs shells/missile.** ctx: KB-08 · 7 blanches `(255,255,255)` + 1 jaune `(255,255,0)`.
@@ -1189,22 +1244,22 @@ Sortie : framebuffer **256×224 RGB** (rendu interne 768×224 pour fidélité de
 
 ## PHASE 6 — Intégration et frontend
 
-### Étape 6.1 — Affichage et temps (eframe/egui)
-> livr: `galaxian-frontend/` · val par défaut : `cargo build -p galaxian-frontend && cargo test -p galaxian-frontend`
+### Étape 6.1 — Affichage et temps
+> livr: `galaxian-frontend/`
 
-- **T6.1.1 — Application eframe et affichage 256×224.** `impl eframe::App` ; fonction pure `frame_to_color_image(&Frame) -> egui::ColorImage` (testée sans fenêtre) ; texture `TextureHandle` mise à jour à chaque frame, filtrage *nearest*, mise à l'échelle entière.
-- **T6.1.2 — Rotation 90° optionnelle.** (écran vertical d'origine) rotation appliquée à l'affichage (UV/transformation du rendu egui), jamais dans le cœur ; fonction de rotation pure testée.
-- **T6.1.3 — Boucle 60,606 Hz.** pas de temps fixe par accumulateur : le cœur avance de N frames machine selon le temps écoulé, indépendamment de la fréquence de rafraîchissement d'egui ; `ctx.request_repaint()` / `request_repaint_after` ; test de l'accumulateur avec une horloge simulée.
+- **T6.1.1 — Fenêtre 256×224.** affiche un `Frame` statique.
+- **T6.1.2 — Rotation 90° optionnelle.** (écran vertical d'origine)
+- **T6.1.3 — Boucle 60,606 Hz.** cadencement par horloge de la fenêtre.
 
 ### Étape 6.2 — Entrées
 > ctx par défaut : KB-24a, KB-24b
 
-- **T6.2.1 — Clavier → IN0/IN1.** coin, start, gauche/droite, tir, lus via `ctx.input` d'egui ; table de correspondance pure testée.
-- **T6.2.2 — Manette.** via `gilrs` (egui n'a pas de gestion de manette ; dépendance validée par l'humain).
-- **T6.2.3 — DIP switches configurables.** fichier de config (et panneau egui optionnel), sans toucher au cœur.
+- **T6.2.1 — Clavier → IN0/IN1.** coin, start, gauche/droite, tir.
+- **T6.2.2 — Manette.**
+- **T6.2.3 — DIP switches configurables.** fichier de config, sans toucher au cœur.
 
 ### Étape 6.3 — Audio
-- **T6.3.1 — Sortie audio.** file d'échantillons + `cpal` (egui ne fournit pas d'audio).
+- **T6.3.1 — Sortie audio.** file d'échantillons + `cpal`.
 - **T6.3.2 — Resampling.**
 - **T6.3.3 — Synchronisation audio/vidéo.** sync sur l'audio ou la vidéo (option).
 
