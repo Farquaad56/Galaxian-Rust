@@ -1,0 +1,22 @@
+{
+  "task": "T0.4.4",
+  "title": "KB-22b Layout GFX sprites",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "sed -n '7405p;7427p' docs/mame_src/galaxian.cpp (verif lignes)",
+    "grep GALAXIAN_XSCALE docs/mame_src/galaxian.h",
+    "revue humaine des champs gfx_layout galaxian_spritelayout"
+  ],
+  "validation": {
+    "criterion": "revue humaine : fiche cite fichier + ligne exacts, champs decodes fidelement",
+    "result": "Lignes verifiees : galaxian_spritelayout=7405, galaxian_spritelayout_0x80=7427, GFXDECODE_SCALE sprite=7446. Fiche KB-22b-gfx-sprites.md creee."
+  },
+  "deliverables": [
+    "docs/kb/KB-22b-gfx-sprites.md"
+  ],
+  "notes": [
+    "GAP-01 ferme en partie (layout sprites).",
+    "Inter-plan : offset chip1=0x40, row-step chip1=128o/rangee."
+  ]
+}

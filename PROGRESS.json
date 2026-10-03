@@ -699,11 +699,13 @@
         "T0.4.3"
       ],
       "ctx": [],
-      "status": "TODO",
-      "attempts": 0,
+      "status": "DONE",
+      "attempts": 1,
       "commit": null,
-      "report": null,
-      "notes": []
+      "report": "reports/T0.4.4.json",
+      "notes": [
+        "KB-22b-gfx-sprites.md creee (galaxian_spritelayout galaxian.cpp:7405 : 16x16, inter-plan offset chip1=0x40). Lignes verifiees. GAP-01 ferme en partie."
+      ]
     },
     "T0.4.5": {
       "title": "KB-23a VRAM et tile-info",
