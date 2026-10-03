@@ -1,0 +1,23 @@
+{
+  "task": "T0.4.2",
+  "title": "Manifeste et index",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "cd docs/mame_src && sha256sum -c SHA256SUMS.txt",
+    "sha256sum galaxian.cpp galaxian.h galaxian_a.cpp galaxian_a.h galaxian_v.cpp > /tmp/recomputed.txt",
+    "diff <(awk '{print $1}' SHA256SUMS.txt | sort) <(awk '{print $1}' /tmp/recomputed.txt | sort)"
+  ],
+  "validation": {
+    "criterion": "SHA256 recalculés = manifeste",
+    "result": "Les 5 hashes recalculés sont identiques à SHA256SUMS.txt (sha256sum -c : OK pour les 5 fichiers). Le diff des hashes = vide.",
+    "manifest_file": "docs/mame_src/MANIFEST.md"
+  },
+  "deliverables": [
+    "docs/mame_src/MANIFEST.md (SHA256 + version/commit MAME + index fonction→ligne)"
+  ],
+  "notes": [
+    "Version MAME non épinglée : fichiers récupérés depuis master le 2026-10-02, commit upstream exact pas consigné (conforme au caveat du README). Noté tel quel dans §2 du manifeste.",
+    "Index fonction→ligne : seules les fonctions du périmètre Galaxian d'origine lues manuellement et listées. GAP-02/03/05 pointés vers leurs lignes de référence."
+  ]
+}
