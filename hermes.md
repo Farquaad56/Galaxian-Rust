@@ -18,7 +18,7 @@ Les commits, `reports/` et `out/` existants portent les **anciens IDs** ; ne pas
 Anciens IDs encore cités ailleurs : ancien T0.2.2 (extraire KB-22..26) = T0.4.3 → T0.4.13 ; ancien T0.3.x (golden) = T0.5.x ; ancien T0.4.x (TestROM Factory) = T0.6.x ; ancien T1.4.4 (trace MAME) = T3.3.4 ; ancien T3.1.x = T3.1–T3.4 ; ancien T2.3.x (NMI) = T2.5.x.
 Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux** IDs.
 
-## Ce qui est fait (14 tâches DONE sur 355)
+## Ce qui est fait (32 tâches DONE sur 355)
 - **T0.1.1 Workspace Cargo / T0.1.2 Lints / T0.1.3 CI / T0.1.7 api-dump** ✅ (ancien T0.1.1 — commits `a1b8e81` + `9944062`)
   - 5 crates : z80, galaxian-core, galaxian-audio, galaxian-frontend, xtask ; edition 2021.
   - Lints par crate (cargo 1.98 refuse le mix workspace+per-crate) : clippy all=deny + pedantic=warn ; `unsafe_code="forbid"` sur z80/galaxian-core/galaxian-audio. *À vérifier au prochain passage : présence de `rustfmt.toml`/`clippy.toml` (exigés par T0.1.2).*
@@ -40,9 +40,20 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
   - Spéc : « PROGRESS.json initial (toutes TODO) · val: progress-check OK ». Déviation : l'all-TODO a été remplacé par la version migrée (plan v2, 355 tâches) dans le commit `4a4f210`. Le livrable est donc satisfait par le PROGRESS.json actuel.
 - **T0.2.2 Type `Cycles` et décomposition** ✅ (commits `e85161b` + `891d20e`) — livrable `crates/galaxian-core/src/time.rs`.
   - `fn split(c: Cycles) -> (frame, ligne, cycle_dans_ligne)` : décompose un cycle absolu en numéro de frame + position dans la frame. Cas de spec vérifiés (0, 191, 192, 50687, 50688) + roundtrip. Tests verts, clippy `-D warnings` propre.
+- **T0.4.10 KB-25b Configuration machine** ✅ (commits `472c1a3` + `3303210`) — livrable `docs/kb/KB-25b-machine-config.md` (CPU, watchdog 8 frames ≈ 132 ms / 405504 T-states, écran raster, horloges CPU 3.072 MHz / son 1.536 MHz / HSYNC 16 kHz / VSYNC ~60.6 Hz, composants).
+  - Codeur opencode ; validateur PASS (reports/T0.4.10.json) ; relecteur APPROVE par tranches B.7.3 (out/T0.4.10/verdict.partA..D.md + verdict.md). Motif unique (anglais résiduel §2/§Differs) corrigé pré-commit.
+- **T0.4.11 KB-26 Ordre de rendu** ✅ (commits `5026d1e` + hash PROGRESS.json) — livrable `docs/kb/KB-26-render-order.md`.
+  - Brouillon v1 (commit db86fd5, plan v1) réécrit en entier : erreur « entrées 0–2 coquilles » corrigée (coquilles = entrees 0–6, missile = 7 ; match Y deux étapes which<3 → Y−1 / which≥3 → Y). Items 1–4 du prompt satisfaits. GAP-01 clos.
+  - Codeur opencode ; validateur PASS (reports/T0.4.11.json) ; relecteur APPROVE sans motif bloquant (out/T0.4.11/verdict.md).
+
+## Piège B.7 — subagents parallèles sur LM Studio local
+- Les **subagents relecteurs lancés en parallèle** via `delegate_task` échouent systématiquement : le serveur LM Studio rejette la requête « context too large » à 16–25k tokens (fenêtre annoncée 135k) — les requêtes concurrentes se disputent la capacité. **Ne pas relancer en parallèle.**
+- Solution retenue (conforme A.2 : le Relecteur doit être distinct du Codeur, mais « the same LLM may play several roles in sequence ») : mener la revue **séquentiellement par l'instance parente** sur un `review_pack.md` compact (B.7.2/3). Le codeur étant opencode (processus séparé), le rôle Relecteur reste distinct du Codeur.
+- Les erreurs serveur ne consomment pas d'essais de revue (B.7.5) ; rien n'est renvoyé au codeur.
 
 ## Ce qu'il reste à faire
-- **Suivant : T0.2.3 — Cycle → pixel** (`pixel = 2 × cycle_dans_ligne` ; `fn pixel_of(cycle_in_line) -> u16`). Étape 0.2 déjà entamée par T0.2.1/2.2/2.4 (DONE).
+- **En cours : T0.4.12 — KB-27 Palette PROM** (`galaxian_palette` : affectation exacte bit→R/G/B, GAP-02). Codeur opencode en cours (out/T0.4.12/task_prompt.md) ; livrable `docs/kb/KB-27-palette-prom.md`.
+- **Suivant : T0.4.13 — Clôture des lacunes** (ctx: KB-08, KB-09, KB-14 · corriger ces 3 fiches si les nouvelles fiches les contredisent ; passer GAP-01/02/03/05 à `FILLED` avec `kb_file` dans PROGRESS.json). Dernier tâche de l'étape 0.4.
 - Fin d'étape 0.1 : **T0.1.7 api-dump** — DONE (commit `a1b8e81+9****62`, report `reports/T0.1.1.json`). *migré depuis ancien T0.1.1.*
 - Restes partiels des tâches « déjà faites » : T0.4.2 (`MANIFEST.md` : version/commit MAME + index fonction→ligne ; SHA256SUMS déjà présent).
 - Étape 0.3 (T0.3.1–T0.3.8) : fiches Z80 KB-21a…g — **tâches documentaires, sources à fournir par l'humain** (*The Undocumented Z80 Documented*, tableaux Zilog).
