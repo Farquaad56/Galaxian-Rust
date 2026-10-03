@@ -811,11 +811,13 @@
     "T0.4.11"
    ],
    "ctx": [],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
    "commit": null,
-   "report": null,
-   "notes": []
+   "report": "reports/T0.4.12.json",
+   "notes": [
+    "livrable docs/kb/KB-27-palette-prom.md (139 lignes) — affectation exacte bit->R/G/B de galaxian_palette (R bits 0-2 / G bits 3-5 / B bits 6-7), GAP-02 corrige explicitement, m_star_color[64] + starmap={0,194,214,255}, m_bullet_color[8]=7 blanches+jaune, cross-refs KB-08/KB-25b §3/KB-26/KB-22a/KB-22b. validateur PASS (reports/T0.4.12.json), relecteur REJECT 1 motif bloquant (terme 'color_span' non source) corrige pre-commit -> APPROVE (out/T0.4.12/verdict.md). GAP-02 clos."
+   ]
   },
   "T0.4.13": {
    "title": "Clôture des lacunes",

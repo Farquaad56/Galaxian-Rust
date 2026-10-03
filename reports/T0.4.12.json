@@ -1,0 +1,29 @@
+{
+  "task": "T0.4.12",
+  "title": "KB-27 Palette PROM",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "python verify script: checked 37 cited lines of docs/mame_src/galaxian_v.cpp / galaxian.cpp / galaxian.h against the claims in docs/kb/KB-27-palette-prom.md",
+    "sed -n '238,303p' docs/mame_src/galaxian_v.cpp (verif signature :238, color_prom :240, rgb_resistances :241, commentaire bit 7->bit 0 :243-253, note Namco :255-257, etoiles :259-261, coquilles :263-265, RGB_MAXIMUM headroom :267-271, compute_resistor_weights :273-277, decodage R bits 0-2 :286-289 / G bits 3-5 :292-295 / B bits 6-7 :298-300, set_pen_color :302)",
+    "sed -n '304,360p' docs/mame_src/galaxian_v.cpp (verif normalisation ~130 Ohms :305-318, minval/midval/maxval + starmap[4] :320-329, bits etoiles bit5/4 rouge :336-339 / bit3/2 vert :341-344 / bit1/0 bleu :346-349, m_star_color[i] :352, bullet colors 7 blanches + jaune :355-358)",
+    "sed -n '361,395p' docs/mame_src/galaxian_v.cpp (verif differs moonwar :361-367 / eagle RGB->GBR :369-378 / sbhoei RGB->RBG :381-390)",
+    "sed -n '860,935p' docs/mame_src/galaxian_v.cpp (verif stars_draw_row :869, m_star_color[star & 0x3f] :903 et :911-912, galaxian_draw_stars :932)",
+    "sed -n '1155,1185p' docs/mame_src/galaxian_v.cpp (verif galaxian_draw_bullet :1160, commentaire shells/missile 4 pixels :1162-1167, m_bullet_color[offs] x4 :1169-1172, mshuttle_draw_bullet :1176-1182)",
+    "sed -n '7495,7502p' docs/mame_src/galaxian.cpp (verif PALETTE 32 entrees galaxian_palette :7499) + sed -n '9768,9775p' (verif ROM_REGION 0x0020 proms / 6l.bpr :9771-9773)",
+    "sed -n '448,456p' docs/mame_src/galaxian.h (verif m_star_color[64] :450, m_bullet_color[8] :454) + grep RGB_MAXIMUM galaxian_v.cpp (:229 = 224)",
+    "python: starmap math -> minval=194 midval=291 maxval=485 starmap={0,194,214,255} (concordance avec la fiche)"
+  ],
+  "validation": {
+    "criterion": "revue humaine : chaque affirmation cite fichier:ligne exacts de docs/mame_src/ ; items 1-5 du prompt satisfaits ; GAP-02 corrige explicitement",
+    "result": "Toutes les citations verifiees contre le source reel (37 lignes, 0 divergence). Item 1 : affectation bit->R/G/B + resistances + derivee compute_resistor_weights citees et concordantes (commentaire :243-253 = code :286-300). Item 2 : GAP-02 corrige explicitement — R bits 0-2 / G bits 3-5 / B bits 6-7, doc fournee erronee sur bits 3/2 (KB-08.md:4-5), consequence 3 ROUGE + 3 VERT. Item 3 : m_star_color[64] derivee — bits 5/4 rouge, 3/2 vert, 1/0 bleu @150/100 Ohm, starmap={0,194,214,255} recompute et confirme. Item 4 : m_bullet_color[8] = 7 blanches + jaune (missile), consomme en 4 pixels. Item 5 : cross-refs KB-08/KB-25b §3/KB-26 §1b,§3/KB-22a/KB-22b presentes et coherentes ; variantes religuees en 'differs' (moonwar/eagle/sbhoei/mshuttle). Fiche entierement en francais. Un seul fichier touche : docs/kb/KB-27-palette-prom.md."
+  },
+  "deliverables": [
+    "docs/kb/KB-27-palette-prom.md"
+  ],
+  "notes": [
+    "GAP-02 clos : affectation exacte bit->R/G/B de la PROM couleur tranchee par lecture directe du driver MAME (commentaire + code concordants).",
+    "Codeur = opencode run --auto (out/T0.4.12/task_prompt.md) ; le codeur a corrige 3 glissements de langue (anglais residuel) avant la fin.",
+    "compute_resistor_weights / combine_weights sont du MAME core (hors dossier fourni) : la fiche le declare et calcule les poids depuis les constantes citees (R/G ~29.2/62.1/132.7, B ~71.4/152.6, somme 224)."
+  ]
+}
