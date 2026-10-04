@@ -1,0 +1,2 @@
+trace ../tests/golden/tmp/trace_raw.log,maincpu,noloop,{tracelog "TOT=%d LIC=%d AF=%04X BC=%04X DE=%04X HL=%04X SP=%04X OP=%02X%02X%02X%02X ",totalcycles,lastinstructioncycles,af,bc,de,hl,sp,b@pc,b@(pc+1),b@(pc+2),b@(pc+3)}
+go

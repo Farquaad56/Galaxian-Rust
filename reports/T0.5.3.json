@@ -1,0 +1,26 @@
+{
+  "task": "T0.5.3",
+  "title": "Trace CPU brute",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "git status --short (verify no tracked-file changes; only untracked tests/golden/mame/ + pre-existing dirs)",
+    "wc -l / wc -c / cat -A / sha256sum tests/golden/mame/trace.dbg (deliverable content check: 2 lines, 227 bytes, LF endings)",
+    "cargo xtask golden run --dry-run -- -debug -debugscript ../tests/golden/mame/trace.dbg -video none -seconds_to_run 10 (launcher builds corrected command without -debugger none; cwd = tools/)",
+    "cargo xtask golden run -- -debug -debugscript ../tests/golden/mame/trace.dbg -video none -seconds_to_run 10 (run 1) ; echo EXIT=$? ; wc -l tests/golden/tmp/trace_raw.log",
+    "head -1 / tail -1 tests/golden/tmp/trace_raw.log ; grep -c ' 0000:' tests/golden/tmp/trace_raw.log ; tail -c 2 | xxd (first line PC, zero 0000: lines, last byte)",
+    "head -n 100000 > $TMPDIR/t053_run1_head.log ; sha256sum",
+    "cargo xtask golden run -- -debug -debugscript ../tests/golden/mame/trace.dbg -video none -seconds_to_run 10 (run 2) ; echo EXIT=$? ; wc -l ; head -n 100000 > $TMPDIR/t053_run2_head.log ; sha256sum ; cmp run1 run2"
+  ],
+  "validation": {
+    "criterion": "tests/golden/tmp/trace_raw.log ≥ 1 000 lignes d'instructions ; première ligne à PC = 0001 (corrigé T0.5.1) ; aucune ligne 0000: ; dernière ligne complète + newline ; two runs : 100 000 premières lignes identiques",
+    "result": "Deliverable tests/golden/mame/trace.dbg = exactly the corrected KB-28b §A skeleton, byte-for-byte (2 lines, 227 bytes, LF line endings; sha256 3079c1e41ffd216afc4f312e6afd065457080a6af0ba21239ae3e401699bac47): line 1 'trace ../tests/golden/tmp/trace_raw.log,maincpu,noloop,{tracelog \"TOT=%d LIC=%d AF=%04X BC=%04X DE=%04X HL=%04X SP=%04X OP=%02X%02X%02X%02X \",totalcycles,lastinstructioncycles,af,bc,de,hl,sp,b@pc,b@(pc+1),b@(pc+2),b@(pc+3)}', line 2 'go'. git status: zero tracked-file changes (only untracked tests/golden/mame/ plus pre-existing untracked dirs). Run 1: exit 0 ('Average speed: 17.77% (9 seconds)'), trace_raw.log = 3 717 920 lines (≥ 1 000 ✓). First line: 'TOT=4 LIC=4 AF=0044 BC=0000 DE=0000 HL=0000 SP=0000 OP=320170C3 0001: ld   ($7001),a' → PC = 0001 ✓. grep -c ' 0000:' → 0 lines ✓. Last line complete: 'TOT=30767609 LIC=7 AF=FEB9 BC=5AE0 DE=238A HL=40C8 SP=4400 OP=CD672018 2014: call $2067'; file ends with newline (last byte 0x0a; CRLF endings, last two bytes 0d 0a) ✓. Run 2: exit 0 ('Average speed: 18.78% (9 seconds)'), same total 3 717 920 lines; first 100 000 lines byte-identical across runs — sha256 d9be639a5adff8d57868ddc5abc0c888065aa5d50bcf8c1b5be4e07d1ca16b41 for both heads, cmp → IDENTICAL ✓ (matches the codeur's claimed head hash). Justified deviation confirmed: validation command omits '-debugger none' (on MAME v0.289 only the default windows debugger executes -debugscript; gdbstub hangs); dry-run shows the launcher builds exactly 'galaxian … -debug -debugscript ../tests/golden/mame/trace.dbg -video none -seconds_to_run 10' from cwd tools/. Budget B.6 holds: single mechanism, exactly 1 file livrable (tests/golden/mame/trace.dbg), 0 lines of Rust touched, context pack ≤ 2 KB fiches (KB-28a + KB-28b)."
+  },
+  "deliverables": ["tests/golden/mame/trace.dbg"],
+  "notes": [
+    "Spec literal 'première ligne à PC = 0000' is superseded by the T0.5.1 correction (PC = 0001); validated against PC = 0001 with zero '0000:' lines, as instructed.",
+    "Deviation from prompt §d (dropping '-debugger none') is justified and empirically confirmed: on MAME v0.289 the script only executes under the default windows debugger; validated against the corrected command.",
+    "Both runs produced identical total line counts (3 717 920) and byte-identical first 100 000 lines — deterministic golden trace confirmed.",
+    "Pre-existing orphan crates/xtask/src/golden_trace/mod.rs is not wired into main.rs; intentionally left untouched, out of scope for this task."
+  ]
+}
