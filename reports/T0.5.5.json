@@ -1,0 +1,29 @@
+{
+  "task": "T0.5.5",
+  "title": "CRC de frames (script Lua)",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "read tests/golden/mame/frames_crc.lua in full; byte-level diff against KB-28b §B block (sed -n '31,64p' docs/kb/KB-28b.md) → identical",
+    "git status --short → no tracked-file change; new untracked = tests/golden/mame/frames_crc.lua + tests/golden/frames_crc.txt only (other untracked items pre-existing: cfg/, golden/, snap/, ui.ini, dashboard*, out/*, crates/xtask/src/golden_trace/mod.rs dated 2026-10-02)",
+    "git check-ignore tests/golden/frames_crc.txt → exit 1 (versioned, not ignored)",
+    "cargo xtask golden run -- -video none -sound none -autoboot_script ../tests/golden/mame/frames_crc.lua -seconds_to_run 15 (run A) → MAME exit 0",
+    "same command (run B) → MAME exit 0; SHA256 of both runs identical: da6ab653f3e713fe729f2824fc178eac1230d935f32477e2acd89c9b8bbee11a (also matches codeur's saved out/T0.5.5/run1_frames_crc.txt)",
+    "parsed tests/golden/frames_crc.txt: header + 9 data lines, format check per line, frame order {1,2,5,10,30,60,120,300,600}, trailing newline (CRLF endings), black-screen reference CRC32 of 688128 zero bytes computed with the same algorithm (table 0xEDB88320, init/xorout 0xFFFFFFFF) and cross-checked against zlib.crc32",
+    "budget B.6 check: git status shows 0 tracked-file changes (no Rust touched); context pack = KB-28a + KB-28b + KB-02 (3 fiches ≤ 4)"
+  ],
+  "validation": {
+    "criterion": "9 lignes de données ; first_frame_seen ≤ 1 ; CRC des frames 1 et 600 different ; CRC ≠ celui of an écran noir ; golden versionné + reproductible",
+    "result": "PASS. (1) tests/golden/mame/frames_crc.lua is byte-identical to KB-28b §B: frame list {1,2,5,10,30,60,120,300,600}, CRC32 table built from 0xEDB88320 (init/xorout 0xFFFFFFFF), header format '# first_frame_seen=%d size=%dx%d mame=%s', data-line format '%d %08X %dx%d', exit at LAST=600. (2) No tracked-file change; only new untracked files are the two deliverables. (3) MAME run exit 0 on both runs (~9 s emulated, ~4400% speed); tests/golden/frames_crc.txt exists and is versioned (git check-ignore → exit 1). (4) Golden file: line 1 = '# first_frame_seen=0 size=768x224 mame=0.289' (first_frame_seen = 0 ≤ 1, matches T0.5.1 tranché); exactly 9 data lines in order for frames 1,2,5,10,30,60,120,300,600, each '<frame> <8-hex CRC32> 768x224': frame 1=9DBAF643, 2=9DBAF643, 5=9DBAF643, 10=9DBAF643, 30=9DBAF643, 60=A3092818, 120=1AAF4F42, 300=44776A2E, 600=D51D3DA7. Frame-1 CRC (9DBAF643) ≠ frame-600 CRC (D51D3DA7). Black-screen reference = CRC32 of 688128 zero bytes with the same algorithm = 3D53E321 (cross-checked against zlib.crc32); no data-line CRC equals it. File ends with a newline; line endings CRLF as expected from text-mode io.open on Windows. (5) Reproducibility: run A and run B byte-identical, SHA256 da6ab653f3e713fe729f2824fc178eac1230d935f32477e2acd89c9b8bbee11a (also identical to the codeur's saved run1 copy). (6) Budget B.6 holds: single mechanism, exactly 1 source file livrable + its golden output, 0 lines of Rust touched, context pack = KB-28a + KB-28b + KB-02 (3 ≤ 4 fiches)."
+  },
+  "deliverables": [
+    "tests/golden/mame/frames_crc.lua",
+    "tests/golden/frames_crc.txt"
+  ],
+  "notes": [
+    "Frames 1–30 share the same CRC (9DBAF643): plausible attract-mode boot behavior, and it is NOT a black screen (≠ 3D53E321) — consistent with T0.5.1 tranché 'pixels() tout zéro au boot mais non-noir dès frame ~10'.",
+    "Tranché T0.5.1 applicable: bitmap MAME = 768×224 as-is; the human decision on resolution (768×224 vs 256×224) is already consigné by T0.5.1 — no new mame_notes.md entry required for this task.",
+    "MAME emits 'Warning: -video none doesn't make much sense without -seconds_to_run' — sans objet, the run ends via machine:exit() at frame 600 (T0.5.1 tranché).",
+    "The pre-existing untracked crates/xtask/src/golden_trace/mod.rs (dated 2026-10-02) is not part of this task; no Rust source was touched by T0.5.5."
+  ]
+}
