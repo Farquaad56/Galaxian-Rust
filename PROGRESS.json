@@ -871,11 +871,13 @@
     "T0.5.2"
    ],
    "ctx": [],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
-   "commit": null,
-   "report": null,
-   "notes": []
+   "commit": "1645e07",
+   "report": "reports/T0.5.3.json",
+   "notes": [
+    "livrable tests/golden/mame/trace.dbg (squelette KB-28b §A corrigé T0.5.1 : action trace avec chemin /, noloop, compteurs totalcycles+lastinstructioncycles dans l'action tracelog ; go). 0 ligne de code Rust touchée. Écart justifié : -debugger none retiré (sur MAME v0.289 seul le debugger windows par défaut exécute -debugscript ; gdbstub hang) -> validation via cargo xtask golden run -- -debug -debugscript ../tests/golden/mame/trace.dbg -video none -seconds_to_run 10. validateur PASS (reports/T0.5.3.json) : deux runs exit 0, 3 717 920 lignes chacune, première ligne PC=0001, aucune ligne 0000:, dernière ligne complète + newline, premières 100 000 lignes byte-identiques (SHA256 d9be639a…). Relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) -> out/T0.5.3/verdict.md."
+   ]
   },
   "T0.5.4": {
    "title": "Trace CPU normalisée",
