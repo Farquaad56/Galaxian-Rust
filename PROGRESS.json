@@ -885,11 +885,13 @@
     "T0.5.3"
    ],
    "ctx": [],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
-   "commit": null,
-   "report": null,
-   "notes": []
+   "commit": "e8a68c7",
+   "report": "reports/T0.5.4.json",
+   "notes": [
+    "livrable crates/xtask/src/trace.rs (nouveau module ~136 lignes d'implémentation + 6 tests unitaires sans MAME) + wiring main.rs — commande cargo xtask golden trace : lit tests/golden/tmp/trace_raw.log, tronque à N et convertit en tests/golden/trace_boot_{1000,100000,1000000}.log au format normalisé fixe <PC> <OP> AF=… BC=… DE=… HL=… SP=… CYC=<LIC>. CYC = valeur décimale du champ LIC (lastinstructioncycles) — tranché T0.5.1, PAS reconstruit depuis KB-21b ; disassemblage supprimé ; un seul passage streaming. 3 goldens versionnés : 1 000 / 100 000 / 1 000 000 lignes, formats identiques, premières 1 000 lignes byte-identiques (SHA256 3c1b1d4c…). validateur PASS (reports/T0.5.4.json) — goldens régénérés de zéro, 19/19 tests, clippy -D warnings propre. Relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) -> out/T0.5.4/verdict.md."
+   ]
   },
   "T0.5.5": {
    "title": "CRC de frames (script Lua)",
