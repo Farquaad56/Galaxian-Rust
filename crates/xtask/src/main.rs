@@ -3,12 +3,14 @@
 //! Subcommands: `api-dump`, `run-fuse`, `run-zex`, `mame-diff`, `test-roms`,
 //! `golden`, `progress-check`, `fetch-third-party`.
 //! Functional so far: `api-dump` (T0.1.7), `golden run` (T0.5.2),
-//! `progress-check`; the rest print a stub message and return 0 (T0.1.6).
+//! `golden trace` (T0.5.4), `progress-check`; the rest print a stub message
+//! and return 0 (T0.1.6).
 
 #![forbid(unsafe_code)]
 
 mod golden;
 mod progress;
+mod trace;
 
 use std::path::{Path, PathBuf};
 
@@ -100,7 +102,14 @@ fn main() {
     match args.first().map(String::as_str) {
         Some("api-dump") => api_dump(),
         Some(name @ ("run-fuse" | "run-zex" | "mame-diff" | "test-roms")) => stub(name),
-        Some("golden") => std::process::exit(golden::run(&args[1..])),
+        Some("golden") => {
+            let code = if args.get(1).is_some_and(|a| a == "trace") {
+                trace::run()
+            } else {
+                golden::run(&args[1..])
+            };
+            std::process::exit(code);
+        }
         Some("progress-check") => {
             let path = args.get(1).map(String::as_str);
             if let Err(errors) = progress::check(path) {

@@ -1,0 +1,38 @@
+{
+  "task": "T0.5.4",
+  "title": "Trace CPU normalisée",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "git status --short",
+    "git diff crates/xtask/src/main.rs",
+    "cargo test -p xtask",
+    "cargo build -p xtask",
+    "cargo clippy --workspace --all-targets -- -D warnings",
+    "rm tests/golden/trace_boot_{1000,100000,1000000}.log (regeneration from scratch)",
+    "cargo xtask golden run -- -debug -debugscript ../tests/golden/mame/trace.dbg -video none -seconds_to_run 10",
+    "wc -l tests/golden/tmp/trace_raw.log",
+    "cargo xtask golden trace",
+    "wc -l tests/golden/trace_boot_*.log",
+    "grep -cvE '^[0-9A-F]{4} [0-9A-F]{8} AF=[0-9A-F]{4} BC=[0-9A-F]{4} DE=[0-9A-F]{4} HL=[0-9A-F]{4} SP=[0-9A-F]{4} CYC=[0-9]+$' (per file)",
+    "head -n 1000 <each of the 3 files> | sha256sum",
+    "head/tail per file + trailing-newline check",
+    "git check-ignore tests/golden/trace_boot_{1000,100000,1000000}.log"
+  ],
+  "validation": {
+    "criterion": "3 fichiers (trace_boot_1000/100000/1000000.log), formats identiques, same prefix of 1 000 lines in the three ; CYC from LIC per T0.5.1 tranché",
+    "result": "git status: seul fichier suivi modifié = crates/xtask/src/main.rs (+11/-2 wiring `golden trace` → trace::run) ; nouveaux untracked = crates/xtask/src/trace.rs + les 3 goldens ; orphelin golden_trace/mod.rs non touché. Code : normalize_line (raw → `<PC> <OP> AF=… BC=… DE=… HL=… SP=… CYC=<LIC>`), convert streaming (un seul reader, 3 BufWriter ouverts en parallèle, troncature à N, erreur si raw trop court) ; format normalisé documenté dans le commentaire de module (lignes 8-19) ; CYC = valeur décimale du champ LIC= (lastinstructioncycles), explicitement PAS TOT ni reconstruction KB-21b — test cyc_comes_from_lic_not_tot le verrouille. cargo test -p xtask : 19 passed / 0 failed, dont 6 tests trace (normal_line_normalizes_exactly, cyc_comes_from_lic_not_tot, extracts_pc_op_and_registers, rejects_malformed_lines, convert_truncates_to_n_and_keeps_prefix, convert_errors_when_raw_too_short). cargo build -p xtask : exit 0 ; clippy --workspace --all-targets -- -D warnings : exit 0 (seul avertissement = note manifeste `[alias]` pré-existante, acceptable). Goldens régénérés de zéro (fichiers supprimés avant) : MAME run exit 0, trace_raw.log = 3 717 920 lignes ; `cargo xtask golden trace` exit 0 → exactement 1 000 / 100 000 / 1 000 000 lignes. Format : 0 ligne déviante du pattern normalisé dans chacun des 3 fichiers (grep -cvE = 0/0/0) ; head -n 1000 byte-identique dans les 3 (SHA256 commun 3c1b1d4c92b87a830aecca325b69acd3c870be581b36d126f9949cd4fca59fb1) ; première ligne identique partout : `0001 320170C3 AF=0044 BC=0000 DE=0000 HL=0000 SP=0000 CYC=4` (concordant avec la première ligne brute T0.5.3) ; dernière ligne : 1A5C … CYC=10 / 1AA3 … CYC=7 / 2078 D80E1006 AF=8001 BC=0100 DE=0000 HL=4121 SP=43FE CYC=4 ; les 3 fichiers se terminent par un newline ; git check-ignore → exit 1 sur les 3 (non ignorés). Budget B.6 : 1 mécanisme (convertisseur de trace normalisée), 2 fichiers source touchés (trace.rs + main.rs), implémentation = lignes 1-147 de trace.rs soit 136 lignes non-vides (< 150, tests exclus) + wiring main.rs (+11/-2), context pack = KB-28a + KB-28b (2 fiches ≤ 4).",
+    "deliverables": [
+      "crates/xtask/src/trace.rs",
+      "crates/xtask/src/main.rs",
+      "tests/golden/trace_boot_1000.log",
+      "tests/golden/trace_boot_100000.log",
+      "tests/golden/trace_boot_1000000.log"
+    ],
+    "notes": [
+      "Goldens régénérés indépendamment : les 3 fichiers existants ont été supprimés puis recréés par `cargo xtask golden run` + `cargo xtask golden trace`, prouvant que le convertisseur fonctionne de bout en bout.",
+      "Le raw trace (tests/golden/tmp/trace_raw.log, 3 717 920 lignes) est cohérent avec T0.5.3 ; la première ligne normalisée correspond à PC=0001 comme tranché T0.5.1.",
+      "Aucun commit effectué (rôle validateur) ; rien n'a été modifié hormis reports/T0.5.4.json et les goldens régénérés."
+    ]
+  }
+}
