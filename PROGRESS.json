@@ -829,11 +829,13 @@
     "KB-09",
     "KB-14"
    ],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
-   "commit": null,
-   "report": null,
-   "notes": []
+   "commit": "763f208",
+   "report": "reports/T0.4.13.json",
+   "notes": [
+    "livrables KB-08.md + KB-08-palette-prom.md (duplication flagguee pour l'humain, aucun supprime) table bit->composante corrigee R bits 0-2 / G bits 3-5 / B bits 6-7 (galaxian_v.cpp:243-253 = :286-300), KB-09.md cross-ref completee KB-23a/KB-23b/KB-22a/KB-25b, KB-14.md ordre confirme par screen_update_galaxian (galaxian_v.cpp:460-477) + cross-ref KB-26. GAP-01/02/03/05 -> FILLED avec kb_file (KB-26-render-order.md / KB-27-palette-prom.md / KB-25a-romset.md / KB-24a-inputs.md). validateur PASS (reports/T0.4.13.json), relecteur APPROVE 2 motifs non bloquants corriges pre-commit (glissements anglais + cross-ref KB-09 incompletee) -> out/T0.4.13/verdict.md."
+   ]
   },
   "T0.5.1": {
    "title": "Environnement MAME",
