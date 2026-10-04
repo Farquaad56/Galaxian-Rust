@@ -1,0 +1,29 @@
+{
+  "task": "T0.5.6",
+  "title": "Dump VRAM/OBJRAM (script Lua)",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "read tests/golden/mame/mem_dump.lua in full; diff against KB-28b §C block (docs/kb/KB-28b.md lines 80-95) → verbatim match",
+    "git status --short → no tracked-file change; new untracked deliverables = tests/golden/mame/mem_dump.lua + tests/golden/mem_dump_60.bin + tests/golden/mem_dump_600.bin (pre-existing snap/, ui.ini, cfg/ etc. untouched)",
+    "wc -c tests/golden/mem_dump_60.bin tests/golden/mem_dump_600.bin → 1280 each",
+    "sha256sum both .bin files (baseline before any run)",
+    "cargo xtask golden run -- -video none -sound none -autoboot_script ../tests/golden/mame/mem_dump.lua -seconds_to_run 15 → MAME exit 0 (run 1, ~9 s emulated); re-verified wc -c + sha256sum after run",
+    "git check-ignore tests/golden/mem_dump_60.bin tests/golden/mem_dump_600.bin → exit 1 (both versioned)",
+    "cargo xtask golden run -- ... (same command, run 2) → MAME exit 0; sha256sum both .bin files identical to run 1 and baseline"
+  ],
+  "validation": {
+    "criterion": "2 fichiers de 1 280 octets ; contenus different ; golden versionné + reproductible",
+    "result": "mem_dump.lua is verbatim KB-28b §C (diff clean): DUMPS={[60]=true,[600]=true}, LAST=600, VRAM loop for a = 0x5000, 0x53FF, OBJRAM loop for a = 0x5800, 0x58FF, unsigned read_u8 (not read_i8), io.open(path, \"wb\"), exit at n>=LAST. MAME run exit 0 on both runs; both goldens exist and are versioned (git check-ignore → exit 1). mem_dump_60.bin = exactly 1280 octets (SHA256 847ac13f11cd61e7f83cec994fb164729f14ea2826d0d36a987a02d031027d00); mem_dump_600.bin = exactly 1280 octets (SHA256 e07e543a3237274ab49fb2ba587b9c44420a8453ef08d0264d2c51980fcea406); the two differ in content. Second run byte-identical (same SHA256s as first run and pre-run baseline) → reproducible; binary mode \"wb\" confirmed by stable 1280-byte length across runs."
+  },
+  "deliverables": [
+    "tests/golden/mame/mem_dump.lua",
+    "tests/golden/mem_dump_60.bin",
+    "tests/golden/mem_dump_600.bin"
+  ],
+  "notes": [
+    "Budget B.6 holds: single mechanism (produce VRAM/OBJRAM goldens), exactly 1 source file livrable (mem_dump.lua) + its two golden outputs, 0 lines of Rust touched, context pack ≤ 4 KB fiches (KB-28a + KB-28b + KB-03).",
+    "Tranché T0.5.1 applied: script uses mem:read_u8 on the maincpu program space; no new mame_notes.md entry needed.",
+    "Pre-existing untracked MAME artifacts (snap/, ui.ini, cfg/) are not part of this task and were left untouched; nothing committed."
+  ]
+}
