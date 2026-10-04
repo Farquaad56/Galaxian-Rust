@@ -18,7 +18,7 @@ Les commits, `reports/` et `out/` existants portent les **anciens IDs** ; ne pas
 Anciens IDs encore cités ailleurs : ancien T0.2.2 (extraire KB-22..26) = T0.4.3 → T0.4.13 ; ancien T0.3.x (golden) = T0.5.x ; ancien T0.4.x (TestROM Factory) = T0.6.x ; ancien T1.4.4 (trace MAME) = T3.3.4 ; ancien T3.1.x = T3.1–T3.4 ; ancien T2.3.x (NMI) = T2.5.x.
 Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux** IDs.
 
-## Ce qui est fait (34 tâches DONE sur 355)
+## Ce qui est fait (35 tâches DONE sur 355)
 - **T0.1.1 Workspace Cargo / T0.1.2 Lints / T0.1.3 CI / T0.1.7 api-dump** ✅ (ancien T0.1.1 — commits `a1b8e81` + `9944062`)
   - 5 crates : z80, galaxian-core, galaxian-audio, galaxian-frontend, xtask ; edition 2021.
   - Lints par crate (cargo 1.98 refuse le mix workspace+per-crate) : clippy all=deny + pedantic=warn ; `unsafe_code="forbid"` sur z80/galaxian-core/galaxian-audio. *À vérifier au prochain passage : présence de `rustfmt.toml`/`clippy.toml` (exigés par T0.1.2).*
@@ -53,6 +53,10 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
   - KB-08 (×2 fichiers, duplication flagguée pour l'humain — aucun supprimé) : table bit→composante corrigée R bits 0-2 / G bits 3-5 / B bits 6-7 (galaxian_v.cpp:243-253 = décodage :286-300 concordants), doc fournie erronée sur bits 3/2. KB-09 : cross-ref complétée KB-23a/KB-23b/KB-22a/KB-25b (le codeur ne citait que KB-23a/KB-25b). KB-14 : ordre fond→étoiles→tilemap→sprites→shells/missile confirmé par `screen_update_galaxian` (galaxian_v.cpp:460-477) + cross-ref KB-26.
   - **GAP-01/02/03/05 → FILLED** avec kb_file : GAP-01→KB-26-render-order.md, GAP-02→KB-27-palette-prom.md, GAP-03→KB-25a-romset.md, GAP-05→KB-24a-inputs.md.
   - Codeur opencode (run mort en cours de tâche — LM Studio « Model unloaded by user or API request » après les 2 fichiers KB-08 ; resume run `out/T0.4.13/task_prompt_resume.md` a produit le reste). Validateur PASS (reports/T0.4.13.json) ; relecteur APPROVE 2 motifs non bloquants corrigés pré-commit (glissements anglais + cross-ref KB-09 incomplète) → out/T0.4.13/verdict.md.
+- **T0.5.1 Environnement MAME** ✅ (commits `5693456` spec v2 + `07d01ed` livrables + hash PROGRESS.json) — livrables `docs/mame_notes.md`, `docs/kb/KB-28a.md`, `docs/kb/KB-28b.md`. **GAP-08 clos** (spec Partie G).
+  - MAME v0.289 (mame0289) vérifié sur `tools\mame.exe` ; chaque ⚠ de KB-28a/b tranché, corrections marquées **[T0.5.1]**. Corrections notables : set Midway = **`galaxianm`/`galaxianmo`** (pas `galmidw`) → à répercuter T0.4.9/T3.1.7 ; première ligne de trace **PC=0001** (pas 0000) → corriger la validation T0.5.3 ; compteurs `totalcycles`/`lastinstructioncycles`/`cycles` existent (`symlist maincpu` → debug.log, pas stdout) ; `-no_coin_lockout` inexistant (crédits via champ `Coin 1`) ; bitmap MAME **768×224** (rotate 90, refresh 60.606061) ; WAV **sr=48000** (byte rate 96000 = 48000×2 — pas de discrepancy).
+  - Codeur opencode mort en cours de tâche (« No models loaded ») avant d'écrire les livrables → les 3 docs rédigés directement par l'instance parente depuis `golden/tmp/` (aucun re-run). Validateur PASS (reports/T0.5.1.json) ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) → out/T0.5.1/verdict.md.
+  - Commit `5693456` = refinements v2 de la spec pré-existants dans l'arborescence de travail (Part E KB-28a/b, étape 0.5 réécrite T0.5.x, GAP-08) — commit séparé pour garder le commit de livrables T0.5.1 dans le budget B.6.
 
 ## Piège B.7 — subagents parallèles sur LM Studio local
 - Les **subagents relecteurs lancés en parallèle** via `delegate_task` échouent systématiquement : le serveur LM Studio rejette la requête « context too large » à 16–25k tokens (fenêtre annoncée 135k) — les requêtes concurrentes se disputent la capacité. **Ne pas relancer en parallèle.**
@@ -60,7 +64,7 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
 - Les erreurs serveur ne consomment pas d'essais de revue (B.7.5) ; rien n'est renvoyé au codeur.
 
 ## Ce qu'il reste à faire
-- **En cours : T0.5.1 — Environnement MAME** (début étape 0.5, références MAME golden ; T0.5.2–T0.5.10 ensuite). Étape 0.4 terminée (T0.4.3–T0.4.13) : GAP-01/02/03/05 fermés par T0.4.13.
+- **En cours : T0.5.2 — Lanceur MAME** (étape 0.5, références MAME golden ; T0.5.3–T0.5.10 ensuite). T0.5.1 DONE (GAP-08 clos) ; étape 0.4 terminée (T0.4.3–T0.4.13) : GAP-01/02/03/05 fermés par T0.4.13.
 - Fin d'étape 0.1 : **T0.1.7 api-dump** — DONE (commit `a1b8e81+9****62`, report `reports/T0.1.1.json`). *migré depuis ancien T0.1.1.*
 - Restes partiels des tâches « déjà faites » : T0.4.2 (`MANIFEST.md` : version/commit MAME + index fonction→ligne ; SHA256SUMS déjà présent).
 - Étape 0.3 (T0.3.1–T0.3.8) : fiches Z80 KB-21a…g — **tâches documentaires, sources à fournir par l'humain** (*The Undocumented Z80 Documented*, tableaux Zilog).
