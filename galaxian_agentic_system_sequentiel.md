@@ -246,6 +246,7 @@ galaxian/
 │  ├─ golden/                références MAME (traces, CRC de frames, WAV)
 │  └─ third_party/           zexdoc/zexall, z80test, fuse, singlestep (téléchargés par xtask)
 ├─ roms/                     ROMs commerciales (NON versionnées, fournies par l'utilisateur)
+├─ tools/                    MAME (mame.exe, roms/, cfg/, snap/, docs/…) — NON versionné ; MAME se lance depuis ce dossier (KB-28a)
 ├─ docs/kb/                  fiches KB (Partie E), une par fichier
 └─ PROGRESS.json
 ```
@@ -288,12 +289,13 @@ Il **n'existe pas, à ma connaissance, de suite de ROMs de test dédiée au hard
 
 ## D.2 Génération des références MAME (à scripter dans `xtask golden`)
 
-Les golden sont produits par **MAME en ligne de commande**, avec trois outils : le **debugger** (`-debug` + `-debugscript`, commande `trace`) pour les traces CPU, des **scripts Lua** (`-autoboot_script`) pour les CRC de frames, les dumps mémoire et l'injection d'entrées, et `-wavwrite` pour l'audio. Toute la syntaxe de référence (profil de lancement commun, options, scripts prêts à adapter, règles de reproductibilité) est dans **KB-28a** (CLI) et **KB-28b** (scripts) ; elles sont la source unique : ne pas dupliquer les commandes ici.
+Les golden sont produits par **MAME en ligne de commande, sous Windows (PowerShell)**, avec le MAME du dossier `tools\` du dépôt (`tools\mame.exe`). Trois outils : le **debugger** (`-debug` + `-debugscript`, commande `trace`) pour les traces CPU, des **scripts Lua** (`-autoboot_script`) pour les CRC de frames, les dumps mémoire et l'injection d'entrées, et `-wavwrite` pour l'audio. Les commandes, le profil de lancement commun et les squelettes de scripts sont dans **KB-28a** (CLI) et **KB-28b** (scripts), qui sont la source unique : ne pas dupliquer les commandes ici.
 
 Principes :
-- **Un profil de lancement commun** (KB-28a §2) : dossiers de travail jetables recréés avant chaque exécution (`-cfg_directory`, `-nvram_directory`, `-snapshot_directory`, `-input_directory`, `-state_directory`), `-noreadconfig`, `-nothrottle`, `-frameskip 0 -noautoframeskip`, `-seconds_to_run`.
-- **Le temps est piloté par l'émulation, jamais par l'horloge réelle** : fin de run par `-seconds_to_run` (secondes *émulées*) ou par un compteur de frames dans le script Lua ; entrées injectées à des numéros de frame fixes.
-- *Les noms exacts de l'API Lua et la syntaxe du debugger varient selon la version de MAME : KB-28 distingue ✔ (confirmé par la doc 0.289) et ⚠ (à vérifier sur le binaire installé). La tâche T0.5.1 tranche tous les ⚠ et consigne le résultat dans `docs/mame_notes.md`.*
+- **MAME se lance depuis `tools\`** (répertoire courant = `tools`) : ses dossiers par défaut (`roms`, `cfg`, `snap`, `ini`, `plugins`…) sont relatifs au répertoire courant. Les sorties golden sont écrites dans `..\tests\golden\`.
+- **Un profil de lancement commun** (KB-28a §3) : dossiers de travail jetables recréés avant chaque exécution (`tests\golden\tmp\run\…`), `-noreadconfig`, `-nothrottle`, `-frameskip 0 -noautoframeskip`. Les dossiers `tools\cfg` et `tools\snap` de l'utilisateur ne sont jamais utilisés par les golden.
+- **Le temps est piloté par l'émulation, jamais par l'horloge réelle** : fin de run par `-seconds_to_run` (secondes *émulées*) ou par un compteur de frames dans le script Lua ; entrées injectées à des numéros de frame fixes. **Tout script Lua exige `-autoboot_delay 0`** : sans cela MAME retarde le chargement du script de quelques secondes émulées et les premières frames sont manquées.
+- *La syntaxe du debugger et l'API Lua varient selon la version de MAME : KB-28 distingue ✔ (confirmé par la doc) et ⚠ (à vérifier sur le binaire installé). La tâche T0.5.1 tranche tous les ⚠ et consigne le résultat dans `docs/mame_notes.md`.*
 
 Livrables de références à produire (étape 0.5) :
 - `golden/trace_boot_<N>.log` : N premières instructions (PC, opcode, AF BC DE HL SP, cycles **si le debugger les expose**, voir T0.5.4) après reset, ROM Galaxian.
@@ -301,6 +303,7 @@ Livrables de références à produire (étape 0.5) :
 - `golden/mem_dump_<N>.bin` : VRAM + OBJRAM aux frames 60 et 600.
 - `golden/audio_<scenario>.wav` (attract, fire, hit).
 - Pour chaque ROM de test maison : trace + CRC de frames (mêmes scripts, ROM différente).
+(`golden/` désigne `tests/golden/` à la racine du dépôt, cf. arbre C.1.)
 
 ## D.3 Niveaux de tolérance
 
@@ -607,80 +610,109 @@ La doc fournie **ne contient pas** la référence Z80 (GAP-04). Elle est découp
 Les fiches `KB-22a/b`, `23a/b`, `24a/b`, `25a/b`, `26`, `27` sont produites en étape 0.4 (extraction depuis `docs/mame_src/`).
 Les fiches `KB-28a/b` (mémento CLI MAME pour les golden) sont **fournies** ci-dessous et copiées en `docs/kb/` par T0.5.1.
 
-## KB-28a — Mémento CLI MAME pour les golden : profil commun, options, reproductibilité
-*Fiche fournie (pas extraite de `galaxian.cpp`). Source : documentation MAME 0.289 (docs.mamedev.org, pages « Command-line »). Légende : **✔** = confirmé par la doc ; **⚠** = à vérifier sur le binaire installé (T0.5.1) ; tant qu'un ⚠ n'est pas tranché, le traiter comme faux.*
+## KB-28a — Mémento CLI MAME (Windows / PowerShell) pour les golden
+*Fiche fournie (pas extraite de `galaxian.cpp`). Source : documentation MAME (docs.mamedev.org, pages « Command-line », relevées sur la version 0.289) ; le binaire du dépôt est `tools\mame.exe` et sa documentation locale est dans `tools\docs\` (c'est elle, avec `tools\whatsnew.txt`, qui fait foi pour la version installée). Légende : **✔** = confirmé par la doc ; **⚠** = à vérifier sur le binaire installé (T0.5.1) ; tant qu'un ⚠ n'est pas tranché, le traiter comme faux.*
 
-**1. Identifier le set et vérifier les ROMs** (✔ ; les verbes `-list*` écrivent sur stdout, rediriger avec `>`) :
+**1. Environnement**
 ```
-mame -help                                     # version de MAME
-mame -verifyroms galaxian                      # attendu : « romset galaxian is good »
-mame -listfull "galaxian*"                     # noms réels des sets ; guillemets obligatoires (le shell étendrait le motif)
-mame -listroms galaxian                        # noms, tailles, CRC, SHA1 des ROMs
-mame -listcrc galaxian
-mame -listxml galaxian > golden/galaxian.xml   # écran, ports IN0/IN1/IN2, DIP, chips
-mame -listdevices galaxian                     # tags des périphériques (:maincpu, :screen…)
-mame -showusage                                # résumé de toutes les options ; -showconfig = configuration effective
+H:\__Emulator__\Arcade_Galaxian_Rust\          racine du dépôt (R)
+├─ tools\            mame.exe + dossiers MAME (roms, cfg, snap, ini, hash, plugins, docs…) — NON versionné
+├─ tests\golden\     sorties golden (versionnées) ; golden\mame\ = scripts .dbg/.lua ; golden\tmp\ = jetable (ignoré par git)
 ```
-⚠ Le plan écrit `galmidw` pour le set Midway (T0.4.9, T3.1.7) ; la doc 0.289 liste `galaxianm` et `galaxianmo` (Midway set 1/2). Confirmer avec `-listfull` (GAP-08).
+- **Répertoire courant = `tools\`** pour tout lancement (✔ chemins relatifs résolus depuis le répertoire courant). Les ROMs sont dans `tools\roms` (`-rompath roms`, défaut ✔).
+- Binaire Windows natif : les options SDL (`-videodriver`, `-audiodriver`, `-scalemode`, `-keymap*`, `-gl_lib`, `-sdlvideofps`…) **ne s'appliquent pas** ; les options Windows (`-priority`, `-profile`, `-triplebuffer`, `-full_screen_*`, `-dual_lightgun`) sont sans utilité pour les golden.
+- Les dossiers existants `tools\cfg`, `tools\snap` (configuration et captures de l'utilisateur) ne sont **jamais** réutilisés par les golden : le profil du §3 redirige tout vers `tests\golden\tmp\run\`.
 
-**2. Profil de lancement commun** (toutes les recettes de KB-28b l'étendent) :
+**2. Vérifications préalables** (✔ ; lancer depuis `tools\`)
+```powershell
+Set-Location H:\__Emulator__\Arcade_Galaxian_Rust\tools
+.\mame.exe -help                          # version de MAME
+.\mame.exe -verifyroms galaxian           # attendu : « romset galaxian is good »
+.\mame.exe -listfull "galaxian*"          # noms réels des sets (Namco, Midway…)
+.\mame.exe -listroms galaxian             # noms, tailles, CRC, SHA1
+.\mame.exe -listcrc galaxian
+.\mame.exe -listdevices galaxian          # tags des périphériques (:maincpu, :screen…)
+.\mame.exe -listxml galaxian | Out-File -Encoding utf8 ..\tests\golden\galaxian.xml   # écran, ports IN0/IN1/IN2, DIP
+.\mame.exe -showusage | Out-File -Encoding utf8 ..\tests\golden\tmp\showusage.txt     # options réellement présentes
+.\mame.exe -showconfig | Out-File -Encoding utf8 ..\tests\golden\tmp\showconfig.ini   # configuration effective
 ```
-mame galaxian -rompath <roms> -noreadconfig \
-  -cfg_directory <RUN>/cfg -nvram_directory <RUN>/nvram -snapshot_directory <RUN>/snap \
-  -input_directory <RUN>/inp -state_directory <RUN>/sta \
-  -skip_gameinfo -nothrottle -frameskip 0 -noautoframeskip -norewind -noautosave \
-  -seconds_to_run <S>
+⚠ Le plan écrit `galmidw` pour le set Midway (T0.4.9, T3.1.7) ; la doc liste `galaxianm` et `galaxianmo` (Midway set 1/2) : confirmer avec `-listfull` (GAP-08).
+
+**3. Profil de lancement commun** (toutes les recettes de KB-28b l'étendent) :
+```powershell
+Set-Location H:\__Emulator__\Arcade_Galaxian_Rust\tools
+$G   = "..\tests\golden"
+$RUN = "$G\tmp\run"
+Remove-Item -Recurse -Force $RUN -ErrorAction SilentlyContinue      # état neuf avant CHAQUE exécution
+New-Item -ItemType Directory -Force "$RUN\cfg","$RUN\nvram","$RUN\snap","$RUN\inp","$RUN\sta" | Out-Null
+$common = @("galaxian","-rompath","roms","-noreadconfig",
+  "-cfg_directory","$RUN\cfg","-nvram_directory","$RUN\nvram","-snapshot_directory","$RUN\snap",
+  "-input_directory","$RUN\inp","-state_directory","$RUN\sta",
+  "-skip_gameinfo","-nothrottle","-frameskip","0","-noautoframeskip","-norewind","-noautosave",
+  "-autoboot_delay","0")
+# usage : & .\mame.exe @common <options propres à la recette> ; puis $LASTEXITCODE
 ```
-`<RUN>` = dossier jetable, **supprimé puis recréé avant chaque exécution** : `cfg/` conserve les DIP, les assignations d'entrées et la configuration d'écran (✔), un état résiduel fausse la reproductibilité. Chemins relatifs = relatifs au répertoire courant (✔) ; plusieurs chemins dans `-rompath` se séparent par `;` (✔, y compris sous Linux).
+`$RUN` est supprimé puis recréé à chaque exécution : `cfg\` conserve les DIP, les assignations d'entrées et la configuration d'écran (✔), un état résiduel fausse la reproductibilité. Le `@common` (splatting) passe le tableau comme arguments séparés.
 
 | Option | Effet (✔ doc) | Usage golden |
 |---|---|---|
-| `-seconds_to_run S` (`-str`) | arrête après S secondes **émulées** ; écrit une capture d'écran à la sortie (nom selon `-snapname`) | fin de run déterministe |
+| `-seconds_to_run S` (`-str`) | arrête après S secondes **émulées** ; écrit une capture d'écran à la sortie dans le dossier snap | fin de run déterministe |
 | `-nothrottle` | n'adapte plus la vitesse au temps réel | exécution rapide, temps émulé inchangé |
 | `-frameskip 0`, `-noautoframeskip` | aucune frame sautée | indispensable aux CRC d'écran |
-| `-video none` / `-sound none` | pas de fenêtre / pas de sortie audio (le son reste émulé) | ⚠ vérifier que `screen:pixels()` et `-wavwrite` fonctionnent encore ainsi ; sinon revenir à une fenêtre (`-window`, `-video` selon l'OS) |
-| `-bench N` | équivaut à `-str N -video none -sound none -nothrottle` | mesure de perf MAME, pas pour les golden |
-| `-autoboot_script f.lua` | charge un script Lua au démarrage | CRC, dumps, entrées |
+| `-autoboot_script f.lua` | charge un script Lua | CRC, dumps, entrées |
+| `-autoboot_delay 0` | la doc indique que le chargement du script est retardé de quelques secondes par défaut ; `0` = immédiat | **obligatoire avec tout script Lua** |
 | `-debug`, `-debugscript f` | active le debugger ; exécute le fichier de commandes au démarrage | traces CPU |
-| `-debugger qt\|windows\|osx\|imgui\|gdbstub` | module de debugger (défaut : `windows` sous Windows, `qt` sous Linux, `osx` sous macOS) | la trace ouvre une fenêtre de debugger ⚠ (CI Linux sans écran : serveur X virtuel, non couvert par la doc) |
-| `-wavwrite f.wav` | écrit la sortie finale du mixeur | audio ; durée du WAV = temps émulé |
-| `-samplerate N` | défaut 48000 | le fixer explicitement à 48000 ; ne pas toucher `-volume` (défaut 0 dB) |
-| `-snapname`, `-snapsize WxH`, `-snapview native`, `-norotate` | nom, taille, vue et rotation des captures | captures de diagnostic (⚠ effet de la rotation 90° du set) |
-| `-record f`, `-playback f`, `-exit_after_playback`, `-input_directory` | enregistre/rejoue les entrées | alternative aux entrées Lua ; la doc prévient que cela « ne marche pas de façon fiable pour tous les systèmes » et se désynchronise si cfg/nvram diffèrent |
+| `-debugger windows` | module de debugger ; sous Windows, `windows` (fenêtre Win32) est le défaut ✔, `qt` n'est pas inclus par défaut sous Windows ✔ | la trace ouvre une fenêtre de debugger ⚠ |
+| `-video none` / `-sound none` | pas de fenêtre / pas de sortie audio (le son reste émulé) | ⚠ vérifier que `screen:pixels()` et `-wavwrite` fonctionnent encore ainsi ; sinon retirer l'option |
+| `-wavwrite f.wav` | écrit la sortie finale du mixeur | audio ; durée du WAV = temps émulé ; ⚠ dossier de sortie (voir ci-dessous) |
+| `-samplerate 48000` | défaut 48000 ✔ | le fixer explicitement ; ne pas toucher `-volume` (défaut 0 dB) |
+| `-record f`, `-playback f`, `-exit_after_playback` | enregistre/rejoue les entrées | alternative aux entrées Lua ; la doc prévient que cela « ne marche pas de façon fiable pour tous les systèmes » et se désynchronise si cfg/nvram diffèrent |
 | `-log`, `-oslog`, `-verbose` | `error.log`, sortie système, diagnostics | à activer pour toute anomalie |
 | `-watchdog S` | tue MAME si aucune frame n'est mise à jour pendant S s | CI : 30 |
+| `-bench N` | équivaut à `-str N -video none -sound none -nothrottle` | mesure de perf MAME, pas pour les golden |
 
-Options **sans utilité** pour les golden : Windows (`-priority`, `-profile`, `-triplebuffer`, `-full_screen_*`, `-dual_lightgun`), SDL (`-videodriver`, `-audiodriver`, `-scalemode`, `-keymap*`, `-gl_lib`, `-sdlvideofps`…), rotation/flip, artwork, shaders, vecteurs, réseau/MIDI.
+⚠ **Dossier de sortie de `-wavwrite`** : la doc ne précise pas s'il est relatif au répertoire courant ou au dossier snap. À constater en T0.5.1 (essai `-wavwrite ..\tests\golden\tmp\t.wav` puis recherche du fichier dans `tools\`, `<RUN>\snap\`, `tests\golden\tmp\`) et à consigner.
 
-**3. Reproductibilité** (T0.5.10) : deux runs successifs avec le même binaire, le même set ROM (`-verifyroms` OK) et un `<RUN>` neuf doivent produire des fichiers **identiques à l'octet** (SHA256). Consigner dans `golden/MANIFEST.md` : version de MAME, ligne de commande exacte de chaque golden, CRC du set ROM (`-listcrc galaxian`), SHA256 de chaque fichier. Ne jamais utiliser `-rewind`, `-autosave`, `-state` pour un golden.
+**4. Pièges PowerShell**
+- Redirection `>` : Windows PowerShell 5.1 écrit en **UTF-16** (inutilisable pour diff/parseurs). Utiliser `| Out-File -Encoding utf8` (BOM en 5.1, sans BOM en PowerShell 7) ou `cmd /c ".\mame.exe … > fichier"` pour obtenir les octets bruts.
+- `;` sépare les commandes en PowerShell : tout argument qui en contient (ex. `-rompath "a;b"`) doit être entre guillemets.
+- Code retour : `$LASTEXITCODE` après `& .\mame.exe …`. ⚠ Si l'invite revient avant la fin de MAME (exécutable GUI), ajouter `| Out-Null` ou utiliser `Start-Process -Wait -NoNewWindow -PassThru` ; T0.5.1 constate le comportement.
+- Dans les scripts `.dbg` et `.lua`, écrire les chemins avec `/` (`../tests/golden/…`), acceptés par Windows, sans échappement de `\`.
+
+**5. Reproductibilité** (T0.5.10) : deux runs successifs avec le même binaire, le même set ROM (`-verifyroms` OK) et un `<RUN>` neuf doivent produire des fichiers **identiques à l'octet**. Hachage SHA256 par `Get-FileHash -Algorithm SHA256 <fichier>` (pas de dépendance Rust supplémentaire : un crate `sha2` serait une décision humaine, T0.1.4). Ne jamais utiliser `-rewind`, `-autosave`, `-state` pour un golden.
 
 ## KB-28b — Scripts golden : trace debugger, Lua (CRC, dumps, entrées), audio
-*Fiche fournie. Même légende que KB-28a (✔ doc / ⚠ à vérifier T0.5.1). Les scripts ci-dessous sont des **squelettes** à valider, pas du code final.*
+*Fiche fournie. Même légende que KB-28a. Les scripts ci-dessous sont des **squelettes** à valider en T0.5.1, pas du code final. Ils supposent : répertoire courant = `tools\`, profil `$common` de KB-28a §3 chargé, dossier `tests\golden\mame\` existant.*
 
-**A. Trace CPU (debugger)** : `golden/mame/trace.dbg` contient :
+**A. Trace CPU (debugger)** : fichier `tests/golden/mame/trace.dbg` :
 ```
-trace golden/tmp/trace_raw.log,maincpu,noloop,{tracelog "AF=%04X BC=%04X DE=%04X HL=%04X SP=%04X OP=%02X%02X%02X%02X ",af,bc,de,hl,sp,b@pc,b@(pc+1),b@(pc+2),b@(pc+3)}
+trace ../tests/golden/tmp/trace_raw.log,maincpu,noloop,{tracelog "AF=%04X BC=%04X DE=%04X HL=%04X SP=%04X OP=%02X%02X%02X%02X ",af,bc,de,hl,sp,b@pc,b@(pc+1),b@(pc+2),b@(pc+3)}
 go
 ```
-lancé par : `mame galaxian <profil> -debug -debugscript golden/mame/trace.dbg -seconds_to_run 10`.
-- ✔ `trace {fichier|OFF}[,cpu[,[noloop|logerror][,action]]]` ; **sans `noloop` les boucles sont condensées en une ligne : toujours `noloop`.** L'`action` entre accolades est exécutée avant chaque ligne ; `tracelog "format",args` écrit dans le fichier de trace ouvert (sans effet si aucun n'est ouvert).
-- ✔ Autres commandes utiles : `tracesym`, `traceflush`, `symlist <cpu>` (liste les symboles/registres), `source <fichier>`, `gvblank`, `gtime`, `quit`.
-- ✔ Avec `-debug`, MAME s'arrête dans le debugger après le reset logiciel initial : la trace est donc ouverte **avant** la première instruction (PC = 0000) et il faut `go` pour lancer l'exécution.
-- Une ligne de trace = texte de l'`action` puis `pc: désassemblage` ⚠ (format exact à relever en T0.5.1). Les 4 octets à `pc` couvrent les opcodes préfixés (CB/DD/ED/FD + DDCB/FDCB).
-- ⚠ **Cycles** : MAME n'écrit pas les cycles dans une trace par défaut. Chercher un symbole de compteur de cycles avec `symlist maincpu` (candidat : `cycles`) ; s'il existe, l'ajouter à l'`action`. **S'il n'existe pas, ne pas reconstruire les cycles à partir des tables KB-21b (raisonnement circulaire)** : laisser la colonne vide et comparer les instants via T2.5.7 (cycle d'entrée de l'NMI) ; décision humaine à consigner.
-- ⚠ Comportement des commandes placées après `go` dans un `-debugscript`, et vidage du fichier à la fin (`-seconds_to_run`) : vérifier que la dernière ligne est complète ; sinon ajouter `traceflush` ou passer par `gtime`.
-- Il n'existe pas d'option « N instructions » : produire plus de lignes que nécessaire, puis tronquer à N dans `xtask golden trace`. Ordre de grandeur : ~8 T-states par instruction en moyenne → 1 000 000 d'instructions ≈ 3 à 4 s émulées (⚠ à mesurer) ; viser `-seconds_to_run 10`.
+```powershell
+& .\mame.exe @common -debug -debugscript ..\tests\golden\mame\trace.dbg -seconds_to_run 10
+```
+- ✔ `trace {fichier|OFF}[,cpu[,[noloop|logerror][,action]]]` ; **sans `noloop` les boucles sont condensées en une ligne : toujours `noloop`.** L'`action` entre accolades est exécutée avant chaque ligne ; `tracelog "format",args` écrit dans le fichier de trace ouvert (sans effet si aucun n'est ouvert). Autres commandes : `tracesym`, `traceflush`, `symlist <cpu>`, `source`, `gvblank`, `gtime`, `quit`.
+- ✔ Avec `-debug`, MAME s'arrête dans le debugger après le reset logiciel initial : la trace est ouverte **avant** la première instruction (PC = 0000) ; `go` lance l'exécution, `-seconds_to_run` y met fin.
+- ⚠ Les lignes **après** `go` dans un `-debugscript` sont probablement exécutées immédiatement (sans attendre l'émulation) : ne rien mettre après `go` ; la fin du run vient de `-seconds_to_run`. À constater : la dernière ligne du fichier est-elle complète (fichier fermé à la sortie) ? Sinon tester `traceflush`.
+- ⚠ Syntaxe des expressions : `af bc de hl sp pc` (symboles du Z80, vérifier avec `symlist maincpu`), `b@adresse` (octet en mémoire). Une ligne de trace = texte de l'`action` puis `pc: désassemblage` (format exact à relever). Les 4 octets à `pc` couvrent les opcodes préfixés (CB/DD/ED/FD + DDCB/FDCB).
+- ⚠ **Cycles** : MAME n'écrit pas les cycles dans une trace par défaut. Chercher un symbole de compteur de cycles (`symlist maincpu`) ; s'il existe, l'ajouter à l'`action`. **S'il n'existe pas, ne pas reconstruire les cycles à partir des tables KB-21b (raisonnement circulaire)** : laisser la colonne vide, comparer les instants via T2.5.7 ; décision humaine à consigner.
+- ⚠ La fenêtre du debugger Windows s'ouvre ; `-video none` peut changer son comportement. Si `-seconds_to_run` n'arrête pas MAME sous debugger, utiliser `-watchdog` en filet et consigner.
+- Pas d'option « N instructions » : produire plus de lignes que nécessaire, puis tronquer à N dans `xtask golden trace`. Ordre de grandeur : ~8 T-states par instruction en moyenne → 1 000 000 d'instructions ≈ 3 à 4 s émulées (⚠ à mesurer) ; viser `-seconds_to_run 10`.
 
-**B. Lua : CRC de frames** (`golden/mame/frames_crc.lua`, lancé par `<profil> -video none -sound none -autoboot_script golden/mame/frames_crc.lua -seconds_to_run 15`, le `-seconds_to_run` n'étant qu'un filet de sécurité) :
+**B. Lua : CRC de frames** : fichier `tests/golden/mame/frames_crc.lua` :
 ```lua
-local targets = {[1]=true,[2]=true,[5]=true,[10]=true,[30]=true,[60]=true,[120]=true,[300]=true,[600]=true}
-local last = 600
-local scr = manager.machine.screens[":screen"]
-local out = assert(io.open("golden/frames_crc.txt", "w"))
+local OUT  = "../tests/golden/frames_crc.txt"
+local WANT = {1,2,5,10,30,60,120,300,600}
+local LAST = 600
+local want = {}
+for _, n in ipairs(WANT) do want[n] = true end
 local tbl = {}
 for i = 0, 255 do
   local c = i
-  for _ = 1, 8 do if c & 1 == 1 then c = (c >> 1) ~ 0xEDB88320 else c = c >> 1 end end
+  for _ = 1, 8 do
+    if c & 1 == 1 then c = (c >> 1) ~ 0xEDB88320 else c = c >> 1 end
+  end
   tbl[i] = c
 end
 local function crc32(s)
@@ -688,42 +720,81 @@ local function crc32(s)
   for i = 1, #s do c = tbl[(c ~ s:byte(i)) & 0xFF] ~ (c >> 8) end
   return c ~ 0xFFFFFFFF
 end
+local scr = manager.machine.screens[":screen"]
+local out = assert(io.open(OUT, "w"))
+local first = nil
 local function on_frame()
   local n = scr:frame_number()
-  if targets[n] then
-    out:write(string.format("%d %08X %dx%d\n", n, crc32(scr:pixels()), scr.width, scr.height))
+  if first == nil then
+    first = n
+    out:write(string.format("# first_frame_seen=%d size=%dx%d mame=%s\n", n, scr.width, scr.height, emu.app_version()))
   end
-  if n >= last then out:close(); manager.machine:exit() end
+  if want[n] then
+    out:write(string.format("%d %08X %dx%d\n", n, crc32(scr:pixels()), scr.width, scr.height))
+    out:flush()
+  end
+  if n >= LAST then out:close(); manager.machine:exit() end
 end
 emu.register_frame_done(on_frame, "frame")
 ```
-- ✔ `manager.machine.screens[":screen"]`, `emu.register_frame_done(fn, "frame")` (la doc Lua montre ces appels). ⚠ à confirmer sur le binaire : `scr:frame_number()` (et sa base, 0 ou 1), `scr:pixels()` (chaîne d'octets, format 32 bits/pixel), `scr.width`/`scr.height`, `manager.machine:exit()`. Si `register_frame_done` n'existe plus, chercher le notifieur de frame équivalent de la version installée.
-- ⚠ **Dimensions** : KB-02 indique un rendu interne ×3 en horizontal (`GALAXIAN_XSCALE = 3`) : le bitmap MAME visible est probablement **768×224**, pas 256×224. D'où la colonne `WxH` dans `frames_crc.txt`. Le CRC golden porte sur le bitmap MAME tel quel ; la sortie 256×224 de l'émulateur (Phase 4) devra être comparée à **ce** bitmap (768×224 avant réduction) : décision humaine à consigner en T0.5.5.
-- ⚠ `-video none` : vérifier que le bitmap est bien rendu (CRC ≠ CRC d'un écran noir) ; sinon exécuter avec fenêtre.
+```powershell
+& .\mame.exe @common -video none -sound none -autoboot_script ..\tests\golden\mame\frames_crc.lua -seconds_to_run 15
+```
+- ✔ `manager.machine.screens[":screen"]` et `emu.register_frame_done(fn, "frame")` figurent dans la doc Lua. ⚠ à confirmer sur le binaire : `scr:frame_number()` (et sa base, 0 ou 1), `scr:pixels()` (chaîne d'octets, 32 bits/pixel), `scr.width`/`scr.height`, `emu.app_version()`, `manager.machine:exit()`, disponibilité de `io` dans le sandbox Lua.
+- La première ligne `# first_frame_seen=…` prouve que le script a démarré à temps : si elle est > 1, `-autoboot_delay 0` n'a pas eu l'effet attendu et la frame 1 est manquée (tâche en échec).
+- ⚠ **Dimensions** : KB-02 indique un rendu interne ×3 en horizontal (`GALAXIAN_XSCALE = 3`) : le bitmap MAME visible est probablement **768×224**, pas 256×224. D'où la colonne `WxH`. Le CRC golden porte sur le bitmap MAME tel quel ; la comparaison avec la sortie 256×224 de l'émulateur (Phase 4) est une décision humaine (T0.5.5).
+- ⚠ `-video none` : vérifier que le bitmap est bien rendu (CRC ≠ CRC d'un écran noir) ; sinon retirer l'option (fenêtre visible).
 
-**C. Lua : dump VRAM + OBJRAM** (même mécanisme de hook ; adresses de KB-03) :
+**C. Lua : dump VRAM + OBJRAM** : fichier `tests/golden/mame/mem_dump.lua` (adresses de KB-03) :
 ```lua
+local DUMPS = {[60]=true, [600]=true}
+local LAST  = 600
+local scr = manager.machine.screens[":screen"]
 local mem = manager.machine.devices[":maincpu"].spaces["program"]
-local function dump(path, base, len)
-  local f = assert(io.open(path, "wb"))
-  for a = base, base + len - 1 do f:write(string.char(mem:read_u8(a))) end
-  f:close()
+local function dump(path)
+  local t = {}
+  for a = 0x5000, 0x53FF do t[#t+1] = string.char(mem:read_u8(a)) end   -- VRAM : 0x400 octets
+  for a = 0x5800, 0x58FF do t[#t+1] = string.char(mem:read_u8(a)) end   -- OBJRAM : 0x100 octets
+  local f = assert(io.open(path, "wb")); f:write(table.concat(t)); f:close()
 end
--- à la frame N : VRAM 0x5000..0x53FF (0x400 octets) puis OBJRAM 0x5800..0x58FF (0x100 octets)
--- fichier = 0x500 octets : VRAM d'abord, OBJRAM ensuite
+local function on_frame()
+  local n = scr:frame_number()
+  if DUMPS[n] then dump(string.format("../tests/golden/mem_dump_%d.bin", n)) end
+  if n >= LAST then manager.machine:exit() end
+end
+emu.register_frame_done(on_frame, "frame")
 ```
-⚠ `read_u8` (la doc montre `read_i8` ; les variantes non signées sont listables par complétion dans la console Lua `-console`).
+```powershell
+& .\mame.exe @common -video none -sound none -autoboot_script ..\tests\golden\mame\mem_dump.lua -seconds_to_run 15
+```
+Fichier = 0x500 (1 280) octets, VRAM d'abord, OBJRAM ensuite. ⚠ `read_u8` (la doc montre `read_i8` ; les variantes non signées se listent par complétion dans la console Lua, `-console`).
 
-**D. Audio** : `<profil> -wavwrite golden/audio_attract.wav -samplerate 48000 -seconds_to_run <S>` (✔). ⚠ avec `-sound none`, vérifier que le WAV n'est pas vide ; sinon garder le module audio par défaut de l'OS. Durée S fixée une fois pour toutes (T0.5.7) et consignée.
+**D. Audio** :
+```powershell
+& .\mame.exe @common -video none -sound none -wavwrite ..\tests\golden\audio_attract.wav -samplerate 48000 -seconds_to_run 20
+```
+✔ `-wavwrite` écrit la sortie finale du mixeur. ⚠ avec `-sound none`, vérifier que le WAV n'est pas vide ; sinon retirer l'option (module audio par défaut, `wasapi` sous Windows ✔). ⚠ dossier de sortie du WAV (KB-28a §3). Durée S fixée une fois pour toutes (T0.5.7).
 
-**E. Entrées scriptées (scénarios tir/explosion)** : dans le hook de frame, piloter les ports par numéro de frame (jamais par temps réel) :
+**E. Entrées scriptées (scénarios tir/explosion)** : fichier `tests/golden/mame/scenario_fire.lua` ; actions par numéro de frame, jamais par temps réel :
 ```lua
+local scr   = manager.machine.screens[":screen"]
 local ports = manager.machine.ioport.ports
-local function set(tag, field, v) ports[tag].fields[field]:set_value(v) end
--- ex. : frame 120 : set(":IN0", "Coin 1", 1) ; frame 125 : set(":IN0", "Coin 1", 0) ; start, tir, déplacements…
--- fin : manager.machine:exit() à une frame fixée
+local LAST  = 1500
+local ACTIONS = {                       -- frame = liste de {port, champ, valeur}
+  [120] = {{":IN0", "Coin 1", 1}},      -- ⚠ tags et libellés réels : KB-24a et tests/golden/galaxian.xml
+  [125] = {{":IN0", "Coin 1", 0}},
+}
+local function on_frame()
+  local n = scr:frame_number()
+  for _, a in ipairs(ACTIONS[n] or {}) do ports[a[1]].fields[a[2]]:set_value(a[3]) end
+  if n >= LAST then manager.machine:exit() end
+end
+emu.register_frame_done(on_frame, "frame")
 ```
-⚠ Les tags et libellés exacts des champs viennent de KB-24a et de `-listxml galaxian` (ne pas les deviner). Alternative ✔ : `-record golden/inp/<nom>` en jouant à la main, puis `-playback <nom> -exit_after_playback` (cfg/nvram vierges obligatoires) ; moins fiable, à n'utiliser que si Lua échoue.
+```powershell
+& .\mame.exe @common -video none -sound none -autoboot_script ..\tests\golden\mame\scenario_fire.lua -wavwrite ..\tests\golden\audio_fire.wav -samplerate 48000 -seconds_to_run 40
+```
+⚠ `ioport.ports[...].fields[...]:set_value`. Ne pas deviner les tags/libellés : les lire dans `-listxml` et KB-24a. Alternative ✔ : `-record` en jouant à la main puis `-playback <nom> -exit_after_playback` (cfg/nvram vierges obligatoires) ; moins fiable, à n'utiliser que si Lua échoue.
 
 ---
 
@@ -850,18 +921,18 @@ Choix d'ordonnancement :
 - **T0.4.13 — Clôture des lacunes.** ctx: KB-08, KB-09, KB-14 · tâche : corriger ces 3 fiches si les nouvelles fiches les contredisent ; passer GAP-01/02/03/05 à `FILLED` (avec `kb_file`) dans `PROGRESS.json`.
 
 ### Étape 0.5 — Références MAME (golden)
-> ctx par défaut : KB-28a, KB-28b · val par défaut : fichiers golden présents ; régénération reproductible (2 runs = octets identiques). Commandes et squelettes de scripts : **KB-28a/b** (et D.2). Les scripts vont dans `golden/mame/`, les sorties dans `golden/`, les dossiers jetables dans `golden/tmp/` (non versionné). Tout écart constaté sur le binaire installé est consigné dans `docs/mame_notes.md` (T0.5.1) puis reporté dans KB-28.
+> ctx par défaut : KB-28a, KB-28b · val par défaut : fichiers golden présents ; régénération reproductible (2 runs = octets identiques, KB-28a §5). **MAME = `tools\mame.exe`, lancé depuis `tools\` (PowerShell)** ; commandes et squelettes de scripts : KB-28a/b, D.2. Scripts dans `tests/golden/mame/`, sorties dans `tests/golden/` (= `golden/` dans tout ce document), dossiers jetables dans `tests/golden/tmp/` (non versionné). Tout écart constaté sur le binaire installé est consigné dans `docs/mame_notes.md` (T0.5.1) puis reporté dans KB-28.
 
-- **T0.5.1 — Environnement MAME.** *(tâche documentaire)* livr: `docs/mame_notes.md` + `docs/kb/KB-28a.md` + `docs/kb/KB-28b.md` (copie littérale de la Partie E, corrigée des écarts constatés) · spec: exécuter et consigner la sortie réelle de `mame -help` (version), `-verifyroms galaxian`, `-listfull "galaxian*"` (nom réel du set Midway), `-listroms galaxian`, `-listxml galaxian` (tags de l'écran et des ports), `-showusage` (présence des options du profil KB-28a §2) ; puis trancher **chaque ⚠** de KB-28a/b : syntaxe de `trace`/`tracelog`, existence d'un symbole de cycles (`symlist maincpu`), format d'une ligne de trace, comportement des commandes après `go`, API Lua (`register_frame_done`, `frame_number`, `pixels`, `width`/`height`, `read_u8`, `ioport.ports`, `exit`), dimensions réelles du bitmap, effet de `-video none` et `-sound none` sur `pixels()` et `-wavwrite` · val: `docs/mame_notes.md` donne un statut (✔ confirmé / ✘ infirmé + correction) à chaque ⚠. Ferme GAP-08.
-- **T0.5.2 — Lanceur MAME.** ctx: KB-28a · livr: `xtask golden run` (`crates/xtask/src/golden.rs`) : construit la ligne de commande du profil commun (§2), supprime et recrée `<RUN>`, accepte des arguments additionnels (script Lua, `-wavwrite`, `-seconds_to_run`…), affiche la commande exacte exécutée, propage le code retour de MAME · tests: construction des arguments (test unitaire, sans lancer MAME) · val: `cargo xtask golden run --dry-run` affiche la commande ; `cargo xtask golden run -- -verifyroms galaxian` rend 0.
-- **T0.5.3 — Trace CPU brute.** livr: `golden/mame/trace.dbg` (squelette KB-28b §A, corrigé par T0.5.1) · val: lancement via `xtask golden run -- -debug -debugscript golden/mame/trace.dbg -seconds_to_run 10` : fichier brut ≥ 1 000 lignes d'instructions, **première ligne à PC = 0000**, dernière ligne complète (fichier bien vidé).
-- **T0.5.4 — Trace CPU normalisée.** livr: `xtask golden trace` : lit la trace brute, tronque à N lignes, convertit en `golden/trace_boot_<N>.log` (PC, opcode, AF BC DE HL SP, cycles) ; N = 1 000 puis 100 000 puis 1 000 000 · spec: **si T0.5.1 a établi que le debugger n'expose aucun compteur de cycles, la colonne `cycles` reste vide : ne pas la reconstruire depuis KB-21b** (circulaire) ; décision humaine consignée dans `docs/mame_notes.md` · val: 3 fichiers, formats identiques, même préfixe de 1 000 lignes dans les trois.
-- **T0.5.5 — CRC de frames (script Lua).** ctx+ KB-02 · livr: `golden/mame/frames_crc.lua` (squelette KB-28b §B) → `golden/frames_crc.txt` (une ligne par frame : `frame CRC32 WxH`) aux frames 1, 2, 5, 10, 30, 60, 120, 300, 600 · spec: **l'humain tranche** à quelle résolution l'émulateur comparera (bitmap MAME ×3 = 768×224 ou réduction 256×224) et le consigne dans `docs/mame_notes.md` · val: 9 lignes ; CRC des frames 1 et 600 différents ; CRC ≠ celui d'un écran noir.
-- **T0.5.6 — Dump VRAM/OBJRAM (script Lua).** ctx+ KB-03 · livr: `golden/mame/mem_dump.lua` (KB-28b §C) → `golden/mem_dump_<N>.bin` (N = 60, 600), 0x500 octets : VRAM `5000-53FF` puis OBJRAM `5800-58FF` · val: 2 fichiers de 1 280 octets.
-- **T0.5.7 — Audio : attract.** livr: `golden/audio_attract.wav` (`-wavwrite`, `-samplerate 48000`, durée S fixée et consignée) · val: WAV non vide, durée = S.
-- **T0.5.8 — Audio : tir.** ctx+ KB-24a · livr: `golden/mame/scenario_fire.lua` (KB-28b §E : coin + start + tir à des numéros de frame fixes) → `golden/audio_fire.wav` · val: WAV non vide ; deux runs identiques.
-- **T0.5.9 — Audio : explosion.** ctx+ KB-24a · livr: `golden/mame/scenario_hit.lua` (scénario menant à un son HIT) → `golden/audio_hit.wav` · val: idem T0.5.8 ; **l'humain valide à l'écoute** que le scénario produit bien l'explosion.
-- **T0.5.10 — Reproductibilité.** ctx: KB-28a · livr: `xtask golden all` + `golden/MANIFEST.md` · val: `xtask golden all` deux fois → SHA256 identiques ; le manifeste consigne la version de MAME, la ligne de commande exacte de chaque golden, le CRC du set ROM (`-listcrc galaxian`) et le SHA256 de chaque fichier (KB-28a §3).
+- **T0.5.1 — Environnement MAME.** *(tâche documentaire, exécutée à la main par l'humain, sorties collées à l'agent)* livr: `docs/mame_notes.md` + `docs/kb/KB-28a.md` + `docs/kb/KB-28b.md` (copie de la Partie E, corrigée des écarts constatés) · spec: lancer les commandes de KB-28a §2 (`-help`, `-verifyroms galaxian`, `-listfull "galaxian*"`, `-listroms`, `-listcrc`, `-listdevices`, `-listxml`, `-showusage`) depuis `tools\` et consigner leurs sorties ; lire `tools\docs\` et `tools\whatsnew.txt` (version installée) ; **trancher chaque ⚠** de KB-28a/b : `mame.exe` bloque-t-il l'invite (`$LASTEXITCODE`) ? nom réel du set Midway ; syntaxe de `trace`/`tracelog` et `symlist maincpu` (symboles Z80, compteur de cycles) ; format d'une ligne de trace ; effet des lignes après `go` ; fichier de trace complet à la sortie ; comportement de la fenêtre debugger avec `-seconds_to_run` ; API Lua (`register_frame_done`, `frame_number` et sa base, `pixels`, `width`/`height`, `read_u8`, `ioport.ports`, `exit`, `io.open`) ; **`first_frame_seen` avec `-autoboot_delay 0`** ; dimensions réelles du bitmap ; effet de `-video none` et `-sound none` sur `pixels()` et `-wavwrite` ; dossier de sortie de `-wavwrite` · val: `docs/mame_notes.md` donne un statut (✔ confirmé / ✘ infirmé + correction) à chaque ⚠. Ferme GAP-08.
+- **T0.5.2 — Lanceur MAME.** ctx: KB-28a · livr: `xtask golden run` (`crates/xtask/src/golden.rs`) + entrées `tools/` et `tests/golden/tmp/` dans `.gitignore` · spec: trouve la racine du dépôt ; MAME = `<racine>\tools\mame.exe` (surcharge par la variable d'environnement `MAME_DIR`) ; **répertoire courant du processus = dossier de MAME** ; supprime et recrée `tests\golden\tmp\run\{cfg,nvram,snap,inp,sta}` ; construit le profil commun de KB-28a §3 (liste d'arguments identique, y compris `-autoboot_delay 0`) ; accepte des arguments additionnels après `--` ; `--dry-run` affiche la commande exacte ; propage le code retour de MAME · tests: construction des arguments (test unitaire, sans lancer MAME) · val: `cargo xtask golden run --dry-run` affiche la commande ; `cargo xtask golden run -- -verifyroms galaxian` rend 0.
+- **T0.5.3 — Trace CPU brute.** livr: `tests/golden/mame/trace.dbg` (KB-28b §A, corrigé par T0.5.1) · commande : `& .\mame.exe @common -debug -debugscript ..\tests\golden\mame\trace.dbg -seconds_to_run 10` (ou `cargo xtask golden run -- -debug -debugscript … -seconds_to_run 10`) · val: `tests\golden\tmp\trace_raw.log` ≥ 1 000 lignes d'instructions, **première ligne à PC = 0000**, dernière ligne complète ; deux runs : 100 000 premières lignes identiques.
+- **T0.5.4 — Trace CPU normalisée.** livr: `xtask golden trace` : lit `tests/golden/tmp/trace_raw.log`, tronque à N lignes, convertit en `tests/golden/trace_boot_<N>.log` (PC, opcode, AF BC DE HL SP, cycles) ; N = 1 000 puis 100 000 puis 1 000 000 (⚠ ce dernier exige un `-seconds_to_run` suffisant, voir KB-28b §A) · spec: **si T0.5.1 a établi que le debugger n'expose aucun compteur de cycles, la colonne `cycles` reste vide : ne pas la reconstruire depuis KB-21b** (circulaire) ; décision humaine consignée dans `docs/mame_notes.md` · val: 3 fichiers, formats identiques, même préfixe de 1 000 lignes dans les trois.
+- **T0.5.5 — CRC de frames (script Lua).** ctx+ KB-02 · livr: `tests/golden/mame/frames_crc.lua` (KB-28b §B) → `tests/golden/frames_crc.txt` (ligne d'en-tête `# first_frame_seen=…`, puis `frame CRC32 WxH`) aux frames 1, 2, 5, 10, 30, 60, 120, 300, 600 · commande : `& .\mame.exe @common -video none -sound none -autoboot_script ..\tests\golden\mame\frames_crc.lua -seconds_to_run 15` · spec: **l'humain tranche** à quelle résolution l'émulateur comparera (bitmap MAME ×3, probablement 768×224, ou réduction 256×224) et le consigne dans `docs/mame_notes.md` · val: 9 lignes de données ; `first_frame_seen` ≤ 1 ; CRC des frames 1 et 600 différents ; CRC ≠ celui d'un écran noir.
+- **T0.5.6 — Dump VRAM/OBJRAM (script Lua).** ctx+ KB-03 · livr: `tests/golden/mame/mem_dump.lua` (KB-28b §C) → `tests/golden/mem_dump_<N>.bin` (N = 60, 600), 0x500 octets : VRAM `5000-53FF` puis OBJRAM `5800-58FF` · commande : `& .\mame.exe @common -video none -sound none -autoboot_script ..\tests\golden\mame\mem_dump.lua -seconds_to_run 15` · val: 2 fichiers de 1 280 octets (`(Get-Item …).Length`), contenus différents.
+- **T0.5.7 — Audio : attract.** livr: `tests/golden/audio_attract.wav` · commande : `& .\mame.exe @common -video none -sound none -wavwrite ..\tests\golden\audio_attract.wav -samplerate 48000 -seconds_to_run <S>` ; S choisi par l'humain (point de départ suggéré : 20 s) et consigné ; si le WAV n'apparaît pas au chemin demandé, `xtask` le déplace depuis l'emplacement constaté en T0.5.1 · val: WAV non vide, durée = S.
+- **T0.5.8 — Audio : tir.** ctx+ KB-24a · livr: `tests/golden/mame/scenario_fire.lua` (KB-28b §E : coin + start + tir à des numéros de frame fixes) → `tests/golden/audio_fire.wav` · commande : voir KB-28b §E · val: WAV non vide ; deux runs identiques.
+- **T0.5.9 — Audio : explosion.** ctx+ KB-24a · livr: `tests/golden/mame/scenario_hit.lua` (scénario menant à un son HIT) → `tests/golden/audio_hit.wav` · commande : comme T0.5.8 avec ce script · val: idem T0.5.8 ; **l'humain valide à l'écoute** que le scénario produit bien l'explosion.
+- **T0.5.10 — Reproductibilité.** ctx: KB-28a · livr: `xtask golden all` (enchaîne T0.5.3 à T0.5.9) + `tests/golden/mame/hash.ps1` (`Get-FileHash -Algorithm SHA256` sur tous les golden) + `tests/golden/MANIFEST.md` · val: `cargo xtask golden all` deux fois, puis `hash.ps1` : SHA256 identiques ; le manifeste consigne la version de MAME (`.\mame.exe -help`), la ligne de commande exacte de chaque golden, le CRC du set ROM (`-listcrc galaxian`) et le SHA256 de chaque fichier.
 
 ### Étape 0.6 — TestROM Factory
 - **T0.6.1 — Assembleur.** livr: intégration de l'assembleur Z80 **choisi par l'humain** (sjasmplus/z80asm ou mini-assembleur Rust) · val: `xtask test-roms build` assemble `tests/roms/hello/hello.asm`.
@@ -1383,6 +1454,6 @@ Chaque ROM : source `.asm` commentée, `.bin`, trace MAME, CRC de frames, et un 
 | GAP-05 | Ports d'entrée IN0/IN1/IN2 et DIPs | Entrées | `INPUT_PORTS_START` dans `galaxian.cpp` (T0.4.7, T0.4.8) |
 | GAP-06 | Cycle exact de l'NMI par rapport au début du VBLANK (ligne 240 ?) | NMI | Trace MAME (T2.5.7) |
 | GAP-07 | Absence de ROMs de test Galaxian publiques | Validation | TestROM Factory (étape 0.6 + ROMs du catalogue) |
-| GAP-08 | Syntaxe MAME réelle non vérifiée sur le binaire (`trace`, API Lua, `-wavwrite`, effet de `-video none`/`-sound none`) ; nom du set Midway (`galmidw` vs `galaxianm`) ; dimensions du bitmap MAME (rendu ×3) ; présence d'un compteur de cycles dans la trace | Étape 0.5, Phases 3-4 | T0.5.1 (`docs/mame_notes.md`, correction de KB-28a/b, T0.4.9 et T3.1.7 si le nom du set change) |
+| GAP-08 | Syntaxe MAME réelle non vérifiée sur `tools\mame.exe` (`trace`, API Lua, `-wavwrite`, effet de `-video none`/`-sound none`, `-autoboot_delay 0`) ; nom du set Midway (`galmidw` vs `galaxianm`) ; dimensions du bitmap MAME (rendu ×3) ; présence d'un compteur de cycles dans la trace ; dossier de sortie de `-wavwrite` | Étape 0.5, Phases 3-4 | T0.5.1 (`docs/mame_notes.md`, correction de KB-28a/b, T0.4.9 et T3.1.7 si le nom du set change) |
 
 **Règle** : si une tâche dépend d'une lacune `OPEN`, l'Orchestrateur la marque `BLOCKED`, arrête la chaîne et propose d'insérer la tâche de comblement juste avant dans `order` (voir B.5).
