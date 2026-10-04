@@ -1,0 +1,30 @@
+{
+  "task": "T0.5.2",
+  "title": "Lanceur MAME",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "cargo build -p xtask (exit 0; only the known benign 'unused manifest key: alias' warning)",
+    "cargo test -p xtask (exit 0; 13 passed, 0 failed — incl. golden::tests::{common_profile_matches_kb28a, extra_args_appended_in_order, mame_path_honors_mame_dir_override})",
+    "cargo clippy --workspace --all-targets -- -D warnings (exit 0)",
+    "rm -rf tests/golden/tmp/run && cargo xtask golden run --dry-run (exit 0; displayed executable H:\\__Emulator__\\Arcade_Galaxian_Rust\\tools\\mame.exe, working dir = tools folder, full 24-arg list matching KB-28a §3 exactly; tests/golden/tmp/run absent afterwards)",
+    "cargo xtask golden run -- -verifyroms galaxian (exit 0; output contains 'romset galaxian is good'; tests/golden/tmp/run recreated with cfg, nvram, snap, inp, sta subdirs)",
+    "MAME_DIR=/nonexistent/dir cargo xtask golden run --dry-run (exit 1: 'MAME executable not found') and MAME_DIR=<root>/tools variant (resolves to same executable) — override verified at runtime",
+    "git diff crates/xtask/src/main.rs .gitignore; git diff crates/xtask/Cargo.toml (empty — no dependency changes)"
+  ],
+  "validation": {
+    "criterion": "cargo xtask golden run --dry-run displays the command; cargo xtask golden run -- -verifyroms galaxian rend 0 ; profil commun KB-28a section 3 exact ; MAME_DIR override ; code retour propage",
+    "result": "Both validation commands pass with exact expected behavior. (1) Dry-run after deleting tests/golden/tmp/run: exit 0, displays executable path <root>/tools/mame.exe, working directory = the tools folder containing mame.exe, and the full argument list identical to KB-28a §3 in order — galaxian, -rompath roms, -noreadconfig, -cfg_directory/-nvram_directory/-snapshot_directory/-input_directory/-state_directory pointing at tests/golden/tmp/run/{cfg,nvram,snap,inp,sta}, -skip_gameinfo, -nothrottle, -frameskip 0, -noautoframeskip, -norewind, -noautosave, -autoboot_delay 0 — without launching MAME or touching the filesystem (run dir confirmed absent afterwards). (2) Real run with extra args after --: exit code 0, output contains 'romset galaxian is good', and tests/golden/tmp/run was deleted then recreated with all 5 subdirs before launch. MAME_DIR override honored at runtime (bogus dir → clean error exit 1; real dir → same executable). Exit-code propagation implemented via status.code().unwrap_or(1); launcher errors return 1. Unit tests are pure argument-construction/path-logic tests (common_profile, build_args, mame_path) — no MAME launch, no filesystem writes. Clippy -D warnings clean across the workspace; all 13 xtask tests green."
+  },
+  "deliverables": [
+    "crates/xtask/src/golden.rs",
+    "crates/xtask/src/main.rs",
+    ".gitignore"
+  ],
+  "notes": [
+    "Budget B.6 holds: single mechanism (MAME golden launcher), 2 source files touched besides .gitignore (golden.rs new ~135 lines of implementation + main.rs wiring diff of a few lines; total well under 150 new impl lines), no external dependencies added to xtask (crates/xtask/Cargo.toml unchanged, std-only).",
+    ".gitignore adds tools/ and tests/golden/tmp/ as unversioned — consistent with the MAME toolchain being a local artifact.",
+    "The pre-existing orphan crates/xtask/src/golden_trace/mod.rs is not wired into main.rs; intentionally left untouched per task context (out of scope, not flagged).",
+    "Minor observation (non-blocking): --dry-run placed after -- is filtered out of the MAME argument list by design (documented in code comment); harmless and sensible."
+  ]
+}

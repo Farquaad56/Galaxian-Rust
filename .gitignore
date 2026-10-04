@@ -10,3 +10,7 @@ roms/*
 .DS_Store
 .idea/
 .vscode/
+
+# MAME toolchain (not versioned) and its disposable golden scratch dir.
+tools/
+tests/golden/tmp/

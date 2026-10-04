@@ -2,11 +2,12 @@
 //!
 //! Subcommands: `api-dump`, `run-fuse`, `run-zex`, `mame-diff`, `test-roms`,
 //! `golden`, `progress-check`, `fetch-third-party`.
-//! Only `api-dump` is functional for now (T0.1.7); the rest print a stub
-//! message and return 0 (T0.1.6).
+//! Functional so far: `api-dump` (T0.1.7), `golden run` (T0.5.2),
+//! `progress-check`; the rest print a stub message and return 0 (T0.1.6).
 
 #![forbid(unsafe_code)]
 
+mod golden;
 mod progress;
 
 use std::path::{Path, PathBuf};
@@ -99,7 +100,7 @@ fn main() {
     match args.first().map(String::as_str) {
         Some("api-dump") => api_dump(),
         Some(name @ ("run-fuse" | "run-zex" | "mame-diff" | "test-roms")) => stub(name),
-        Some("golden") => stub("golden"),
+        Some("golden") => std::process::exit(golden::run(&args[1..])),
         Some("progress-check") => {
             let path = args.get(1).map(String::as_str);
             if let Err(errors) = progress::check(path) {
