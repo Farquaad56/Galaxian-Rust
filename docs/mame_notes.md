@@ -115,7 +115,7 @@ Les lignes **après** `go` dans un `-debugscript` s'exécutent **immédiatement*
 Oui. Le fichier se termine par une ligne **complète** + `\n` (dernier octet = `0x0A`). Exemple : dernière ligne `AF=0120 … OP=0FD80E10 2077: rrca`. Pas besoin de `traceflush`.
 
 ### 3.8 Fenêtre debugger avec `-seconds_to_run` — ✔
-Le debugger **Windows** s'ouvre par défaut (`-debugger windows`). Pour un run headless, utiliser **`-debugger none`** : MAME tourne sans fenêtre et le trace file est écrit normalement (test `golden/tmp/runDN`, exit 0). `-seconds_to_run` arrête MAME correctement sous debugger.
+Le debugger **Windows** s'ouvre par défaut (`-debugger windows`). ~~Pour un run headless, utiliser `-debugger none` : MAME tourne sans fenêtre et le fichier de trace est écrit normalement (test `golden/tmp/runDN`, exit 0).~~ → **corrigé [T0.5.3]** : `-debugger none` n'exécute JAMAIS `-debugscript` — le test `runDN` ne vérifiait que l'exit code, pas la sortie de trace ; MAME saute le script entièrement et le fichier de trace n'est PAS écrit. Seul le debugger **windows** par défaut exécute le script (la fenêtre s'ouvre brièvement) ; `-seconds_to_run` arrête MAME correctement sous debugger.
 
 ### 3.9 API Lua — ✔
 Confirmé sur le binaire (`golden/tmp/lua_api*.lua` + sorties) :
@@ -148,7 +148,7 @@ Le fichier est écrit au **chemin donné, relatif au répertoire courant** (pas 
 L'option **n'existe pas** dans MAME 0.289 (`Error: unknown option: -no_coin_lockout`). Pour forcer des crédits sans coin lockout, fixer le champ `Coin 1` via Lua (§3.9), pas via un flag CLI.
 
 ## 4. Conséquences pour les tâches suivantes
-- **T0.5.2** (lanceur) : le profil commun de KB-28a §3 est valide tel quel ; ajouter `-debugger none` aux runs headless.
+- **T0.5.2** (lanceur) : le profil commun de KB-28a §3 est valide tel quel ; ~~ajouter `-debugger none` aux runs headless~~ → **corrigé [T0.5.3]** : ne PAS ajouter `-debugger none` — il saute le script de trace entièrement ; conserver le debugger `windows` par défaut pour les runs de trace (la fenêtre s'ouvre brièvement, MAME s'arrête via `-seconds_to_run`).
 - **T0.5.3** (trace brute) : première ligne à PC=0001 (pas 0000) — corriger la validation.
 - **T0.5.4** (trace normalisée) : colonne `cycles` remplissable depuis `totalcycles`/`lastinstructioncycles`.
 - **T0.5.5** (CRC frames) : bitmap 768×224 ; `first_frame_seen=0` attendu avec `-autoboot_delay 0`.
