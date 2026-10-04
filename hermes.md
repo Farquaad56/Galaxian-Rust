@@ -18,7 +18,7 @@ Les commits, `reports/` et `out/` existants portent les **anciens IDs** ; ne pas
 Anciens IDs encore cités ailleurs : ancien T0.2.2 (extraire KB-22..26) = T0.4.3 → T0.4.13 ; ancien T0.3.x (golden) = T0.5.x ; ancien T0.4.x (TestROM Factory) = T0.6.x ; ancien T1.4.4 (trace MAME) = T3.3.4 ; ancien T3.1.x = T3.1–T3.4 ; ancien T2.3.x (NMI) = T2.5.x.
 Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux** IDs.
 
-## Ce qui est fait (38 tâches DONE sur 355)
+## Ce qui est fait (39 tâches DONE sur 355)
 - **T0.1.1 Workspace Cargo / T0.1.2 Lints / T0.1.3 CI / T0.1.7 api-dump** ✅ (ancien T0.1.1 — commits `a1b8e81` + `9944062`)
   - 5 crates : z80, galaxian-core, galaxian-audio, galaxian-frontend, xtask ; edition 2021.
   - Lints par crate (cargo 1.98 refuse le mix workspace+per-crate) : clippy all=deny + pedantic=warn ; `unsafe_code="forbid"` sur z80/galaxian-core/galaxian-audio. *À vérifier au prochain passage : présence de `rustfmt.toml`/`clippy.toml` (exigés par T0.1.2).*
@@ -69,6 +69,10 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
   - Lit `tests/golden/tmp/trace_raw.log` (produit par T0.5.3), tronque à N et convertit en `tests/golden/trace_boot_{1000,100000,1000000}.log` au format normalisé fixe : `<PC> <OP> AF=… BC=… DE=… HL=… SP=… CYC=<LIC>` (CYC = valeur décimale du champ LIC/lastinstructioncycles — tranché T0.5.1, PAS reconstruit depuis KB-21b ; disassemblage supprimé ; un seul passage streaming).
   - 3 goldens versionnés : 1 000 / 100 000 / 1 000 000 lignes, formats identiques (0 ligne déviante), premières 1 000 lignes byte-identiques dans les 3 (SHA256 `3c1b1d4c…`) ; non ignorés par git.
   - Codeur opencode (run OK). Validateur PASS (reports/T0.5.4.json) — subagent frais, seul : goldens régénérés de zéro (supprimés puis recréés), 19/19 tests, clippy `-D warnings` propre ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) → out/T0.5.4/verdict.md.
+- **T0.5.5 CRC de frames (script Lua)** ✅ (commit `8b07d6d` + hash PROGRESS.json) — livrable `tests/golden/mame/frames_crc.lua` (verbatim KB-28b §B : liste de frames {1,2,5,10,30,60,120,300,600}, table CRC32 0xEDB88320) + golden versionné `tests/golden/frames_crc.txt` produit par MAME via le lanceur T0.5.2 (`cargo xtask golden run -- -video none -sound none -autoboot_script ../tests/golden/mame/frames_crc.lua -seconds_to_run 15`).
+  - Golden : en-tête `# first_frame_seen=0 size=768x224 mame=0.289` puis 9 lignes de données `<frame> <CRC32> 768x224` ; CRC frame 1 (`9DBAF643`) ≠ frame 600 (`D51D3DA7`) ; aucune ligne ne vaut la référence écran noir (CRC32 de 688 128 octets nuls = `3D53E321`, cross-checké zlib) — le bitmap est réellement rendu. Deux runs byte-identiques (SHA256 `da6ab653…`).
+  - Tranché T0.5.1 : le CRC porte sur le bitmap MAME **768×224 tel quel** ; la décision humaine sur la résolution (768×224 vs 256×224) est déjà consignée par T0.5.1 → pas de nouvelle entrée mame_notes.md.
+  - Codeur opencode (run OK). Validateur PASS (reports/T0.5.5.json) — subagent frais, seul ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) → out/T0.5.5/verdict.md.
 
 ## Piège B.7 — subagents parallèles sur LM Studio local
 - Les **subagents relecteurs lancés en parallèle** via `delegate_task` échouent systématiquement : le serveur LM Studio rejette la requête « context too large » à 16–25k tokens (fenêtre annoncée 135k) — les requêtes concurrentes se disputent la capacité. **Ne pas relancer en parallèle.**
@@ -76,7 +80,7 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
 - Les erreurs serveur ne consomment pas d'essais de revue (B.7.5) ; rien n'est renvoyé au codeur.
 
 ## Ce qu'il reste à faire
-- **En cours : T0.5.5 — CRC de frames (script Lua)** (étape 0.5, références MAME golden ; T0.5.6–T0.5.10 ensuite). T0.5.4 DONE (trace normalisée `xtask golden trace` + 3 goldens) ; étape 0.4 terminée (T0.4.3–T0.4.13) : GAP-01/02/03/05 fermés par T0.4.13.
+- **En cours : T0.5.6 — Dump VRAM/OBJRAM (script Lua)** (étape 0.5, références MAME golden ; T0.5.7–T0.5.10 ensuite). T0.5.5 DONE (CRC de frames `frames_crc.lua` + golden) ; étape 0.4 terminée (T0.4.3–T0.4.13) : GAP-01/02/03/05 fermés par T0.4.13.
 - Fin d'étape 0.1 : **T0.1.7 api-dump** — DONE (commit `a1b8e81+9****62`, report `reports/T0.1.1.json`). *migré depuis ancien T0.1.1.*
 - Restes partiels des tâches « déjà faites » : T0.4.2 (`MANIFEST.md` : version/commit MAME + index fonction→ligne ; SHA256SUMS déjà présent).
 - Étape 0.3 (T0.3.1–T0.3.8) : fiches Z80 KB-21a…g — **tâches documentaires, sources à fournir par l'humain** (*The Undocumented Z80 Documented*, tableaux Zilog).
