@@ -843,11 +843,13 @@
     "T0.4.13"
    ],
    "ctx": [],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
-   "commit": null,
-   "report": null,
-   "notes": []
+   "commit": "07d01ed",
+   "report": "reports/T0.5.1.json",
+   "notes": [
+    "livrables docs/mame_notes.md (notes d'environnement MAME v0.289, §3 tranché chaque ⚠ de KB-28a/b) + docs/kb/KB-28a.md + docs/kb/KB-28b.md (mémo CLI/scripts golden, corrections marquées [T0.5.1]). Corrections notables : set Midway = galaxianm/galaxianmo (pas galmidw), premiere ligne de trace PC=0001 (pas 0000), compteurs totalcycles/lastinstructioncycles/cycles existants (symlist maincpu -> debug.log), -no_coin_lockout inexistant, bitmap MAME 768x224 (rotate 90, refresh 60.606061), WAV sr=48000 (byte rate 96000 = 48000 x 2). GAP-08 clos (spec Partie G). validateur PASS (reports/T0.5.1.json), relecteur APPROVE mene sequentiellement par l'instance parente (solution B.7) -> out/T0.5.1/verdict.md."
+   ]
   },
   "T0.5.2": {
    "title": "Lanceur MAME",
