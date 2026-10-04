@@ -1,0 +1,34 @@
+{
+  "task": "T0.4.13",
+  "title": "Clôture des lacunes (KB-08/09/14 + GAP-01/02/03/05)",
+  "status": "PASS",
+  "attempts": 1,
+  "commands_run": [
+    "cargo xtask progress-check -> EXIT=0 sur PROGRESS.json mis a jour (GAP-01/02/03/05 FILLED + kb_file valid JSON)",
+    "sed -n '228,230p' docs/mame_src/galaxian_v.cpp (verif RGB_MAXIMUM :229 = 224)",
+    "sed -n '240,242p' (verif rgb_resistances[3]={1000,470,220} :241)",
+    "sed -n '243,253p' (verif commentaire bit 7->bit 0 : R bits 0-2 / G bits 3-5 / B bits 6-7 ; doc fournee erronee sur bits 3/2)",
+    "sed -n '286,300p' (verif decodage palette concordant : r=combine_weights(rweights,bit0..2) :289 / g=bits 3-5 :294 / b=bits 6-7 :300)",
+    "sed -n '258,266p' (verif etoiles paire 150/100 Ohm par composante :259-261 ; coquilles/missile 100 Ohm :263-265)",
+    "sed -n '354,359p' (verif m_bullet_color[7] blanches + [7] jaune :355-358)",
+    "sed -n '460,478p' (verif screen_update_galaxian :460 ; ordre bg+stars -> tilemap -> sprites -> shells/missile :462-476)",
+    "grep KB-23a-videoram-tileinfo.md / KB-23b-objram-attribs.md / KB-22a-gfx-tiles.md (verif cross-refs KB-09 : format VRAM, attributs OBJRAM 0x40-0x7F scroll vertical + couleur, layout GFX 8x8 2 bitplanes)",
+    "ls docs/kb/KB-26-render-order.md KB-27-palette-prom.md KB-25a-romset.md KB-24a-inputs.md (verif les 4 kb_file des GAP existent)"
+  ],
+  "validation": {
+    "criterion": "revue humaine : chaque affirmation cite fichier:ligne de docs/mame_src/ ; pas de fait invente ; table KB-08 = KB-27 (R bits 0-2 / G bits 3-5 / B bits 6-7) ; progress-check OK",
+    "result": "Toutes les citations verifiees contre le source reel (0 divergence). KB-08.md + KB-08-palette-prom.md : table bit->composante corrigee (R bits 0-2 / G bits 3-5 / B bits 6-7), concordance commentaire :243-253 = code :286-300, doc fournee erronee sur bits 3/2 (2 VERT au lieu de 1kOhm VERT + 220Ohm ROUGE) ; rgb_resistances :241, RGB_MAXIMUM=224 :229, etoiles 150/100 :259-261, coquilles/missile 100 :263-265, bullets 7 blanches + jaune :355-358 ; cross-ref KB-27. KB-09.md : contenu doc non contredit (m_bg_tilemap flips X/Y, m_sprites_base=0x40, m_bullets_base=0x60) conserve ; note 'A extraire' pointe vers les fiches existantes KB-23a/KB-23b/KB-22a/KB-25b (verifiees : VRAM format, OBJRAM attributs 0x40-0x7F scroll vertical + couleur, GFX 8x8 2 bitplanes) ; pas de fait invente. KB-14.md : ordre fond->etoiles->tilemap->sprites->shells/missile confirme par screen_update_galaxian (galaxian_v.cpp:460-477), incertitude GAP-01 retiree, cross-ref KB-26. PROGRESS.json : GAP-01/02/03/05 -> FILLED avec kb_file (KB-26-render-order.md / KB-27-palette-prom.md / KB-25a-romset.md / KB-24a-inputs.md), les 4 fichiers existent ; GAP-04/06/07 et tous closed_by intacts. progress-check EXIT=0."
+  },
+  "deliverables": [
+    "docs/kb/KB-08.md",
+    "docs/kb/KB-08-palette-prom.md",
+    "docs/kb/KB-09.md",
+    "docs/kb/KB-14.md",
+    "PROGRESS.json (kb_gaps)"
+  ],
+  "notes": [
+    "Codeur = opencode run --auto ; le 1er run est mort en cours de tache (LM Studio 'Model unloaded by user or API request') apres avoir corrige les 2 fichiers KB-08. Un resume run (out/T0.4.13/task_prompt_resume.md) a produit KB-09/KB-14 + PROGRESS.json.",
+    "Duplication KB-08 flagguee pour l'humain : docs/kb/KB-08.md et docs/kb/KB-08-palette-prom.md sont deux fichiers distincts tracks, tous deux corriges (aucun supprime — hors scope).",
+    "Le validateur a complete la cross-ref KB-09 (ajout KB-23b + KB-22a) : le codeur ne citait que KB-23a/KB-25b alors que les items 'attributs OBJRAM' et 'decodage GFX 2 bitplanes' vivent dans KB-23b / KB-22a."
+  ]
+}

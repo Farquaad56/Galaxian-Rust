@@ -5418,27 +5418,27 @@
  "kb_gaps": [
   {
    "id": "GAP-01",
-   "status": "OPEN",
+   "status": "FILLED",
    "closed_by": [
     "T0.4.13"
    ],
-   "kb_file": null
+   "kb_file": "docs/kb/KB-26-render-order.md"
   },
   {
    "id": "GAP-02",
-   "status": "OPEN",
+   "status": "FILLED",
    "closed_by": [
     "T0.4.13"
    ],
-   "kb_file": null
+   "kb_file": "docs/kb/KB-27-palette-prom.md"
   },
   {
    "id": "GAP-03",
-   "status": "OPEN",
+   "status": "FILLED",
    "closed_by": [
     "T0.4.13"
    ],
-   "kb_file": null
+   "kb_file": "docs/kb/KB-25a-romset.md"
   },
   {
    "id": "GAP-04",
@@ -5450,11 +5450,11 @@
   },
   {
    "id": "GAP-05",
-   "status": "OPEN",
+   "status": "FILLED",
    "closed_by": [
     "T0.4.13"
    ],
-   "kb_file": null
+   "kb_file": "docs/kb/KB-24a-inputs.md"
   },
   {
    "id": "GAP-06",
