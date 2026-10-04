@@ -4,7 +4,7 @@
 >
 > Ce document contient :
 > - **Partie A** — Architecture du système et rôles des agents (avec prompts système)
-> - **Partie B** — Protocole de boucle, format de tâche, gestion d'état, **budgets de contexte et de sortie des agents de vérification (B.7)**
+> - **Partie B** — Protocole de boucle, format de tâche, gestion d'état
 > - **Partie C** — Conventions du dépôt Rust
 > - **Partie D** — Stratégie de validation (ROMs de test, références MAME)
 > - **Partie E** — Base de connaissances (KB) : toute la doc technique, découpée en fiches citables par ID
@@ -35,8 +35,8 @@ Une sous-étape n'est « terminée » que lorsque le **Validateur** a exécuté 
 |---|---|---|---|
 | **Orchestrateur** | Lit `PROGRESS.json`, choisit **la** prochaine tâche de `order` dont les dépendances sont `DONE`, assemble le context pack, la dispatche (une seule à la fois) | `PROGRESS.json`, Partie F, Partie E | Un *task prompt* complet |
 | **Codeur** | Implémente une sous-étape | Task prompt | Patch Rust + tests |
-| **Testeur / Validateur** | Écrit/lance les tests, compare aux références MAME, produit un rapport JSON **borné** (B.7) | Patch, commandes de test | `reports/<TASK_ID>.json` (pass/fail + diff, ≤ 60 lignes) + `reports/<TASK_ID>.log` (sortie brute) |
-| **Relecteur** | Vérifie conformité à la doc (KB), style, absence de triche (valeurs codées en dur pour passer un test) | **`review_pack.md`** (patch + résumé du rapport + KB + extraits de source, B.7.2) | Verdict `APPROVE` / `REJECT` / `INCOMPLETE` + motifs **(≤ 40 lignes, B.7)** |
+| **Testeur / Validateur** | Écrit/lance les tests, compare aux références MAME, produit un rapport JSON | Patch, commandes de test | `reports/<TASK_ID>.json` (pass/fail + diff) |
+| **Relecteur** | Vérifie conformité à la doc (KB), style, absence de triche (valeurs codées en dur pour passer un test) | Patch + rapport du Validateur + KB | Verdict `APPROVE` / `REJECT` + motifs |
 | **Documentaliste** | Met à jour `docs/` et `PROGRESS.json`, consigne les écarts découverts | Tout | MAJ doc/état |
 
 Un même LLM peut jouer plusieurs rôles en séquence, mais **le Relecteur ne doit pas être la même instance de conversation que le Codeur**.
@@ -106,40 +106,18 @@ Tu es le VALIDATEUR. Tu exécutes exactement les commandes de la section
 Pour toute comparaison de traces, tu rapportes la PREMIÈRE divergence
 (cycle, PC, registres, adresse bus) et 20 lignes de contexte avant.
 Tu n'interprètes pas, tu ne corriges pas.
-LIMITES DE SORTIE (B.7) : la sortie brute des commandes va dans reports/<TASK_ID>.log,
-JAMAIS dans ta réponse. Le JSON fait ≤ 60 lignes ; `detail` ≤ 200 caractères par test ;
-les tests PASS ne sont listés que par leur nom (ou comptés : {"pass": N}) ; les lignes de
-contexte de first_divergence sont tronquées à 200 caractères. Ajoute le champ "log": "<chemin>".
-Ta réponse finale = le JSON seul, sans préambule ni commentaire.
 ```
 
 ### A.3.4 Relecteur
 
 ```
-Tu es le RELECTEUR. Tu reçois UNIQUEMENT out/<TASK_ID>/review_pack.md (patch, résumé du
-rapport PASS du Validateur, tâche, fiches KB, extraits de source déjà découpés — voir B.7.2).
+Tu es le RELECTEUR. Tu reçois le patch, le rapport PASS du Validateur, la tâche et les fiches KB.
 Vérifie : (1) chaque comportement matériel du patch est justifié par une fiche KB ;
 (2) aucune constante magique non sourcée ; (3) pas de test contourné ;
 (4) respect de la Partie C ; (5) granularité de timing conforme à la tâche
 (pas de « ticks groupés » si la tâche exige T-state par T-state) ; (6) le patch reste dans le budget B.6 :
 fichiers hors `livrables` ou comportements d'autres tâches = REJECT.
-
-RÈGLES DE LECTURE (B.7) :
-- Tu ne lis JAMAIS en entier un fichier de plus de 300 lignes : grep / sed par plage
-  (±15 lignes autour de la citation à vérifier). Les sources MAME ne se lisent que par plage.
-- Les citations déjà validées par le Validateur ne sont pas revérifiées une à une : tu
-  échantillonnes (≤ 10 vérifications ciblées), en priorité les valeurs numériques.
-- Si le pack te paraît trop gros pour être traité en une fois, ne force pas : réponds INCOMPLETE.
-
-FORMAT DE SORTIE (strict, B.7.4) — écris-le aussi dans out/<TASK_ID>/verdict.md :
-  APPROVE | REJECT | INCOMPLETE
-  1. <fichier:ligne> — <défaut> — <attendu / ce que dit la source>   (≤ 2 lignes par motif)
-  …
-- ≤ 8 motifs, ≤ 40 lignes, ≈ 800 tokens au total. Au-delà : les 8 plus graves puis
-  « + N autres de même nature » (le détail va dans verdict.md, pas dans la réponse).
-- Aucun préambule, aucun récapitulatif de ce qui est correct, aucune citation > 15 mots.
-- INCOMPLETE : une seule ligne « INCOMPLETE <ce qui reste à vérifier> » ; ce n'est ni un
-  APPROVE ni un REJECT (voir B.7.5).
+Réponds APPROVE ou REJECT + liste numérotée de motifs actionnables.
 ```
 
 ## A.4 Mode d'exécution : séquentiel strict
@@ -153,14 +131,12 @@ FORMAT DE SORTIE (strict, B.7.4) — écris-le aussi dans out/<TASK_ID>/verdict.
 |---|---|---|---|
 | 1 | Orchestrateur | `out/<TASK_ID>/task_prompt.md` | Codeur |
 | 2 | Codeur | `out/<TASK_ID>/patch` (+ plan, écarts, questions) | Validateur |
-| 3 | Validateur | `reports/<TASK_ID>.json` (+ `.log`) | Script `review-pack`, Codeur (si FAIL) |
-| 3b | *Script* `cargo xtask review-pack <TASK_ID>` (pas un agent) | `out/<TASK_ID>/review_pack.md` (≤ 16 000 tokens, B.7.2) | Relecteur |
-| 4 | Relecteur | `out/<TASK_ID>/verdict.md` (+ `verdict.part<k>.md` si revue par tranches, B.7.3) | Documentaliste, Codeur (si REJECT) |
+| 3 | Validateur | `reports/<TASK_ID>.json` | Relecteur, Codeur (si FAIL) |
+| 4 | Relecteur | `out/<TASK_ID>/verdict.md` | Documentaliste, Codeur (si REJECT) |
 | 5 | Documentaliste | commit git + `PROGRESS.json` | Orchestrateur (tâche suivante) |
 
 5. **Pas de tâche suivante avant le commit.** La tâche N+1 ne démarre qu'après le commit du Documentaliste pour la tâche N : le dépôt et la sortie de `cargo xtask api-dump` sont donc toujours à jour pour le Codeur.
 6. **Un blocage arrête tout.** Il n'y a pas de travail alternatif à poursuivre (voir B.5).
-7. **Sorties et entrées bornées.** Chaque agent de vérification respecte les budgets de B.7 ; une erreur d'infrastructure (serveur, contexte) n'est jamais un verdict (B.7.5).
 
 ---
 
@@ -175,16 +151,9 @@ loop {
   progress.current_task = t              // VERROU : aucune autre tâche ne peut démarrer
   prompt = orchestrateur.build(t)        // attendre la fin  -> out/<id>/task_prompt.md
   patch = codeur.run(prompt)             // attendre la fin  -> out/<id>/patch
-  report = validateur.run(t.validation)  // lancé APRÈS le codeur -> reports/<id>.json (borné, B.7)
+  report = validateur.run(t.validation)  // lancé APRÈS le codeur -> reports/<id>.json
   if report.FAIL { codeur.retry(report) (max 3) ; continue }     // t reste current_task
-  pack = xtask.review_pack(t)            // script déterministe -> out/<id>/review_pack.md (B.7.2)
-  verdict = relecteur.run(pack)          // lancé APRÈS le validateur -> out/<id>/verdict.md
-                                         //   (par tranches si pack > budget, B.7.3)
-  if verdict.infra_error or verdict.INCOMPLETE {   // erreur serveur / contexte : PAS un verdict (B.7.5)
-      t.infra_failures += 1              // ne touche PAS à `attempts`, ne retourne PAS au codeur
-      if t.infra_failures >= 2 { halted = true ; break }   // humain : vérifier le serveur de modèles
-      relecteur.rerun_by_slices(pack) ; continue           // pack réduit, jamais le même pack tel quel
-  }
+  verdict = relecteur.run(patch, report, t)  // lancé APRÈS le validateur -> out/<id>/verdict.md
   if REJECT { codeur.retry(verdict) (max 3) ; continue }          // t reste current_task
   documentaliste.commit(t, patch, report, verdict)  // git commit "T<id>: <titre>", PROGRESS.json -> DONE
   progress.current_task = null           // verrou libéré, seulement maintenant
@@ -199,11 +168,9 @@ loop {
   "order": ["T0.1.1", "T0.1.2", "T0.1.3", "..."],   // ordre numérique canonique, voir F.0
   "current_task": null,                              // verrou : au plus une tâche en cours
   "halted": false,                                   // true = arrêt en attente de l'humain
-  "limits": { "context_effective_tokens": 32000, "review_input_max_tokens": 16000,
-              "verdict_max_tokens": 800, "validator_json_max_lines": 60 },   // à calibrer, voir B.7.1
   "tasks": {
     "T1.7.13": { "title": "LDIR / LDDR", "deps": ["T0.3.1","T0.3.6","T1.7.12"], "ctx": ["KB-21a","KB-21e"],
-                 "status": "TODO|IN_PROGRESS|DONE|BLOCKED", "attempts": 0, "infra_failures": 0,
+                 "status": "TODO|IN_PROGRESS|DONE|BLOCKED", "attempts": 0,
                  "commit": null, "report": null, "notes": [] }
   },
   "kb_gaps": [ { "id": "GAP-01", "status": "OPEN|FILLED", "closed_by": ["T0.4.3"], "kb_file": null } ]
@@ -235,9 +202,8 @@ Le temps est la **donnée centrale**. L'unité de temps de l'émulateur est le *
 - **Sélection.** La tâche suivante est la première de `order` en `TODO`. Si une de ses dépendances n'est pas `DONE`, c'est une erreur de plan : arrêt et signalement, pas de saut.
 - **Reprise d'un projet commencé sous un ancien plan.** Les tâches déjà réalisées sont marquées `DONE` avec leurs commits et rapports d'origine (les anciens IDs restent valables dans `git log`, `reports/` et `out/`, et sont consignés dans `legacy_id_map` et `notes`). Une tâche `DONE` peut apparaître après des tâches `TODO` dans `order` ; seule la cohérence de ses **dépendances déclarées** est contrôlée. Le sélecteur (« première `TODO` de `order` ») ne change pas.
 - **Blocage.** Une tâche `BLOCKED` met `halted = true` : plus aucun agent n'est lancé. L'humain corrige (fiche KB, tâche, lacune), remet `status = TODO`, `attempts = 0`, `halted = false`. Seul l'humain peut décider de sauter une tâche bloquée, et uniquement si aucune tâche restante n'en dépend.
-- **Erreur d'infrastructure.** Une réponse d'agent qui n'est pas un verdict valide (erreur serveur 500, « Context size has been exceeded », timeout, sortie tronquée, `INCOMPLETE`) n'est ni un `REJECT` ni un échec de la tâche : elle ne consomme pas de tentative (`attempts`) et n'est jamais renvoyée au Codeur. Procédure et seuils en B.7.5.
 - **Lacunes (Partie G).** Si la prochaine tâche dépend d'une lacune `OPEN`, l'Orchestrateur la marque `BLOCKED`, s'arrête et propose d'insérer la tâche de comblement juste avant dans `order`. L'humain valide l'insertion.
-- **Reprise après interruption.** Le système peut être arrêté entre deux agents. Au redémarrage, on reprend `current_task` et on relance l'agent suivant le dernier fichier présent dans `out/<id>/` (pas de `task_prompt.md` : Orchestrateur ; pas de `patch` : Codeur ; pas de rapport : Validateur ; pas de `review_pack.md` : script `review-pack` puis Relecteur ; pas de `verdict.md` : Relecteur — ou, s'il existe des `verdict.part<k>.md` partiels, seulement les tranches manquantes ; sinon : Documentaliste).
+- **Reprise après interruption.** Le système peut être arrêté entre deux agents. Au redémarrage, on reprend `current_task` et on relance l'agent suivant le dernier fichier présent dans `out/<id>/` (pas de `task_prompt.md` : Orchestrateur ; pas de `patch` : Codeur ; pas de rapport : Validateur ; pas de `verdict.md` : Relecteur ; sinon : Documentaliste).
 - **ROMs de test `TR-*`.** Les tâches `T0.6.1`–`T0.6.5` posent une seule fois la chaîne d'assemblage et les conventions (`tests/roms/`). Ensuite, chaque ROM `TR-*` est livrée en **deux sous-étapes consécutives** : (a) source `.asm` + `.bin` + README, (b) golden MAME + validation (voir le catalogue en fin de Partie F). Rien n'est écrit « en parallèle » des phases.
 - **Pas de concurrence côté exécution.** Si le framework qui lance les agents sait paralléliser (threads, workers, sous-agents), le limiter à **1 worker** pour ce projet.
 
@@ -262,55 +228,9 @@ Conséquences :
 - Si un Codeur répond `## DECOUPAGE` ou si l'Orchestrateur détecte un dépassement, la chaîne s'arrête (comme un blocage) jusqu'à validation du découpage par l'humain.
 - Tâche trop petite ? On ne fusionne pas pour « gagner du temps » : le coût d'une sous-étape est faible, celui d'une tâche mal comprise est élevé.
 
-## B.7 Budgets de contexte et de sortie des agents de vérification (Validateur, Relecteur)
-
-**Constat (T0.4.10).** Le Relecteur a échoué en erreur serveur (« Context size has been exceeded ») sur une requête estimée à ~53 600 tokens alors que la fenêtre annoncée était de 135 168 tokens : la fenêtre **effective** du serveur de modèles est inférieure à la fenêtre annoncée (cause probable : contexte réellement chargé plus petit que la valeur affichée, découpage par slots parallèles, ou requête de fond qui occupe le cache). La consigne demandait en outre de lire « en entier » le patch, la spec et cinq fichiers MAME, et une réponse libre. Un agent de vérification doit donc recevoir une entrée **pré-découpée** et rendre une sortie **courte**.
-
-### B.7.1 Budgets
-
-| Élément | Limite |
-|---|---|
-| Fenêtre effective de référence (`limits.context_effective_tokens`) | à mesurer sur le serveur (contexte chargé ÷ nombre de slots) ; 32 000 par défaut tant que non calibré |
-| Entrée du Relecteur (`review_pack.md`) | ≤ 16 000 tokens |
-| Lectures d'outils cumulées du Relecteur | ≤ 12 000 tokens ; **aucun fichier > 300 lignes lu en entier** |
-| Total entrée + lectures + sortie | ≤ 50 % de la fenêtre effective |
-| Sortie du Relecteur | ≤ 800 tokens · ≤ 40 lignes · ≤ 8 motifs · ≤ 2 lignes par motif |
-| Sortie du Validateur | JSON ≤ 60 lignes · `detail` ≤ 200 caractères · sortie brute dans `reports/<id>.log` |
-
-Réglage serveur recommandé : 1 seul slot / prédiction parallèle, aucune requête de fond pendant un agent de vérification (cohérent avec A.4 et B.5, « 1 worker »).
-
-### B.7.2 `review_pack.md` (produit par script, pas par un LLM)
-
-`cargo xtask review-pack <TASK_ID>` assemble, dans cet ordre : (1) l'en-tête de tâche ; (2) le patch (si > 400 lignes : `diffstat` + hunks seulement) ; (3) le résumé du rapport du Validateur (statut, nombre de tests PASS, noms des FAIL, `first_divergence`) — jamais le log brut ; (4) les fiches KB du `context` ; (5) pour une tâche **documentaire**, les **extraits de source** aux lignes citées par la fiche (±10 lignes, fusionnés et dédupliqués), jamais les fichiers sources entiers ; (6) les règles de la Partie C applicables (celles listées dans la tâche seulement). Si le pack dépasse `review_input_max_tokens`, le script le découpe en tranches (B.7.3). *Tant que la commande n'existe pas, l'Orchestrateur (ou l'humain) produit le pack à la main en suivant cette liste.*
-
-### B.7.3 Revue par tranches
-
-Si le pack dépasse le budget (ex. fiche documentaire > ~100 lignes, patch > 400 lignes) :
-1. le script découpe par **section** (fiche) ou par **fichier** (patch) en tranches ≤ 16 000 tokens ;
-2. une instance **neuve** du Relecteur traite chaque tranche, **l'une après l'autre**, et écrit `verdict.part<k>.md` au format B.7.4 ;
-3. une dernière passe, sur un pack « index » ≤ 4 000 tokens généré par script (table des valeurs numériques extraites de chaque section, liste des renvois vers d'autres fiches), vérifie les contradictions inter-sections et les références croisées ;
-4. `cargo xtask verdict-merge <TASK_ID>` produit `verdict.md` : `REJECT` si une tranche est `REJECT`, motifs concaténés et renumérotés (≤ 12 au total). Le Codeur ne reçoit que ce fichier.
-
-### B.7.4 Format de la réponse finale du Relecteur
-
-Première ligne : `APPROVE`, `REJECT` ou `INCOMPLETE`. Puis, si `REJECT`, une liste numérotée `fichier:ligne — défaut — attendu (≤ 2 lignes)`. Rien d'autre. Le détail éventuel va dans `verdict.md`, que seul le Codeur (si REJECT) et le Documentaliste lisent ; l'Orchestrateur ne lit que la première ligne.
-
-### B.7.5 Erreur d'infrastructure ≠ verdict
-
-Toute réponse qui n'est pas `APPROVE` / `REJECT` valide est une **erreur d'infrastructure** : erreur serveur 500, « Context size has been exceeded », timeout, sortie tronquée ou `INCOMPLETE`.
-1. Elle **ne** compte **pas** dans `attempts`, **ne** produit **pas** de `REJECT` et **ne** relance **pas** le Codeur ; la tâche reste `IN_PROGRESS`.
-2. Attendre que le serveur soit inactif, puis relancer le Relecteur sur un pack **réduit** (revue par tranches, B.7.3) ; ne jamais renvoyer à l'identique la même requête trop grosse, et ne pas compresser le contexte pour « faire passer » une requête déjà sous la fenêtre annoncée.
-3. Incrémenter `infra_failures`. À **2** échecs : `halted = true`, message à l'humain (vérifier le contexte réellement chargé, le nombre de slots, les requêtes de fond ; recalibrer `limits`). L'humain remet `infra_failures = 0` et `halted = false`.
-4. `infra_failures` est remis à 0 dès qu'un verdict valide est obtenu.
-
-### B.7.6 Règle de rédaction des prompts de vérification
-
-Un prompt de Relecteur ou de Validateur ne contient **jamais** « lis en entier » pour un fichier de plus de 300 lignes ; il désigne des **plages** (`fichier:début-fin`) ou renvoie au `review_pack.md`. Il rappelle explicitement le format de sortie B.7.4 et la limite de 800 tokens.
-
 ---
 
-# PARTIE C
- — Conventions du dépôt Rust
+# PARTIE C — Conventions du dépôt Rust
 
 ```
 galaxian/
@@ -320,7 +240,7 @@ galaxian/
 │  ├─ galaxian-core/         bus, timing, mémoire, I/O, vidéo, orchestration
 │  ├─ galaxian-audio/        modèle discret du son
 │  ├─ galaxian-frontend/     fenêtre, input, audio out (minifb/pixels/cpal) — hors cœur
-│  └─ xtask/                 cargo xtask : api-dump, run-zex, mame-diff, test-roms, golden, review-pack, verdict-merge
+│  └─ xtask/                 cargo xtask : api-dump, run-zex, mame-diff, test-roms, golden
 ├─ tests/
 │  ├─ roms/                  ROMs de test maison (sources .asm + binaires)
 │  ├─ golden/                références MAME (traces, CRC de frames, WAV)
@@ -364,17 +284,23 @@ Il **n'existe pas, à ma connaissance, de suite de ROMs de test dédiée au hard
 | **V1 — Suites CPU publiques** | `zexdoc`/`zexall` (CP/M .COM, nécessite un mini-shim BDOS fonction 2 et 9), `z80test` (Patrik Rak : z80doc, z80full, z80ccf, z80memptr), tests de la suite **Fuse** (`tests.in/tests.expected` avec événements de bus MR/MW/PR/PW par T-state), éventuellement `SingleStepTests/z80` (JSON par opcode avec bus cycle par cycle) — *vérifier la disponibilité/format actuels avant usage* | Z80 : fonctionnel, flags documentés/non documentés, MEMPTR, timing par M-cycle |
 | **V2 — ROMs de test maison** (« TestROM Factory », étape 0.6) | Petits programmes Z80 écrits en assembleur, ciblant **un seul** mécanisme (NMI, watchdog, VRAM, sprites, étoiles, flip…), à fournir en `.bin` 16 Ko | Chaque bloc matériel isolément, de façon déterministe |
 | **V3 — Références MAME (golden)** | MAME lancé en ligne de commande avec scripts Lua : trace CPU (`trace` du debugger), CRC/snapshots d'écran à la frame N, `-wavwrite` | Comparaison cycle/frame par frame de l'émulateur complet |
-| **V4 — ROM commerciale Galaxian** | ROMs du set MAME `galaxian` / `galmidw` fournies par l'utilisateur (non redistribuées) | Intégration : boot, attract mode, partie, sons |
+| **V4 — ROM commerciale Galaxian** | ROMs du set MAME `galaxian` / set Midway (`galmidw` dans ce plan ; ⚠ nom à confirmer, la doc MAME 0.289 liste `galaxianm`, cf. GAP-08) fournies par l'utilisateur (non redistribuées) | Intégration : boot, attract mode, partie, sons |
 
 ## D.2 Génération des références MAME (à scripter dans `xtask golden`)
 
-Options MAME utiles : `-autoboot_script <lua>`, `-seconds_to_run N`, `-nothrottle`, `-video none` / `-sound none` selon le cas, `-wavwrite <fichier>`, `-aviwrite`, `-snapshot_directory`. Trace CPU via la commande debugger `trace <fichier>,maincpu,noloop[,{tracelog "..."}]` (lancée via `-debug` + `-debugscript`). Snapshot d'écran depuis Lua : `manager.machine.screens[":screen"]:snapshot(...)`. *Les noms exacts d'API Lua varient selon la version de MAME : la tâche T0.5.1 impose de les vérifier sur la version installée.*
+Les golden sont produits par **MAME en ligne de commande**, avec trois outils : le **debugger** (`-debug` + `-debugscript`, commande `trace`) pour les traces CPU, des **scripts Lua** (`-autoboot_script`) pour les CRC de frames, les dumps mémoire et l'injection d'entrées, et `-wavwrite` pour l'audio. Toute la syntaxe de référence (profil de lancement commun, options, scripts prêts à adapter, règles de reproductibilité) est dans **KB-28a** (CLI) et **KB-28b** (scripts) ; elles sont la source unique : ne pas dupliquer les commandes ici.
+
+Principes :
+- **Un profil de lancement commun** (KB-28a §2) : dossiers de travail jetables recréés avant chaque exécution (`-cfg_directory`, `-nvram_directory`, `-snapshot_directory`, `-input_directory`, `-state_directory`), `-noreadconfig`, `-nothrottle`, `-frameskip 0 -noautoframeskip`, `-seconds_to_run`.
+- **Le temps est piloté par l'émulation, jamais par l'horloge réelle** : fin de run par `-seconds_to_run` (secondes *émulées*) ou par un compteur de frames dans le script Lua ; entrées injectées à des numéros de frame fixes.
+- *Les noms exacts de l'API Lua et la syntaxe du debugger varient selon la version de MAME : KB-28 distingue ✔ (confirmé par la doc 0.289) et ⚠ (à vérifier sur le binaire installé). La tâche T0.5.1 tranche tous les ⚠ et consigne le résultat dans `docs/mame_notes.md`.*
 
 Livrables de références à produire (étape 0.5) :
-- `golden/trace_boot_<N>.log` : N premières instructions (PC, opcode, AF BC DE HL SP, cycles) après reset, ROM Galaxian.
-- `golden/frames_crc.txt` : CRC32 de l'écran visible (256×224) aux frames 1, 2, 5, 10, 30, 60, 120, 300, 600.
-- `golden/audio_<scenario>.wav`.
-- Pour chaque ROM de test maison : trace + CRC de frames.
+- `golden/trace_boot_<N>.log` : N premières instructions (PC, opcode, AF BC DE HL SP, cycles **si le debugger les expose**, voir T0.5.4) après reset, ROM Galaxian.
+- `golden/frames_crc.txt` : CRC32 de l'écran aux frames 1, 2, 5, 10, 30, 60, 120, 300, 600, avec les dimensions réelles du bitmap MAME (⚠ le rendu interne MAME est ×3 en horizontal, KB-02 : voir T0.5.5).
+- `golden/mem_dump_<N>.bin` : VRAM + OBJRAM aux frames 60 et 600.
+- `golden/audio_<scenario>.wav` (attract, fire, hit).
+- Pour chaque ROM de test maison : trace + CRC de frames (mêmes scripts, ROM différente).
 
 ## D.3 Niveaux de tolérance
 
@@ -679,6 +605,125 @@ Délégués (tile-info étendu, bullets, background) pointent vers les versions 
 La doc fournie **ne contient pas** la référence Z80 (GAP-04). Elle est découpée en fiches courtes, rédigées en Phase 0 (étape 0.3) à partir de *The Undocumented Z80 Documented* (Sean Young), des tableaux Zilog et de sources externes, afin que chaque tâche T1.x ne reçoive que la partie utile :
 **KB-21a** registres/flags · **KB-21b1** timing 00–7F · **KB-21b2** timing 80–FF · **KB-21c** préfixe CB · **KB-21d** DD/FD/DDCB/FDCB · **KB-21e** ED · **KB-21f** MEMPTR et Q · **KB-21g** interruptions/HALT/EI.
 Les fiches `KB-22a/b`, `23a/b`, `24a/b`, `25a/b`, `26`, `27` sont produites en étape 0.4 (extraction depuis `docs/mame_src/`).
+Les fiches `KB-28a/b` (mémento CLI MAME pour les golden) sont **fournies** ci-dessous et copiées en `docs/kb/` par T0.5.1.
+
+## KB-28a — Mémento CLI MAME pour les golden : profil commun, options, reproductibilité
+*Fiche fournie (pas extraite de `galaxian.cpp`). Source : documentation MAME 0.289 (docs.mamedev.org, pages « Command-line »). Légende : **✔** = confirmé par la doc ; **⚠** = à vérifier sur le binaire installé (T0.5.1) ; tant qu'un ⚠ n'est pas tranché, le traiter comme faux.*
+
+**1. Identifier le set et vérifier les ROMs** (✔ ; les verbes `-list*` écrivent sur stdout, rediriger avec `>`) :
+```
+mame -help                                     # version de MAME
+mame -verifyroms galaxian                      # attendu : « romset galaxian is good »
+mame -listfull "galaxian*"                     # noms réels des sets ; guillemets obligatoires (le shell étendrait le motif)
+mame -listroms galaxian                        # noms, tailles, CRC, SHA1 des ROMs
+mame -listcrc galaxian
+mame -listxml galaxian > golden/galaxian.xml   # écran, ports IN0/IN1/IN2, DIP, chips
+mame -listdevices galaxian                     # tags des périphériques (:maincpu, :screen…)
+mame -showusage                                # résumé de toutes les options ; -showconfig = configuration effective
+```
+⚠ Le plan écrit `galmidw` pour le set Midway (T0.4.9, T3.1.7) ; la doc 0.289 liste `galaxianm` et `galaxianmo` (Midway set 1/2). Confirmer avec `-listfull` (GAP-08).
+
+**2. Profil de lancement commun** (toutes les recettes de KB-28b l'étendent) :
+```
+mame galaxian -rompath <roms> -noreadconfig \
+  -cfg_directory <RUN>/cfg -nvram_directory <RUN>/nvram -snapshot_directory <RUN>/snap \
+  -input_directory <RUN>/inp -state_directory <RUN>/sta \
+  -skip_gameinfo -nothrottle -frameskip 0 -noautoframeskip -norewind -noautosave \
+  -seconds_to_run <S>
+```
+`<RUN>` = dossier jetable, **supprimé puis recréé avant chaque exécution** : `cfg/` conserve les DIP, les assignations d'entrées et la configuration d'écran (✔), un état résiduel fausse la reproductibilité. Chemins relatifs = relatifs au répertoire courant (✔) ; plusieurs chemins dans `-rompath` se séparent par `;` (✔, y compris sous Linux).
+
+| Option | Effet (✔ doc) | Usage golden |
+|---|---|---|
+| `-seconds_to_run S` (`-str`) | arrête après S secondes **émulées** ; écrit une capture d'écran à la sortie (nom selon `-snapname`) | fin de run déterministe |
+| `-nothrottle` | n'adapte plus la vitesse au temps réel | exécution rapide, temps émulé inchangé |
+| `-frameskip 0`, `-noautoframeskip` | aucune frame sautée | indispensable aux CRC d'écran |
+| `-video none` / `-sound none` | pas de fenêtre / pas de sortie audio (le son reste émulé) | ⚠ vérifier que `screen:pixels()` et `-wavwrite` fonctionnent encore ainsi ; sinon revenir à une fenêtre (`-window`, `-video` selon l'OS) |
+| `-bench N` | équivaut à `-str N -video none -sound none -nothrottle` | mesure de perf MAME, pas pour les golden |
+| `-autoboot_script f.lua` | charge un script Lua au démarrage | CRC, dumps, entrées |
+| `-debug`, `-debugscript f` | active le debugger ; exécute le fichier de commandes au démarrage | traces CPU |
+| `-debugger qt\|windows\|osx\|imgui\|gdbstub` | module de debugger (défaut : `windows` sous Windows, `qt` sous Linux, `osx` sous macOS) | la trace ouvre une fenêtre de debugger ⚠ (CI Linux sans écran : serveur X virtuel, non couvert par la doc) |
+| `-wavwrite f.wav` | écrit la sortie finale du mixeur | audio ; durée du WAV = temps émulé |
+| `-samplerate N` | défaut 48000 | le fixer explicitement à 48000 ; ne pas toucher `-volume` (défaut 0 dB) |
+| `-snapname`, `-snapsize WxH`, `-snapview native`, `-norotate` | nom, taille, vue et rotation des captures | captures de diagnostic (⚠ effet de la rotation 90° du set) |
+| `-record f`, `-playback f`, `-exit_after_playback`, `-input_directory` | enregistre/rejoue les entrées | alternative aux entrées Lua ; la doc prévient que cela « ne marche pas de façon fiable pour tous les systèmes » et se désynchronise si cfg/nvram diffèrent |
+| `-log`, `-oslog`, `-verbose` | `error.log`, sortie système, diagnostics | à activer pour toute anomalie |
+| `-watchdog S` | tue MAME si aucune frame n'est mise à jour pendant S s | CI : 30 |
+
+Options **sans utilité** pour les golden : Windows (`-priority`, `-profile`, `-triplebuffer`, `-full_screen_*`, `-dual_lightgun`), SDL (`-videodriver`, `-audiodriver`, `-scalemode`, `-keymap*`, `-gl_lib`, `-sdlvideofps`…), rotation/flip, artwork, shaders, vecteurs, réseau/MIDI.
+
+**3. Reproductibilité** (T0.5.10) : deux runs successifs avec le même binaire, le même set ROM (`-verifyroms` OK) et un `<RUN>` neuf doivent produire des fichiers **identiques à l'octet** (SHA256). Consigner dans `golden/MANIFEST.md` : version de MAME, ligne de commande exacte de chaque golden, CRC du set ROM (`-listcrc galaxian`), SHA256 de chaque fichier. Ne jamais utiliser `-rewind`, `-autosave`, `-state` pour un golden.
+
+## KB-28b — Scripts golden : trace debugger, Lua (CRC, dumps, entrées), audio
+*Fiche fournie. Même légende que KB-28a (✔ doc / ⚠ à vérifier T0.5.1). Les scripts ci-dessous sont des **squelettes** à valider, pas du code final.*
+
+**A. Trace CPU (debugger)** : `golden/mame/trace.dbg` contient :
+```
+trace golden/tmp/trace_raw.log,maincpu,noloop,{tracelog "AF=%04X BC=%04X DE=%04X HL=%04X SP=%04X OP=%02X%02X%02X%02X ",af,bc,de,hl,sp,b@pc,b@(pc+1),b@(pc+2),b@(pc+3)}
+go
+```
+lancé par : `mame galaxian <profil> -debug -debugscript golden/mame/trace.dbg -seconds_to_run 10`.
+- ✔ `trace {fichier|OFF}[,cpu[,[noloop|logerror][,action]]]` ; **sans `noloop` les boucles sont condensées en une ligne : toujours `noloop`.** L'`action` entre accolades est exécutée avant chaque ligne ; `tracelog "format",args` écrit dans le fichier de trace ouvert (sans effet si aucun n'est ouvert).
+- ✔ Autres commandes utiles : `tracesym`, `traceflush`, `symlist <cpu>` (liste les symboles/registres), `source <fichier>`, `gvblank`, `gtime`, `quit`.
+- ✔ Avec `-debug`, MAME s'arrête dans le debugger après le reset logiciel initial : la trace est donc ouverte **avant** la première instruction (PC = 0000) et il faut `go` pour lancer l'exécution.
+- Une ligne de trace = texte de l'`action` puis `pc: désassemblage` ⚠ (format exact à relever en T0.5.1). Les 4 octets à `pc` couvrent les opcodes préfixés (CB/DD/ED/FD + DDCB/FDCB).
+- ⚠ **Cycles** : MAME n'écrit pas les cycles dans une trace par défaut. Chercher un symbole de compteur de cycles avec `symlist maincpu` (candidat : `cycles`) ; s'il existe, l'ajouter à l'`action`. **S'il n'existe pas, ne pas reconstruire les cycles à partir des tables KB-21b (raisonnement circulaire)** : laisser la colonne vide et comparer les instants via T2.5.7 (cycle d'entrée de l'NMI) ; décision humaine à consigner.
+- ⚠ Comportement des commandes placées après `go` dans un `-debugscript`, et vidage du fichier à la fin (`-seconds_to_run`) : vérifier que la dernière ligne est complète ; sinon ajouter `traceflush` ou passer par `gtime`.
+- Il n'existe pas d'option « N instructions » : produire plus de lignes que nécessaire, puis tronquer à N dans `xtask golden trace`. Ordre de grandeur : ~8 T-states par instruction en moyenne → 1 000 000 d'instructions ≈ 3 à 4 s émulées (⚠ à mesurer) ; viser `-seconds_to_run 10`.
+
+**B. Lua : CRC de frames** (`golden/mame/frames_crc.lua`, lancé par `<profil> -video none -sound none -autoboot_script golden/mame/frames_crc.lua -seconds_to_run 15`, le `-seconds_to_run` n'étant qu'un filet de sécurité) :
+```lua
+local targets = {[1]=true,[2]=true,[5]=true,[10]=true,[30]=true,[60]=true,[120]=true,[300]=true,[600]=true}
+local last = 600
+local scr = manager.machine.screens[":screen"]
+local out = assert(io.open("golden/frames_crc.txt", "w"))
+local tbl = {}
+for i = 0, 255 do
+  local c = i
+  for _ = 1, 8 do if c & 1 == 1 then c = (c >> 1) ~ 0xEDB88320 else c = c >> 1 end end
+  tbl[i] = c
+end
+local function crc32(s)
+  local c = 0xFFFFFFFF
+  for i = 1, #s do c = tbl[(c ~ s:byte(i)) & 0xFF] ~ (c >> 8) end
+  return c ~ 0xFFFFFFFF
+end
+local function on_frame()
+  local n = scr:frame_number()
+  if targets[n] then
+    out:write(string.format("%d %08X %dx%d\n", n, crc32(scr:pixels()), scr.width, scr.height))
+  end
+  if n >= last then out:close(); manager.machine:exit() end
+end
+emu.register_frame_done(on_frame, "frame")
+```
+- ✔ `manager.machine.screens[":screen"]`, `emu.register_frame_done(fn, "frame")` (la doc Lua montre ces appels). ⚠ à confirmer sur le binaire : `scr:frame_number()` (et sa base, 0 ou 1), `scr:pixels()` (chaîne d'octets, format 32 bits/pixel), `scr.width`/`scr.height`, `manager.machine:exit()`. Si `register_frame_done` n'existe plus, chercher le notifieur de frame équivalent de la version installée.
+- ⚠ **Dimensions** : KB-02 indique un rendu interne ×3 en horizontal (`GALAXIAN_XSCALE = 3`) : le bitmap MAME visible est probablement **768×224**, pas 256×224. D'où la colonne `WxH` dans `frames_crc.txt`. Le CRC golden porte sur le bitmap MAME tel quel ; la sortie 256×224 de l'émulateur (Phase 4) devra être comparée à **ce** bitmap (768×224 avant réduction) : décision humaine à consigner en T0.5.5.
+- ⚠ `-video none` : vérifier que le bitmap est bien rendu (CRC ≠ CRC d'un écran noir) ; sinon exécuter avec fenêtre.
+
+**C. Lua : dump VRAM + OBJRAM** (même mécanisme de hook ; adresses de KB-03) :
+```lua
+local mem = manager.machine.devices[":maincpu"].spaces["program"]
+local function dump(path, base, len)
+  local f = assert(io.open(path, "wb"))
+  for a = base, base + len - 1 do f:write(string.char(mem:read_u8(a))) end
+  f:close()
+end
+-- à la frame N : VRAM 0x5000..0x53FF (0x400 octets) puis OBJRAM 0x5800..0x58FF (0x100 octets)
+-- fichier = 0x500 octets : VRAM d'abord, OBJRAM ensuite
+```
+⚠ `read_u8` (la doc montre `read_i8` ; les variantes non signées sont listables par complétion dans la console Lua `-console`).
+
+**D. Audio** : `<profil> -wavwrite golden/audio_attract.wav -samplerate 48000 -seconds_to_run <S>` (✔). ⚠ avec `-sound none`, vérifier que le WAV n'est pas vide ; sinon garder le module audio par défaut de l'OS. Durée S fixée une fois pour toutes (T0.5.7) et consignée.
+
+**E. Entrées scriptées (scénarios tir/explosion)** : dans le hook de frame, piloter les ports par numéro de frame (jamais par temps réel) :
+```lua
+local ports = manager.machine.ioport.ports
+local function set(tag, field, v) ports[tag].fields[field]:set_value(v) end
+-- ex. : frame 120 : set(":IN0", "Coin 1", 1) ; frame 125 : set(":IN0", "Coin 1", 0) ; start, tir, déplacements…
+-- fin : manager.machine:exit() à une frame fixée
+```
+⚠ Les tags et libellés exacts des champs viennent de KB-24a et de `-listxml galaxian` (ne pas les deviner). Alternative ✔ : `-record golden/inp/<nom>` en jouant à la main, puis `-playback <nom> -exit_after_playback` (cfg/nvram vierges obligatoires) ; moins fiable, à n'utiliser que si Lua échoue.
 
 ---
 
@@ -805,18 +850,18 @@ Choix d'ordonnancement :
 - **T0.4.13 — Clôture des lacunes.** ctx: KB-08, KB-09, KB-14 · tâche : corriger ces 3 fiches si les nouvelles fiches les contredisent ; passer GAP-01/02/03/05 à `FILLED` (avec `kb_file`) dans `PROGRESS.json`.
 
 ### Étape 0.5 — Références MAME (golden)
-> val par défaut : fichiers golden présents ; régénération reproductible (2 runs = octets identiques). Les scripts MAME sont les mêmes en D.2.
+> ctx par défaut : KB-28a, KB-28b · val par défaut : fichiers golden présents ; régénération reproductible (2 runs = octets identiques). Commandes et squelettes de scripts : **KB-28a/b** (et D.2). Les scripts vont dans `golden/mame/`, les sorties dans `golden/`, les dossiers jetables dans `golden/tmp/` (non versionné). Tout écart constaté sur le binaire installé est consigné dans `docs/mame_notes.md` (T0.5.1) puis reporté dans KB-28.
 
-- **T0.5.1 — Environnement MAME.** livr: `docs/mame_notes.md` : version installée, chemin ROMs, **syntaxe réellement vérifiée** de `trace`, de l'API Lua d'écran et de `-wavwrite`.
-- **T0.5.2 — Lanceur MAME.** livr: `xtask golden run` : appelle MAME avec options communes (`-seconds_to_run`, `-nothrottle`, répertoires de sortie) · val: lancement à blanc, code retour 0.
-- **T0.5.3 — Trace CPU brute.** livr: script debugger `trace` · val: fichier brut produit pour N = 1 000 instructions.
-- **T0.5.4 — Trace CPU normalisée.** livr: `xtask golden trace` convertit en `golden/trace_boot_<N>.log` (PC, opcode, AF BC DE HL SP, cycles) ; N = 1 000 puis 100 000 puis 1 000 000 · val: 3 fichiers, formats identiques.
-- **T0.5.5 — CRC de frames (script Lua).** livr: Lua qui écrit le CRC32 de l'écran 256×224 aux frames 1, 2, 5, 10, 30, 60, 120, 300, 600 → `golden/frames_crc.txt`.
-- **T0.5.6 — Dump VRAM/OBJRAM (script Lua).** livr: dump binaire VRAM + OBJRAM à la frame N → `golden/mem_dump_<N>.bin` (N = 60, 600).
-- **T0.5.7 — Audio : attract.** livr: `golden/audio_attract.wav` (`-wavwrite`).
-- **T0.5.8 — Audio : tir.** livr: Lua qui injecte coin + start + tir → `golden/audio_fire.wav`.
-- **T0.5.9 — Audio : explosion.** livr: `golden/audio_hit.wav`.
-- **T0.5.10 — Reproductibilité.** val: `xtask golden all` deux fois → SHA256 identiques ; consigner dans `golden/MANIFEST.md`.
+- **T0.5.1 — Environnement MAME.** *(tâche documentaire)* livr: `docs/mame_notes.md` + `docs/kb/KB-28a.md` + `docs/kb/KB-28b.md` (copie littérale de la Partie E, corrigée des écarts constatés) · spec: exécuter et consigner la sortie réelle de `mame -help` (version), `-verifyroms galaxian`, `-listfull "galaxian*"` (nom réel du set Midway), `-listroms galaxian`, `-listxml galaxian` (tags de l'écran et des ports), `-showusage` (présence des options du profil KB-28a §2) ; puis trancher **chaque ⚠** de KB-28a/b : syntaxe de `trace`/`tracelog`, existence d'un symbole de cycles (`symlist maincpu`), format d'une ligne de trace, comportement des commandes après `go`, API Lua (`register_frame_done`, `frame_number`, `pixels`, `width`/`height`, `read_u8`, `ioport.ports`, `exit`), dimensions réelles du bitmap, effet de `-video none` et `-sound none` sur `pixels()` et `-wavwrite` · val: `docs/mame_notes.md` donne un statut (✔ confirmé / ✘ infirmé + correction) à chaque ⚠. Ferme GAP-08.
+- **T0.5.2 — Lanceur MAME.** ctx: KB-28a · livr: `xtask golden run` (`crates/xtask/src/golden.rs`) : construit la ligne de commande du profil commun (§2), supprime et recrée `<RUN>`, accepte des arguments additionnels (script Lua, `-wavwrite`, `-seconds_to_run`…), affiche la commande exacte exécutée, propage le code retour de MAME · tests: construction des arguments (test unitaire, sans lancer MAME) · val: `cargo xtask golden run --dry-run` affiche la commande ; `cargo xtask golden run -- -verifyroms galaxian` rend 0.
+- **T0.5.3 — Trace CPU brute.** livr: `golden/mame/trace.dbg` (squelette KB-28b §A, corrigé par T0.5.1) · val: lancement via `xtask golden run -- -debug -debugscript golden/mame/trace.dbg -seconds_to_run 10` : fichier brut ≥ 1 000 lignes d'instructions, **première ligne à PC = 0000**, dernière ligne complète (fichier bien vidé).
+- **T0.5.4 — Trace CPU normalisée.** livr: `xtask golden trace` : lit la trace brute, tronque à N lignes, convertit en `golden/trace_boot_<N>.log` (PC, opcode, AF BC DE HL SP, cycles) ; N = 1 000 puis 100 000 puis 1 000 000 · spec: **si T0.5.1 a établi que le debugger n'expose aucun compteur de cycles, la colonne `cycles` reste vide : ne pas la reconstruire depuis KB-21b** (circulaire) ; décision humaine consignée dans `docs/mame_notes.md` · val: 3 fichiers, formats identiques, même préfixe de 1 000 lignes dans les trois.
+- **T0.5.5 — CRC de frames (script Lua).** ctx+ KB-02 · livr: `golden/mame/frames_crc.lua` (squelette KB-28b §B) → `golden/frames_crc.txt` (une ligne par frame : `frame CRC32 WxH`) aux frames 1, 2, 5, 10, 30, 60, 120, 300, 600 · spec: **l'humain tranche** à quelle résolution l'émulateur comparera (bitmap MAME ×3 = 768×224 ou réduction 256×224) et le consigne dans `docs/mame_notes.md` · val: 9 lignes ; CRC des frames 1 et 600 différents ; CRC ≠ celui d'un écran noir.
+- **T0.5.6 — Dump VRAM/OBJRAM (script Lua).** ctx+ KB-03 · livr: `golden/mame/mem_dump.lua` (KB-28b §C) → `golden/mem_dump_<N>.bin` (N = 60, 600), 0x500 octets : VRAM `5000-53FF` puis OBJRAM `5800-58FF` · val: 2 fichiers de 1 280 octets.
+- **T0.5.7 — Audio : attract.** livr: `golden/audio_attract.wav` (`-wavwrite`, `-samplerate 48000`, durée S fixée et consignée) · val: WAV non vide, durée = S.
+- **T0.5.8 — Audio : tir.** ctx+ KB-24a · livr: `golden/mame/scenario_fire.lua` (KB-28b §E : coin + start + tir à des numéros de frame fixes) → `golden/audio_fire.wav` · val: WAV non vide ; deux runs identiques.
+- **T0.5.9 — Audio : explosion.** ctx+ KB-24a · livr: `golden/mame/scenario_hit.lua` (scénario menant à un son HIT) → `golden/audio_hit.wav` · val: idem T0.5.8 ; **l'humain valide à l'écoute** que le scénario produit bien l'explosion.
+- **T0.5.10 — Reproductibilité.** ctx: KB-28a · livr: `xtask golden all` + `golden/MANIFEST.md` · val: `xtask golden all` deux fois → SHA256 identiques ; le manifeste consigne la version de MAME, la ligne de commande exacte de chaque golden, le CRC du set ROM (`-listcrc galaxian`) et le SHA256 de chaque fichier (KB-28a §3).
 
 ### Étape 0.6 — TestROM Factory
 - **T0.6.1 — Assembleur.** livr: intégration de l'assembleur Z80 **choisi par l'humain** (sjasmplus/z80asm ou mini-assembleur Rust) · val: `xtask test-roms build` assemble `tests/roms/hello/hello.asm`.
@@ -1338,5 +1383,6 @@ Chaque ROM : source `.asm` commentée, `.bin`, trace MAME, CRC de frames, et un 
 | GAP-05 | Ports d'entrée IN0/IN1/IN2 et DIPs | Entrées | `INPUT_PORTS_START` dans `galaxian.cpp` (T0.4.7, T0.4.8) |
 | GAP-06 | Cycle exact de l'NMI par rapport au début du VBLANK (ligne 240 ?) | NMI | Trace MAME (T2.5.7) |
 | GAP-07 | Absence de ROMs de test Galaxian publiques | Validation | TestROM Factory (étape 0.6 + ROMs du catalogue) |
+| GAP-08 | Syntaxe MAME réelle non vérifiée sur le binaire (`trace`, API Lua, `-wavwrite`, effet de `-video none`/`-sound none`) ; nom du set Midway (`galmidw` vs `galaxianm`) ; dimensions du bitmap MAME (rendu ×3) ; présence d'un compteur de cycles dans la trace | Étape 0.5, Phases 3-4 | T0.5.1 (`docs/mame_notes.md`, correction de KB-28a/b, T0.4.9 et T3.1.7 si le nom du set change) |
 
 **Règle** : si une tâche dépend d'une lacune `OPEN`, l'Orchestrateur la marque `BLOCKED`, arrête la chaîne et propose d'insérer la tâche de comblement juste avant dans `order` (voir B.5).
