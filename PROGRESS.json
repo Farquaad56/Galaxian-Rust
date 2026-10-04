@@ -857,11 +857,13 @@
     "T0.5.1"
    ],
    "ctx": [],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
-   "commit": null,
-   "report": null,
-   "notes": []
+   "commit": "c3937e9",
+   "report": "reports/T0.5.2.json",
+   "notes": [
+    "livrable crates/xtask/src/golden.rs (cargo xtask golden run : profil commun KB-28a §3 exact, MAME_DIR override, cwd = dossier de mame.exe, suppression+recréation tests/golden/tmp/run/{cfg,nvram,snap,inp,sta}, args après --, --dry-run sans effet filesystem, code retour propagé) + wiring main.rs + .gitignore (tools/, tests/golden/tmp/). 3 tests unitaires sans lancer MAME. validateur PASS (reports/T0.5.2.json), relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) -> out/T0.5.2/verdict.md."
+   ]
   },
   "T0.5.3": {
    "title": "Trace CPU brute",
