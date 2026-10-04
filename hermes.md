@@ -18,7 +18,7 @@ Les commits, `reports/` et `out/` existants portent les **anciens IDs** ; ne pas
 Anciens IDs encore cités ailleurs : ancien T0.2.2 (extraire KB-22..26) = T0.4.3 → T0.4.13 ; ancien T0.3.x (golden) = T0.5.x ; ancien T0.4.x (TestROM Factory) = T0.6.x ; ancien T1.4.4 (trace MAME) = T3.3.4 ; ancien T3.1.x = T3.1–T3.4 ; ancien T2.3.x (NMI) = T2.5.x.
 Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux** IDs.
 
-## Ce qui est fait (37 tâches DONE sur 355)
+## Ce qui est fait (38 tâches DONE sur 355)
 - **T0.1.1 Workspace Cargo / T0.1.2 Lints / T0.1.3 CI / T0.1.7 api-dump** ✅ (ancien T0.1.1 — commits `a1b8e81` + `9944062`)
   - 5 crates : z80, galaxian-core, galaxian-audio, galaxian-frontend, xtask ; edition 2021.
   - Lints par crate (cargo 1.98 refuse le mix workspace+per-crate) : clippy all=deny + pedantic=warn ; `unsafe_code="forbid"` sur z80/galaxian-core/galaxian-audio. *À vérifier au prochain passage : présence de `rustfmt.toml`/`clippy.toml` (exigés par T0.1.2).*
@@ -65,6 +65,10 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
   - Deux runs exit 0, **3 717 920 lignes** chacune (≥ 1 000), première ligne à PC=0001, aucune ligne `0000:`, dernière ligne complète + newline final ; premières 100 000 lignes byte-identiques entre les deux runs (SHA256 `d9be639a…`).
   - Codeur opencode (run OK). Validateur PASS (reports/T0.5.3.json) — subagent frais, seul ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) → out/T0.5.3/verdict.md.
   - **Commit docs séparé `ec5660a`** : correction du tranché T0.5.1 erroné « utiliser `-debugger none` pour un run headless » présent en 3 endroits (KB-28a:58, KB-28b:25, mame_notes.md §3.8 + conséquence T0.5.2) — le test `runDN` de T0.5.1 ne vérifiait que l'exit code, pas la sortie de trace. À répercuter dans les tâches de trace suivantes (T0.5.4+).
+- **T0.5.4 Trace CPU normalisée** ✅ (commit `e8a68c7` + hash PROGRESS.json) — livrable `crates/xtask/src/trace.rs` (nouveau module ~136 lignes d'implémentation + 6 tests unitaires sans MAME) + wiring `main.rs` : commande `cargo xtask golden trace`.
+  - Lit `tests/golden/tmp/trace_raw.log` (produit par T0.5.3), tronque à N et convertit en `tests/golden/trace_boot_{1000,100000,1000000}.log` au format normalisé fixe : `<PC> <OP> AF=… BC=… DE=… HL=… SP=… CYC=<LIC>` (CYC = valeur décimale du champ LIC/lastinstructioncycles — tranché T0.5.1, PAS reconstruit depuis KB-21b ; disassemblage supprimé ; un seul passage streaming).
+  - 3 goldens versionnés : 1 000 / 100 000 / 1 000 000 lignes, formats identiques (0 ligne déviante), premières 1 000 lignes byte-identiques dans les 3 (SHA256 `3c1b1d4c…`) ; non ignorés par git.
+  - Codeur opencode (run OK). Validateur PASS (reports/T0.5.4.json) — subagent frais, seul : goldens régénérés de zéro (supprimés puis recréés), 19/19 tests, clippy `-D warnings` propre ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) → out/T0.5.4/verdict.md.
 
 ## Piège B.7 — subagents parallèles sur LM Studio local
 - Les **subagents relecteurs lancés en parallèle** via `delegate_task` échouent systématiquement : le serveur LM Studio rejette la requête « context too large » à 16–25k tokens (fenêtre annoncée 135k) — les requêtes concurrentes se disputent la capacité. **Ne pas relancer en parallèle.**
@@ -72,7 +76,7 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
 - Les erreurs serveur ne consomment pas d'essais de revue (B.7.5) ; rien n'est renvoyé au codeur.
 
 ## Ce qu'il reste à faire
-- **En cours : T0.5.4 — Trace CPU normalisée** (étape 0.5, références MAME golden ; T0.5.5–T0.5.10 ensuite). T0.5.3 DONE (trace brute `tests/golden/mame/trace.dbg`) ; étape 0.4 terminée (T0.4.3–T0.4.13) : GAP-01/02/03/05 fermés par T0.4.13.
+- **En cours : T0.5.5 — CRC de frames (script Lua)** (étape 0.5, références MAME golden ; T0.5.6–T0.5.10 ensuite). T0.5.4 DONE (trace normalisée `xtask golden trace` + 3 goldens) ; étape 0.4 terminée (T0.4.3–T0.4.13) : GAP-01/02/03/05 fermés par T0.4.13.
 - Fin d'étape 0.1 : **T0.1.7 api-dump** — DONE (commit `a1b8e81+9****62`, report `reports/T0.1.1.json`). *migré depuis ancien T0.1.1.*
 - Restes partiels des tâches « déjà faites » : T0.4.2 (`MANIFEST.md` : version/commit MAME + index fonction→ligne ; SHA256SUMS déjà présent).
 - Étape 0.3 (T0.3.1–T0.3.8) : fiches Z80 KB-21a…g — **tâches documentaires, sources à fournir par l'humain** (*The Undocumented Z80 Documented*, tableaux Zilog).
