@@ -18,7 +18,7 @@ Les commits, `reports/` et `out/` existants portent les **anciens IDs** ; ne pas
 Anciens IDs encore cités ailleurs : ancien T0.2.2 (extraire KB-22..26) = T0.4.3 → T0.4.13 ; ancien T0.3.x (golden) = T0.5.x ; ancien T0.4.x (TestROM Factory) = T0.6.x ; ancien T1.4.4 (trace MAME) = T3.3.4 ; ancien T3.1.x = T3.1–T3.4 ; ancien T2.3.x (NMI) = T2.5.x.
 Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux** IDs.
 
-## Ce qui est fait (36 tâches DONE sur 355)
+## Ce qui est fait (37 tâches DONE sur 355)
 - **T0.1.1 Workspace Cargo / T0.1.2 Lints / T0.1.3 CI / T0.1.7 api-dump** ✅ (ancien T0.1.1 — commits `a1b8e81` + `9944062`)
   - 5 crates : z80, galaxian-core, galaxian-audio, galaxian-frontend, xtask ; edition 2021.
   - Lints par crate (cargo 1.98 refuse le mix workspace+per-crate) : clippy all=deny + pedantic=warn ; `unsafe_code="forbid"` sur z80/galaxian-core/galaxian-audio. *À vérifier au prochain passage : présence de `rustfmt.toml`/`clippy.toml` (exigés par T0.1.2).*
@@ -60,6 +60,11 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
 - **T0.5.2 Lanceur MAME** ✅ (commit `c3937e9` + hash PROGRESS.json) — livrable `crates/xtask/src/golden.rs` (`cargo xtask golden run`) + wiring `main.rs` + `.gitignore` (+ `tools/`, `tests/golden/tmp/`).
   - Profil commun KB-28a §3 exact (y compris `-autoboot_delay 0`) ; MAME = `<racine>/tools/mame.exe` avec surcharge `MAME_DIR` ; cwd du processus = dossier de mame.exe ; suppression + recréation de `tests/golden/tmp/run/{cfg,nvram,snap,inp,sta}` avant chaque run réel (pas en dry-run) ; args additionnels après `--` ; `--dry-run` affiche la commande sans lancer MAME ni toucher au filesystem ; code retour de MAME propagé. 3 tests unitaires sans lancer MAME.
   - Codeur opencode (run OK, pas de mort mid-task). Validateur PASS (reports/T0.5.2.json) — subagent frais, seul (pas de concurrence LM Studio) ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) → out/T0.5.2/verdict.md.
+- **T0.5.3 Trace CPU brute** ✅ (commit `1645e07` + hash PROGRESS.json) — livrable `tests/golden/mame/trace.dbg` (squelette KB-28b §A corrigé T0.5.1 : action trace avec chemin `/`, `noloop`, compteurs `totalcycles`+`lastinstructioncycles` dans l'action `tracelog` ; `go`). 0 ligne de code Rust touchée.
+  - Écart justifié par rapport à la commande littérale du prompt : `-debugger none` retiré — sur le binaire MAME v0.289, `-debugger none` n'exécute JAMAIS `-debugscript` (MAME saute le script entièrement ; `gdbstub` reste bloqué en attente d'un client). Seul le debugger **windows** par défaut exécute le script (fenêtre ouverte brièvement, MAME s'arrête via `-seconds_to_run`). Validation exécutée : `cargo xtask golden run -- -debug -debugscript ../tests/golden/mame/trace.dbg -video none -seconds_to_run 10`.
+  - Deux runs exit 0, **3 717 920 lignes** chacune (≥ 1 000), première ligne à PC=0001, aucune ligne `0000:`, dernière ligne complète + newline final ; premières 100 000 lignes byte-identiques entre les deux runs (SHA256 `d9be639a…`).
+  - Codeur opencode (run OK). Validateur PASS (reports/T0.5.3.json) — subagent frais, seul ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) → out/T0.5.3/verdict.md.
+  - **Commit docs séparé `ec5660a`** : correction du tranché T0.5.1 erroné « utiliser `-debugger none` pour un run headless » présent en 3 endroits (KB-28a:58, KB-28b:25, mame_notes.md §3.8 + conséquence T0.5.2) — le test `runDN` de T0.5.1 ne vérifiait que l'exit code, pas la sortie de trace. À répercuter dans les tâches de trace suivantes (T0.5.4+).
 
 ## Piège B.7 — subagents parallèles sur LM Studio local
 - Les **subagents relecteurs lancés en parallèle** via `delegate_task` échouent systématiquement : le serveur LM Studio rejette la requête « context too large » à 16–25k tokens (fenêtre annoncée 135k) — les requêtes concurrentes se disputent la capacité. **Ne pas relancer en parallèle.**
@@ -67,7 +72,7 @@ Les nouveaux commits suivent la convention `T<id>: <titre>` avec les **nouveaux*
 - Les erreurs serveur ne consomment pas d'essais de revue (B.7.5) ; rien n'est renvoyé au codeur.
 
 ## Ce qu'il reste à faire
-- **En cours : T0.5.3 — Trace CPU brute** (étape 0.5, références MAME golden ; T0.5.4–T0.5.10 ensuite). T0.5.2 DONE (lanceur `cargo xtask golden run`) ; étape 0.4 terminée (T0.4.3–T0.4.13) : GAP-01/02/03/05 fermés par T0.4.13.
+- **En cours : T0.5.4 — Trace CPU normalisée** (étape 0.5, références MAME golden ; T0.5.5–T0.5.10 ensuite). T0.5.3 DONE (trace brute `tests/golden/mame/trace.dbg`) ; étape 0.4 terminée (T0.4.3–T0.4.13) : GAP-01/02/03/05 fermés par T0.4.13.
 - Fin d'étape 0.1 : **T0.1.7 api-dump** — DONE (commit `a1b8e81+9****62`, report `reports/T0.1.1.json`). *migré depuis ancien T0.1.1.*
 - Restes partiels des tâches « déjà faites » : T0.4.2 (`MANIFEST.md` : version/commit MAME + index fonction→ligne ; SHA256SUMS déjà présent).
 - Étape 0.3 (T0.3.1–T0.3.8) : fiches Z80 KB-21a…g — **tâches documentaires, sources à fournir par l'humain** (*The Undocumented Z80 Documented*, tableaux Zilog).
