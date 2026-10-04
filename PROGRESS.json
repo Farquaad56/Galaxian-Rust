@@ -913,11 +913,13 @@
     "T0.5.5"
    ],
    "ctx": [],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
-   "commit": null,
-   "report": null,
-   "notes": []
+   "commit": "bd25986",
+   "report": "reports/T0.5.6.json",
+   "notes": [
+    "livrable tests/golden/mame/mem_dump.lua (verbatim KB-28b §C : DUMPS {[60]=true,[600]=true}, LAST=600, VRAM 0x5000..0x53FF puis OBJRAM 0x5800..0x58FF, read_u8 non signée) + goldens versionnés tests/golden/mem_dump_60.bin et tests/golden/mem_dump_600.bin produits par MAME via le lanceur T0.5.2 (cargo xtask golden run -- -video none -sound none -autoboot_script ../tests/golden/mame/mem_dump.lua -seconds_to_run 15). Chaque .bin = exactement 1280 octets (VRAM 0x400 + OBJRAM 0x100) ; contenus différents (SHA256 mem_dump_60.bin 847ac13f… ≠ mem_dump_600.bin e07e543a…). Deux runs byte-identiques. Tranché T0.5.1 : read_u8 existe sur l'espace program du maincpu (variante non signée). validateur PASS (reports/T0.5.6.json) — subagent frais, seul ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) -> out/T0.5.6/verdict.md."
+   ]
   },
   "T0.5.7": {
    "title": "Audio : attract",
