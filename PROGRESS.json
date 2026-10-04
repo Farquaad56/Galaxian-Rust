@@ -899,11 +899,13 @@
     "T0.5.4"
    ],
    "ctx": [],
-   "status": "TODO",
+   "status": "DONE",
    "attempts": 0,
-   "commit": null,
-   "report": null,
-   "notes": []
+   "commit": "8b07d6d",
+   "report": "reports/T0.5.5.json",
+   "notes": [
+    "livrable tests/golden/mame/frames_crc.lua (verbatim KB-28b §B : liste de frames {1,2,5,10,30,60,120,300,600}, table CRC32 0xEDB88320) + golden versionné tests/golden/frames_crc.txt produit par MAME via le lanceur T0.5.2 (cargo xtask golden run -- -video none -sound none -autoboot_script ../tests/golden/mame/frames_crc.lua -seconds_to_run 15). Golden : en-tête # first_frame_seen=0 size=768x224 mame=0.289 puis 9 lignes de données <frame> <CRC32> 768x224 ; CRC frame 1 (9DBAF643) ≠ frame 600 (D51D3DA7) ; aucune ligne ne vaut la référence écran noir (3D53E321). Deux runs byte-identiques (SHA256 da6ab653…). Tranché T0.5.1 : le CRC porte sur le bitmap MAME 768×224 tel quel (la décision humaine sur la résolution est déjà consignée par T0.5.1, pas de nouvelle entrée mame_notes.md). validateur PASS (reports/T0.5.5.json) — subagent frais, seul ; relecteur APPROVE mené séquentiellement par l'instance parente (solution B.7) -> out/T0.5.5/verdict.md."
+   ]
   },
   "T0.5.6": {
    "title": "Dump VRAM/OBJRAM (script Lua)",
